@@ -8,12 +8,14 @@ For a high-level overview of eForm, see [EForm Component](../../components/eform
 
 ## End-to-End Flow
 
+This flow applies to both CX (Center Admin) and HX (Home Provider). The form wizard is the same — the backend routes to CX or HX business logic based on the invitation's `SystemCode`.
+
 ```mermaid
 graph TD
-    A["Center Admin<br/>creates invitation"] --> B["Child created<br/>(status: Enrollment Incomplete)"]
+    A["Center Admin (CX) or<br/>Home Provider (HX)<br/>creates invitation"] --> B["Child created<br/>(status: Enrollment Incomplete)"]
 
     B --> C{"Who fills<br/>the form?"}
-    C -->|"Center fills<br/>on behalf of parent"| D["Center opens form<br/>from View Status"]
+    C -->|"Staff fills<br/>on behalf of parent"| D["Staff opens form<br/>from View Status"]
     C -->|"Parent fills"| E["Parent receives email<br/>→ creates KK account<br/>→ opens form"]
 
     D --> F["DOB Verification Dialog"]
@@ -65,7 +67,7 @@ graph TD
 
     subgraph APPROVE ["Approval Pipeline"]
         direction TB
-        AP1["Center reviews & approves<br/>(or sends back for revision)"]
+        AP1["CX: Center reviews & approves<br/>HX: Provider submits<br/>(or sends back for revision)"]
         AP2["Sponsor reviews & approves<br/>(or sends back for revision)"]
         AP3["Renewal processing<br/>(sets enrollment + expiration dates)"]
         AP1 --> AP2 --> AP3
@@ -127,7 +129,7 @@ graph LR
 | Not Started | 1 | Invitation sent but form not yet opened |
 | In Progress | 2 | Form opened and being filled |
 | Canceled | 3 | Invitation voided (auto-triggers deletion) |
-| Site Submitted | 4 | Center approved; awaiting sponsor review |
+| Site Submitted | 4 | Site approved (CX: center, HX: provider); awaiting sponsor |
 | Manually Completed | 5 | Staff marked complete without parent submission |
 | Needs Approval | 6 | Parent/center signed; awaiting site review |
 | Sponsor Approved | 7 | Sponsor approved; ready for renewal processing |
@@ -268,13 +270,15 @@ If the main child has no income record, sibling income data is cleaned up to pre
 - Preview of selected sibling's income data
 - Available in English, Spanish, and Russian (i18n)
 
-### Oversight Tab
+### Oversight Tab (CX Only)
 
-The CX child oversight tab (`cx-child-oversight.component.ts`) also supports manual sibling sync:
+The CX child oversight tab (`cx-child-oversight.component.ts`) supports manual sibling sync for center users:
 
 - Multiselect dropdown of eligible siblings
 - "Copy to siblings" action that calls `sp_copy_childInfo_to_siblings` with `IsOversightTab=true`
 - Deleting IEF records or household income rows auto-triggers sibling sync
+
+This is not available in HX — home providers manage child data directly without an oversight tab.
 
 ---
 

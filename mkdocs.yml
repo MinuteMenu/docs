@@ -7,7 +7,6 @@ theme:
   name: material
   features:
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - search.highlight
     - content.code.copy

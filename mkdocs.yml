@@ -1,0 +1,47 @@
+site_name: MinuteMenu Docs
+site_url: https://minutemenu.github.io/docs/
+repo_url: https://github.com/MinuteMenu/docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html
+
+nav:
+  - Home: index.md
+  - Architecture:
+    - System Overview: architecture/system-overview.md
+  - Flows:
+    - Authentication:
+      - SAML SSO - Client Migration Guide: flows/authentication/saml-sso-client-migration-guide.md
+      - SAML SSO - Complete Guide: flows/authentication/saml-sso-complete-guide.md
+  - Components:
+    - EForm: components/eform.md
+    - Authentication: components/authentication.md
+    - Claims Processing: components/claims-processing.md

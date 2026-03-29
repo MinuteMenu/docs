@@ -56,3 +56,16 @@ nav:
         - Food Transfer: components/cx-sfsp-aras/food-transfer.md
         - Meal Delivery & Pickup: components/cx-sfsp-aras/meal-delivery-pickup.md
         - Reports: components/cx-sfsp-aras/reports.md
+      - "Menu & Regular Attendance (TODO)": components/cx-sponsor/menu-attendance.md
+      - "Children Management (TODO)": components/cx-sponsor/children-management.md
+      - "Site Management (TODO)": components/cx-sponsor/site-management.md
+      - "Administration (TODO)": components/cx-sponsor/administration.md
+      - "Claims (TODO)": components/cx-sponsor/claims.md
+      - "Payments (TODO)": components/cx-sponsor/payments.md
+      - "CX Reports (TODO)": components/cx-sponsor/reports.md
+      - "Import Attendance (TODO)": components/cx-sponsor/import-attendance.md
+      - "Import Child (TODO)": components/cx-sponsor/import-child.md
+      - "Left Menu (TODO)": components/cx-sponsor/left-menu.md
+      - "Tools (TODO)": components/cx-sponsor/tools.md
+      - "Tools — Permissions (TODO)": components/cx-sponsor/tools-permissions.md
+      - "Milk Audit (TODO)": components/cx-sponsor/milk-audit.md

@@ -31,6 +31,10 @@ graph TB
 
 The default authentication method. All products use it.
 
+![KidKare login — identifier-first flow (enter username, then password)](./images/login-identifier-first.png)
+
+*KidKare uses an identifier-first login. The user enters their username or email first, then the system determines whether to show a password field (standard) or redirect to a corporate IdP (SAML SSO).*
+
 **How it works:**
 
 1. User enters username and password on login page

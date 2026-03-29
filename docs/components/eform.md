@@ -9,6 +9,10 @@ eForm is the digital enrollment system for the USDA Child and Adult Care Food Pr
 
 Both forms follow a multi-stage approval pipeline: parent fills and signs → site reviews → sponsor approves → system generates enrollment records.
 
+![eForms View Status — center-level invitation list showing form statuses and actions](../flows/eform/images/view-status.png)
+
+*View Status page inside a center. Each row shows a child's EF and IEF with their current status and available actions.*
+
 ---
 
 ## Two Systems: CX (Centers) and HX (Homes)
@@ -141,6 +145,14 @@ When both forms are required, the EF is always completed first, then the IEF. Ea
 
 The Center Admin (CX) or Home Provider (HX) can also fill forms on behalf of the parent. This is the most common flow when the site handles paperwork directly.
 
+**Sponsor Observer Mode** — Sponsors can enter any center to manage eForms on behalf of the center admin:
+
+![Observer Mode — sponsor selects a center to observe](../flows/eform/images/observer-mode.png)
+
+**Children List** inside a center shows enrollment status and expiration alerts:
+
+![Children list with enrollment status and expiration alerts](../flows/eform/images/children-list.png)
+
 ---
 
 ## End-to-End Flow
@@ -214,6 +226,12 @@ graph TD
     style APPROVE fill:#e8f5e9
     style CHOOSE fill:#fff3e0
 ```
+
+**Sponsor-level eForms** — Sponsors see invitation counts per center and can approve/renew forms in bulk:
+
+![Sponsor View Status — invitation counts per center](../flows/eform/images/sponsor-view-status.png)
+
+![Sponsor Approve & Renew — bulk approval, renewal dates, and export](../flows/eform/images/sponsor-approve-renew.png)
 
 ---
 

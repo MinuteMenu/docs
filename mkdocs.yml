@@ -49,3 +49,9 @@ nav:
     - EForm: components/eform.md
     - Authentication: components/authentication.md
     - Claims Processing: components/claims-processing.md
+    - CX SFSP/ARAS:
+      - Overview: components/cx-sfsp-aras/overview.md
+      - Attendance & Meal Counts: components/cx-sfsp-aras/attendance.md
+      - Food Transfer: components/cx-sfsp-aras/food-transfer.md
+      - Meal Delivery & Pickup: components/cx-sfsp-aras/meal-delivery-pickup.md
+      - Reports: components/cx-sfsp-aras/reports.md

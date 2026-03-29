@@ -28,3 +28,4 @@ This site contains cross-cutting documentation that spans multiple repositories.
 - [System Overview](architecture/system-overview.md) - How the platform fits together
 - [SAML SSO - Client Migration Guide](flows/authentication/saml-sso-client-migration-guide.md) - Migrate existing clients to SSO
 - [SAML SSO - Complete Guide](flows/authentication/saml-sso-complete-guide.md) - Full SSO setup for existing and new clients
+- [CX SFSP/ARAS Overview](components/cx-sfsp-aras/overview.md) - SFSP/ARAS features for center-based providers

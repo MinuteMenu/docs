@@ -39,6 +39,8 @@ nav:
     - System Overview: architecture/system-overview.md
   - Flows:
     - Authentication:
+      - Overview: flows/authentication/overview.md
+      - SAML SSO Architecture: flows/authentication/saml-sso-architecture.md
       - SAML SSO - Client Migration Guide: flows/authentication/saml-sso-client-migration-guide.md
       - SAML SSO - Complete Guide: flows/authentication/saml-sso-complete-guide.md
   - Components:

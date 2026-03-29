@@ -20,5 +20,7 @@ Authentication in MinuteMenu is handled by a centralized Single Sign-On (SSO) se
 
 ## Related Docs
 
+- [Authentication Overview](../flows/authentication/overview.md) - How all three auth mechanisms work (username/password, SAML, service-to-service)
+- [SAML SSO Architecture](../flows/authentication/saml-sso-architecture.md) - Technical flow, component diagram, security design
 - [SAML SSO - Client Migration Guide](../flows/authentication/saml-sso-client-migration-guide.md) - Migrate existing clients to SSO
 - [SAML SSO - Complete Guide](../flows/authentication/saml-sso-complete-guide.md) - Full SSO setup guide

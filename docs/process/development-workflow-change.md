@@ -5,6 +5,17 @@
 
 ---
 
+## Quick Summary
+
+- **Dev now owns testing.** Write test cases, run all tests, capture screenshots, upload evidence to the ticket.
+- **QA now owns quality review.** Review dev's test cases, add missing ones, sanity test only, give final approval.
+- **Low impact tickets** (error message, validation, typo) — peer testing between devs, no QA needed.
+- **Evidence required** — every ticket needs a test case checklist + screenshots before QA review.
+- **Nightly Playwright regression** runs automatically. Failed tests assigned to dev to fix.
+- **Git: use rebase, not merge.** Only on your own branch. Push with `--force-with-lease` after rebase.
+
+---
+
 ## 1. Why We Are Changing
 
 AI coding agents made development much faster. A feature that took weeks now takes days.

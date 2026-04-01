@@ -36,6 +36,7 @@ nav:
   - Home: index.md
   - Process:
     - Development Workflow Change: process/development-workflow-change.md
+    - Targetprocess Skill Guide: process/targetprocess-skill-guide.md
   - Architecture:
     - System Overview: architecture/system-overview.md
   - Flows:

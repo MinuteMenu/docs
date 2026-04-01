@@ -1,0 +1,2579 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/flows/authentication/overview/">
+      
+      
+        <link rel="prev" href="../../../architecture/system-overview/">
+      
+      
+        <link rel="next" href="../saml-sso-architecture/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Overview - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#authentication-overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-username-password-standard-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Username + Password (Standard Login)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-saml-sso-federated-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SAML SSO (Federated Login)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-service-to-service-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Service-to-Service Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Service-to-Service Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kk-reporting-service-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → Reporting Service (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kk-cx-api-basic-auth-from-session-or-cx-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → CX API (Basic Auth from session or CX DB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kk-homes-api-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → Homes API (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kk-parachute-api-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → Parachute API (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parachute-kk-api-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parachute → KK API (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centers-cx-kk-api-basic-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centers-CX → KK API (Basic Auth)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hx-cloud-api-dcp-hardcoded-service-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HX Cloud API → DCP (Hardcoded service credentials)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hx-cloud-api-kk-basic-auth-from-raw_password-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HX Cloud API → KK (Basic Auth from RAW_PASSWORD table)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-basic-auth-services-that-validate-incoming-basic-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound Basic Auth (services that validate incoming Basic Auth)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-key-other-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Key / Other Auth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-they-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How They Connect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact-on-entra-id-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact on Entra ID Migration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-username-password-standard-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Username + Password (Standard Login)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-saml-sso-federated-login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. SAML SSO (Federated Login)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-service-to-service-authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Service-to-Service Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Service-to-Service Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How it works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Inventory
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Inventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kk-reporting-service-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → Reporting Service (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kk-cx-api-basic-auth-from-session-or-cx-db" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → CX API (Basic Auth from session or CX DB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kk-homes-api-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → Homes API (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kk-parachute-api-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        KK → Parachute API (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parachute-kk-api-basic-auth-from-user-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parachute → KK API (Basic Auth from user session)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centers-cx-kk-api-basic-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centers-CX → KK API (Basic Auth)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hx-cloud-api-dcp-hardcoded-service-credentials" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HX Cloud API → DCP (Hardcoded service credentials)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hx-cloud-api-kk-basic-auth-from-raw_password-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HX Cloud API → KK (Basic Auth from RAW_PASSWORD table)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inbound-basic-auth-services-that-validate-incoming-basic-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inbound Basic Auth (services that validate incoming Basic Auth)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api-key-other-auth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API Key / Other Auth
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-they-connect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How They Connect
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#impact-on-entra-id-migration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Impact on Entra ID Migration
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="authentication-overview">Authentication Overview</h1>
+<p>MinuteMenu uses three authentication mechanisms. Each serves a different purpose.</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "User Authentication"
+        UP["Username + Password&lt;br/&gt;(all products)"]
+        SAML["SAML SSO&lt;br/&gt;(CX sponsors via Azure AD)"]
+    end
+
+    subgraph "Service Authentication"
+        S2S["Basic Auth / API Keys&lt;br/&gt;(between services)"]
+    end
+
+    UP --&gt; SSO[SingleSignOn Service]
+    SAML --&gt; SSO
+    SSO --&gt; Redis[(Redis&lt;br/&gt;Shared Sessions)]
+
+    S2S --&gt; HX_API[HX Cloud API]
+    S2S --&gt; KK_API[KK API]
+
+    Redis --&gt; KK[KidKare]
+    Redis --&gt; CX[Centers-CX]
+    Redis --&gt; PAR[Parachute]</code></pre>
+<hr />
+<h2 id="1-username-password-standard-login">1. Username + Password (Standard Login)</h2>
+<p>The default authentication method. All products use it.</p>
+<p><img alt="KidKare login — identifier-first flow (enter username, then password)" src="../images/login-identifier-first.png" /></p>
+<p><em>KidKare uses an identifier-first login. The user enters their username or email first, then the system determines whether to show a password field (standard) or redirect to a corporate IdP (SAML SSO).</em></p>
+<p><strong>How it works:</strong></p>
+<ol>
+<li>User enters username and password on login page</li>
+<li>KK sends credentials to SingleSignOn Service (<code>POST /auth</code>)</li>
+<li>SSO validates against its MySQL user database (salted hash)</li>
+<li>If user doesn't exist in SSO but exists in HX or CX → account is created on the fly (JIT provisioning)</li>
+<li>Session is stored in Redis, shared across all products</li>
+<li>Session ID returned via cookie (<code>ss-id</code> header for SPA clients)</li>
+</ol>
+<p><strong>Session details:</strong></p>
+<ul>
+<li>Stored in Redis with 12-hour TTL</li>
+<li>Shared across KK, CX, Parachute (same Redis instance)</li>
+<li>Contains: user ID, roles, permissions, site data</li>
+</ul>
+<p><strong>Repos involved:</strong> KK (login UI + login types), SingleSignOn-Service (credential validation + session creation)</p>
+<hr />
+<h2 id="2-saml-sso-federated-login">2. SAML SSO (Federated Login)</h2>
+<p>Added for CX (Center) sponsors who want their users to log in with corporate credentials via Microsoft Entra ID (Azure AD). Controlled by <strong>Policy A.13</strong> per sponsor.</p>
+<p><strong>How it works (simplified):</strong></p>
+<ol>
+<li>User enters email on login page</li>
+<li>System checks if the email domain is SSO-enabled (Home Realm Discovery)</li>
+<li>If yes → redirect to corporate identity provider (Azure AD)</li>
+<li>User authenticates at Azure AD</li>
+<li>Azure sends SAML assertion back to SSO service</li>
+<li>SSO validates assertion, creates a one-time exchange token</li>
+<li>Redirects back to KK, which uses the token to create a normal session</li>
+</ol>
+<p><strong>Key characteristics:</strong></p>
+<ul>
+<li>Authentication only — user accounts and permissions still managed in KidKare</li>
+<li>Policy-gated: each sponsor can enable/disable independently</li>
+<li>Currently supports CX Sponsor and Center users only</li>
+<li>SAML users have no KidKare password — they always log in via their IdP</li>
+</ul>
+<p><strong>Repos involved:</strong> KK (identifier-first UI, SAML BLL), SingleSignOn-Service (SAML callback, exchange token), MinuteMenu.Database (IdP config tables in CXADMIN)</p>
+<p>See <a href="../saml-sso-architecture/">SAML SSO Architecture</a> for the full technical flow.</p>
+<hr />
+<h2 id="3-service-to-service-authentication">3. Service-to-Service Authentication</h2>
+<p>Backend services authenticate with each other using Basic Auth or API keys. This is not user-facing but is <strong>critical for the Entra ID migration</strong> — every call site below depends on the current credential system.</p>
+<h3 id="how-it-works">How it works</h3>
+<p>Most service-to-service calls pass the <strong>user's BasicAuthHeader from their session</strong>. When a user logs in, their credential is stored in the Redis session. Every outbound call to another service re-uses that credential. A few services use hardcoded service accounts from app config instead.</p>
+<pre class="mermaid"><code>graph LR
+    subgraph "User Session (Redis)"
+        BAH["BasicAuthHeader&lt;br/&gt;base64(user:password)"]
+    end
+
+    subgraph "KK Outbound"
+        KK_RPT["KK → Report Engine"]
+        KK_CX["KK → CX API"]
+        KK_HOMES["KK → Homes API"]
+        KK_PAR["KK → Parachute API"]
+    end
+
+    subgraph "Other Outbound"
+        PAR_KK["Parachute → KK API"]
+        CX_KK["Centers-CX → KK API"]
+        HX_DCP["HX Cloud → DCP API"]
+        HX_KK["HX Cloud → KK API"]
+    end
+
+    BAH --&gt; KK_RPT
+    BAH --&gt; KK_CX
+    BAH --&gt; KK_HOMES
+    BAH --&gt; KK_PAR
+    BAH --&gt; PAR_KK
+    BAH --&gt; CX_KK
+
+    CFG["Service Account&lt;br/&gt;(app config)"] --&gt; HX_DCP
+    RAW["RAW_PASSWORD table"] --&gt; HX_KK</code></pre>
+<h3 id="complete-inventory">Complete Inventory</h3>
+<h4 id="kk-reporting-service-basic-auth-from-user-session">KK → Reporting Service (Basic Auth from user session)</h4>
+<p>The reporting service is the <strong>largest consumer</strong> of Basic Auth. Every report call passes the user's session credentials.</p>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReportController</code> (~20 methods)</td>
+<td>KK</td>
+<td>PDF generation for homes, centers, sponsors — verify in/out times, payment details, child reports</td>
+</tr>
+<tr>
+<td><code>ReportService</code></td>
+<td>KK</td>
+<td>ServiceStack report endpoints (legacy)</td>
+</tr>
+<tr>
+<td><code>CenterAccountingReportBll</code></td>
+<td>KK</td>
+<td>Center accounting and financial reports</td>
+</tr>
+<tr>
+<td><code>CommonReportEnrollmentBll</code></td>
+<td>KK</td>
+<td>Enrollment and income eligibility reports</td>
+</tr>
+<tr>
+<td><code>ProviderAccountingReportBll</code></td>
+<td>KK</td>
+<td>Provider accounting and invoice reports</td>
+</tr>
+<tr>
+<td><code>ParachuteReportController</code></td>
+<td>KK</td>
+<td>Parachute-specific reports</td>
+</tr>
+<tr>
+<td><code>SponsorController</code></td>
+<td>KK</td>
+<td>Sponsor report operations</td>
+</tr>
+<tr>
+<td><code>MessageController</code></td>
+<td>KK</td>
+<td>Message-related report operations</td>
+</tr>
+<tr>
+<td><code>AccountingReportService</code></td>
+<td>Parachute</td>
+<td>FormW10 reports</td>
+</tr>
+</tbody>
+</table>
+<h4 id="kk-cx-api-basic-auth-from-session-or-cx-db">KK → CX API (Basic Auth from session or CX DB)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CentersClient</code></td>
+<td>KK</td>
+<td>Attendance quantities, CX data operations</td>
+</tr>
+<tr>
+<td><code>CxIntegrationBll</code></td>
+<td>KK</td>
+<td>FRP calculations, CX integration endpoints</td>
+</tr>
+</tbody>
+</table>
+<p>Credentials come from the user session first. If unavailable, falls back to CX user password from CXADMIN database.</p>
+<h4 id="kk-homes-api-basic-auth-from-user-session">KK → Homes API (Basic Auth from user session)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReportController</code></td>
+<td>KK</td>
+<td>Report data retrieval (ChildInOutTimes, PaymentDetails, etc.)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="kk-parachute-api-basic-auth-from-user-session">KK → Parachute API (Basic Auth from user session)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ParachuteServiceRestClient</code> (factory)</td>
+<td>KK</td>
+<td>Multiple endpoints via HttpClient</td>
+</tr>
+</tbody>
+</table>
+<h4 id="parachute-kk-api-basic-auth-from-user-session">Parachute → KK API (Basic Auth from user session)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KidKareIntegrationBll</code> (6 methods)</td>
+<td>Parachute</td>
+<td>Cancel/reactivate fraud subscriptions, Zoho queries, coupon management</td>
+</tr>
+<tr>
+<td><code>KKServiceRestClient</code> (factory, used by 12+ classes)</td>
+<td>Parachute</td>
+<td>Attendance, Settings, UserReader, AccountingHelper, Notifications, ProviderHomeScreen, and more</td>
+</tr>
+</tbody>
+</table>
+<h4 id="centers-cx-kk-api-basic-auth">Centers-CX → KK API (Basic Auth)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EnrollmentsClient</code></td>
+<td>Centers-CX</td>
+<td>Online enrollment counts by center/client</td>
+</tr>
+<tr>
+<td><code>ManageFoodClient</code></td>
+<td>Centers-CX</td>
+<td>Food list auth links</td>
+</tr>
+<tr>
+<td><code>ManageArassfspClient</code> (2 methods)</td>
+<td>Centers-CX</td>
+<td>Claim and attendance management links</td>
+</tr>
+<tr>
+<td><code>RenewEnrollments</code></td>
+<td>Centers-CX</td>
+<td>Completed online enrollments data</td>
+</tr>
+<tr>
+<td><code>IEFService</code></td>
+<td>Centers-CX</td>
+<td>Income eligibility renewals</td>
+</tr>
+<tr>
+<td><code>Features</code></td>
+<td>Centers-CX</td>
+<td>Online enrollment status, self-auth links</td>
+</tr>
+</tbody>
+</table>
+<p>Note: CX has a <strong>SSO decision gate</strong> — <code>Login.GetAzureComponent().IsAllowSupportOldSSO()</code> switches between <code>username:password</code> and <code>username:idToken</code>. This is early migration scaffolding.</p>
+<h4 id="hx-cloud-api-dcp-hardcoded-service-credentials">HX Cloud API → DCP (Hardcoded service credentials)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DcpService</code> (4 methods)</td>
+<td>hx_cloudconnectionAPI</td>
+<td>Submit/analyze claims, get processing status. Uses username/password from <code>DcpOptionConfig</code>.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hx-cloud-api-kk-basic-auth-from-raw_password-table">HX Cloud API → KK (Basic Auth from RAW_PASSWORD table)</h4>
+<table>
+<thead>
+<tr>
+<th>Caller Class</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KKIntegration</code></td>
+<td>hx_cloudconnectionAPI</td>
+<td>Callbacks to KK. Looks up raw password from <code>RAW_PASSWORD</code> table in DB.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="inbound-basic-auth-services-that-validate-incoming-basic-auth">Inbound Basic Auth (services that validate incoming Basic Auth)</h4>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Repo</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AuthAttribute</code></td>
+<td>KK</td>
+<td>Validates incoming requests — supports both session and Basic Auth header</td>
+</tr>
+<tr>
+<td><code>BasicAuthenticationFilterAttribute</code> on <code>ClaimsProcessingController</code></td>
+<td>DistributedProcessing</td>
+<td>Validates incoming claims processing requests against configured service credentials</td>
+</tr>
+</tbody>
+</table>
+<h3 id="api-key-other-auth">API Key / Other Auth</h3>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Method</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External → HX Cloud API</td>
+<td><code>mm-api-key</code> header (GUID)</td>
+<td>Validated against <code>KK_API_KEY</code> table, exchanged for JWT</td>
+</tr>
+<tr>
+<td>External → HX Cloud API</td>
+<td><code>x-api-key</code> header (encrypted)</td>
+<td>Decrypted and validated, limited to specific endpoints</td>
+</tr>
+<tr>
+<td>SSO → Azure APIM</td>
+<td>SAS token (HMAC-SHA512)</td>
+<td>Shared Access Signature for APIM management API</td>
+</tr>
+<tr>
+<td>KK → Zoho</td>
+<td>OAuth token</td>
+<td><code>Zoho-oauthtoken</code> header with refresh flow</td>
+</tr>
+<tr>
+<td>KK → Stripe</td>
+<td>Bearer token</td>
+<td>Stripe API key as bearer</td>
+</tr>
+<tr>
+<td>KK → Chat API</td>
+<td>Bearer token</td>
+<td>User token for chat/messaging</td>
+</tr>
+<tr>
+<td>KK → ChargeBee</td>
+<td>Basic Auth (API key)</td>
+<td>ChargeBee API key encoded as Basic Auth</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="how-they-connect">How They Connect</h2>
+<p>All three mechanisms ultimately produce the same result: a <strong>session in Redis</strong> that all products can read.</p>
+<div class="highlight"><pre><span></span><code>Username/Password ──► SSO validates ──► Redis session ──► KK, CX, Parachute
+SAML SSO ──────────► SSO validates ──► Redis session ──► KK, CX, Parachute
+Service-to-Service ► Direct auth ────► Request-scoped (no shared session)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Mechanism</th>
+<th>Who uses it</th>
+<th>Session shared?</th>
+<th>Password in KidKare?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Username + Password</td>
+<td>All users</td>
+<td>Yes (Redis)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>SAML SSO</td>
+<td>CX sponsors with Policy A.13</td>
+<td>Yes (Redis)</td>
+<td>No — uses corporate IdP</td>
+</tr>
+<tr>
+<td>Basic Auth / API Key</td>
+<td>Backend services</td>
+<td>No — per-request</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="impact-on-entra-id-migration">Impact on Entra ID Migration</h2>
+<p>When migrating from MySQL-based auth to Azure Entra ID, every Basic Auth call site above needs to be addressed. Key considerations:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Call Sites</th>
+<th>Migration Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Session-based Basic Auth</strong> (user credential passthrough)</td>
+<td>~30+ across KK, Parachute, CX</td>
+<td>All depend on <code>BasicAuthHeader</code> stored in Redis session. If credentials change format (e.g., to tokens), every consumer breaks.</td>
+</tr>
+<tr>
+<td><strong>Reporting Service</strong></td>
+<td>~20 methods in KK alone</td>
+<td>Largest single consumer. All use <code>UserSessionState.GetBasicAuthHeader()</code>.</td>
+</tr>
+<tr>
+<td><strong>Hardcoded service credentials</strong></td>
+<td>Rate Limiter, DCP Service</td>
+<td>Independent of user auth — can migrate separately.</td>
+</tr>
+<tr>
+<td><strong>RAW_PASSWORD table</strong></td>
+<td>HX Cloud → KK callbacks</td>
+<td>Stores plain passwords for Basic Auth encoding. Must be replaced.</td>
+</tr>
+<tr>
+<td><strong>CX SSO decision gate</strong></td>
+<td>6 clients in Centers-CX</td>
+<td>Already has <code>IsAllowSupportOldSSO()</code> toggle — migration scaffolding exists.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Central points of change:</strong></p>
+<ol>
+<li><code>UserSessionState.GetBasicAuthHeader()</code> — used by all session-based calls</li>
+<li><code>ServiceClientExtension.UseBasicAuth()</code> — extension method on all ServiceStack clients</li>
+<li><code>EncryptionHelper.EncodeBasicAuthToken()</code> / <code>DecodeBasicAuthToken()</code> — encoding/decoding utility</li>
+<li><code>KKServiceRestClient</code> factory in Parachute — factory for all Parachute → KK calls</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

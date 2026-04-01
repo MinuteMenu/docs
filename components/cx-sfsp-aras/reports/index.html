@@ -1,0 +1,2798 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/components/cx-sfsp-aras/reports/">
+      
+      
+        <link rel="prev" href="../meal-delivery-pickup/">
+      
+      
+        <link rel="next" href="../../cx-sponsor/menu-attendance/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Reports - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sfsparas-reports" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Reports
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#served-meals-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Served Meals Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Served Meals Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#export-contexts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Contexts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Report File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns-always-shown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Columns Always Shown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-columns-for-sponsor-center-daily-attendance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Columns for Sponsor Center Daily Attendance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-dependent-columns-bulk-entry-and-amc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter-Dependent Columns (Bulk Entry and A&amp;MC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amc-specific-columns-non-lala-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A&amp;MC-Specific Columns (Non-LA/LA Only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulk-attendance-last-modified-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk Attendance Last Modified Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bulk Attendance Last Modified Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-file_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Report File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pickupdelivery-tracking-satellite-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pickup/Delivery Tracking (Satellite Report)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pickup/Delivery Tracking (Satellite Report)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-by-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access by Role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controls_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sponsor-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sponsor Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centeric-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center/IC Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-table-columns-sponsor-and-state-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Table Columns (Sponsor and State User)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-file-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF File Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#served-meals-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Served Meals Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Served Meals Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#export-contexts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export Contexts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Report File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns-always-shown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Columns Always Shown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-columns-for-sponsor-center-daily-attendance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Columns for Sponsor Center Daily Attendance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter-dependent-columns-bulk-entry-and-amc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filter-Dependent Columns (Bulk Entry and A&amp;MC)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amc-specific-columns-non-lala-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A&amp;MC-Specific Columns (Non-LA/LA Only)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulk-attendance-last-modified-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk Attendance Last Modified Report
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bulk Attendance Last Modified Report">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#report-file_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Report File
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pickupdelivery-tracking-satellite-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pickup/Delivery Tracking (Satellite Report)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pickup/Delivery Tracking (Satellite Report)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-by-role" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access by Role
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controls_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sponsor-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sponsor Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centeric-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center/IC Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-table-columns-sponsor-and-state-user" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Table Columns (Sponsor and State User)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pdf-file-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PDF File Names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="sfsparas-reports">SFSP/ARAS Reports</h1>
+<p>This page documents the report exports available for SFSP/ARAS centers: Served Meals Report, Bulk Attendance Last Modified, and Pickup/Delivery Tracking (Satellite Report).</p>
+<hr />
+<h2 id="served-meals-report">Served Meals Report</h2>
+<p>Export functionality that generates a <code>ServedMealsReport.xlsx</code> file. Available from three different pages, each with different behavior.</p>
+<h3 id="export-contexts">Export Contexts</h3>
+<table>
+<thead>
+<tr>
+<th>Context</th>
+<th>Role</th>
+<th>Export Trigger</th>
+<th>Has Popup?</th>
+<th>Has Filters?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Center Daily Attendance/Served Meals</td>
+<td>Sponsor</td>
+<td>Export button</td>
+<td>No</td>
+<td>No -- all columns shown</td>
+</tr>
+<tr>
+<td>Bulk Entry page</td>
+<td>Sponsor</td>
+<td>Export button</td>
+<td>Yes -- select center(s), From/To</td>
+<td>Yes -- hidden filter columns hidden in report</td>
+</tr>
+<tr>
+<td>Non-LA/LA SFSP/ARAS A&amp;MC page</td>
+<td>Center/IC</td>
+<td>Export button</td>
+<td>Yes -- select From/To</td>
+<td>Yes -- hidden filter columns hidden in report</td>
+</tr>
+</tbody>
+</table>
+<h3 id="navigation">Navigation</h3>
+<p><strong>Center Daily Attendance/Served Meals (Sponsor):</strong></p>
+<p><img alt="Center Daily Attendance location" src="../images/served-meals-report-1.png" /></p>
+<p><strong>Bulk Entry (Sponsor):</strong></p>
+<p><img alt="Bulk Entry export location" src="../images/served-meals-report-2.png" /></p>
+<p><strong>A&amp;MC page (Non-LA Center/IC):</strong></p>
+<p><img alt="Non-LA A&amp;MC export location" src="../images/served-meals-report-3.png" /></p>
+<p><strong>A&amp;MC page (LA Center/IC):</strong></p>
+<p><img alt="LA A&amp;MC export location" src="../images/served-meals-report-4.png" /></p>
+<h3 id="report-file">Report File</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File name</td>
+<td><code>ServedMealsReport.xlsx</code></td>
+</tr>
+<tr>
+<td>Title line</td>
+<td>"Served Meals Report"</td>
+</tr>
+<tr>
+<td>Subtitle lines</td>
+<td>Sponsor legal name, date range (From - To)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Meal columns</p>
+<p><code>{Meal}</code> in column names means: Breakfast, AM Snack, Lunch, PM Snack, Dinner, Eve. Snack. If a center does not have a meal approved but has records for that meal, the columns still display.</p>
+</div>
+<h3 id="columns-always-shown">Columns Always Shown</h3>
+<p>These columns appear in all three export contexts and do not depend on Filters.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>DB Table</th>
+<th>DB Column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Center Name</td>
+<td><code>CENTER</code></td>
+<td><code>center_name</code></td>
+</tr>
+<tr>
+<td>Center Number</td>
+<td><code>CENTER</code></td>
+<td><code>center_number</code></td>
+</tr>
+<tr>
+<td>Attendance Date</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>attendance_date</code></td>
+</tr>
+<tr>
+<td>{Meal} Count</td>
+<td><code>SFSP_ATTENDANCE_ITEM</code></td>
+<td><code>meal_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Saved</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>mod_date_time</code></td>
+</tr>
+<tr>
+<td>Comments</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>comments</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="additional-columns-for-sponsor-center-daily-attendance">Additional Columns for Sponsor Center Daily Attendance</h3>
+<p>The Center Daily Attendance/Served Meals page always shows these additional columns. They do not depend on Filters because this page has no Filters.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>DB Table</th>
+<th>DB Column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{Meal} Seconds</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>second_meal_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Claimed</td>
+<td>Calculated</td>
+<td><code>SFSP_ATTENDANCE_ITEM.meal_count</code> + <code>SFSP_ATTENDANCE.second_meal_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Attendance</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>total_attendance</code></td>
+</tr>
+<tr>
+<td>{Meal} Non Participating</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>non_participating_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Total Meals Discarded</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>leftover</code></td>
+</tr>
+<tr>
+<td>{Meal} Total Damaged/Incomplete Meals</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>waste</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="filter-dependent-columns-bulk-entry-and-amc">Filter-Dependent Columns (Bulk Entry and A&amp;MC)</h3>
+<p>These columns only appear if the corresponding filter is visible (not hidden). They apply to both the Bulk Entry and Non-LA/LA A&amp;MC contexts.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>DB Table</th>
+<th>DB Column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{Meal} Seconds</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>second_meal_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Claimed</td>
+<td>Calculated</td>
+<td><code>SFSP_ATTENDANCE_ITEM.meal_count</code> + <code>SFSP_ATTENDANCE.second_meal_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Attendance</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>total_attendance</code></td>
+</tr>
+<tr>
+<td>{Meal} Non Participating</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>non_participating_count</code></td>
+</tr>
+<tr>
+<td>{Meal} Total Meals Discarded</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>leftover</code></td>
+</tr>
+<tr>
+<td>{Meal} Total Damaged/Incomplete Meals</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>waste</code></td>
+</tr>
+<tr>
+<td>{Meal} Total LeftOver</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>leftover_ext</code></td>
+</tr>
+<tr>
+<td>{Meal} Total Ordered</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>ordered</code></td>
+</tr>
+<tr>
+<td>{Meal} Total Delivered</td>
+<td><code>SFSP_ATTENDANCE</code></td>
+<td><code>delivered</code></td>
+</tr>
+<tr>
+<td>{Meal} Custom 1, 2, 3, 4</td>
+<td><code>SFSP_ATTENDANCE_CUSTOM_VALUE</code></td>
+<td><code>custom_value</code></td>
+</tr>
+</tbody>
+</table>
+<p>For details on Custom 1-4 columns, see <a href="../attendance/#custom-fields-settings">Custom Fields</a>.</p>
+<h3 id="amc-specific-columns-non-lala-only">A&amp;MC-Specific Columns (Non-LA/LA Only)</h3>
+<p>These columns only appear in the Non-LA/LA SFSP/ARAS <a href="../attendance/">Attendance &amp; Meal Counts</a> export. They are filter-dependent.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>DB Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{Meal} Service Type</td>
+<td><code>service_type</code></td>
+<td></td>
+</tr>
+<tr>
+<td>{Meal} Time of P/D</td>
+<td><code>service_time</code></td>
+<td></td>
+</tr>
+<tr>
+<td>{Meal} Temperature of Milk at P/D</td>
+<td><code>milk_temperature</code></td>
+<td></td>
+</tr>
+<tr>
+<td>{Meal} Temperature of Meal at P/D</td>
+<td><code>meal_temperature</code></td>
+<td></td>
+</tr>
+<tr>
+<td>{Meal} Temperature of Meal at Service</td>
+<td><code>service_meal_temperature</code></td>
+<td></td>
+</tr>
+<tr>
+<td>{Meal} Print Name</td>
+<td><code>print_name</code></td>
+<td></td>
+</tr>
+<tr>
+<td>{Meal} E-Signature</td>
+<td>--</td>
+<td>Shows "Signed" if signature exists, "Not Sign" otherwise</td>
+</tr>
+<tr>
+<td>{Meal} Comments/Concerns</td>
+<td><code>service_note</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="bulk-attendance-last-modified-report">Bulk Attendance Last Modified Report</h2>
+<p>State User report that shows when sponsors last updated attendance data from the Bulk Entry page.</p>
+<h3 id="access">Access</h3>
+<p>Only State Users can access this report. Sponsor, Center, and IC users cannot.</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Navigation</th>
+<th>Has Program Type Dropdown?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LA/OK</td>
+<td>Reports &gt; SFSP/ARAS &gt; Attendance &gt; Bulk Attendance - Last Modified</td>
+<td>Yes -- Regular, SFSP, ARAS</td>
+</tr>
+<tr>
+<td>Other states</td>
+<td>Reports &gt; Attendance &gt; Bulk Attendance - Last Modified</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>LA/OK State User view (with Program Type dropdown):</strong></p>
+<p><img alt="LA/OK State User report with Program Type dropdown" src="../images/bulk-attendance-report-1.png" /></p>
+<p><strong>Other State User view (no Program Type dropdown):</strong></p>
+<p><img alt="Other State User report without Program Type dropdown" src="../images/bulk-attendance-report-2.png" /></p>
+<h3 id="controls">Controls</h3>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Select Sponsor</td>
+<td>Single selection. Shows all sponsors in the same state as the logged-in State User.</td>
+</tr>
+<tr>
+<td>Date</td>
+<td>Default: current date. Cannot type a date -- select only. Future days are disabled.</td>
+</tr>
+<tr>
+<td>Select Meal</td>
+<td>Default: "Select Meal" (LA/OK) or empty (other states). Single selection. Options: Breakfast, AM Snack, Lunch, PM Snack, Dinner, Eve. Snack.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="report-file_1">Report File</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File name</td>
+<td><code>BulkAttendanceLastModified_{sponsor_legal_name}_{date}.xlsx</code></td>
+</tr>
+<tr>
+<td>Title</td>
+<td>"Bulk Attendance - Last Modified Report"</td>
+</tr>
+<tr>
+<td>Subtitle lines</td>
+<td>Sponsor legal name, selected date, selected meal</td>
+</tr>
+</tbody>
+</table>
+<h3 id="columns">Columns</h3>
+<p>Data comes from <code>SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>DB Field</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Center Name</td>
+<td><code>CENTER.center_name</code></td>
+<td>Joined via <code>center_id</code></td>
+</tr>
+<tr>
+<td>Center Number</td>
+<td><code>CENTER.center_number</code></td>
+<td>Joined via <code>center_id</code></td>
+</tr>
+<tr>
+<td>Last Modified Date Time for Served Meals</td>
+<td><code>create_date_time</code> (where <code>meal_serving = 1</code>)</td>
+<td>e.g., 12/22/2025 10:22:30 AM</td>
+</tr>
+<tr>
+<td>Last Modified Date Time for Seconds</td>
+<td><code>create_date_time</code> (where <code>meal_serving = 2</code>)</td>
+<td></td>
+</tr>
+<tr>
+<td>User Id</td>
+<td><code>create_login_id</code> = <code>USER.user_id</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Full Name</td>
+<td>--</td>
+<td>Empty for Sponsor Admin; <code>{Last Name} {First Name}</code> for Sponsor Staff</td>
+</tr>
+<tr>
+<td>Timezone</td>
+<td><code>time_zone</code></td>
+<td>e.g., UTC+07:00</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Bulk Attendance Last Modified report example" src="../images/bulk-attendance-report-3.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">N/A values</p>
+<p>"N/A" means the sponsor has not updated attendance or meal counts from the Bulk Entry page.</p>
+</div>
+<h3 id="key-behavior">Key Behavior</h3>
+<ul>
+<li>Only changes to <strong>Served</strong> and <strong>Seconds</strong> values create history records. Changes to other fields (such as attendance, comments) do not create records.</li>
+<li>Setting Served or Seconds to <strong>0</strong> still creates a history record.</li>
+<li>Each row shows the <strong>most recent</strong> change for that center, date, and meal combination.</li>
+</ul>
+<p><strong>Example:</strong> A Sponsor Admin records Breakfast for two centers. The report shows two rows with the Admin's User Id and empty Full Name.</p>
+<p><img alt="Sponsor Admin recording creates two history rows" src="../images/bulk-attendance-report-4.png" /></p>
+<p>Later, a Sponsor Staff updates Served for one center and Seconds for the other. The report adds two new rows with the Staff's User Id and Full Name. Each row only has a timestamp for the field that was changed -- the other field shows N/A.</p>
+<p><img alt="Sponsor Staff update creates separate rows per field" src="../images/bulk-attendance-report-5.png" /></p>
+<hr />
+<h2 id="pickupdelivery-tracking-satellite-report">Pickup/Delivery Tracking (Satellite Report)</h2>
+<p>Report for viewing and downloading satellite delivery/pickup forms as PDF files.</p>
+<div class="admonition info">
+<p class="admonition-title">Data prerequisite</p>
+<p>Data for this report is created through the <a href="../meal-delivery-pickup/">Meal Delivery &amp; Pickup</a> feature. Without delivery/pickup records, the report has no data to display.</p>
+</div>
+<h3 id="access-by-role">Access by Role</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>LA/OK State User</th>
+<th>Sponsor</th>
+<th>Center/IC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Navigation</td>
+<td>Reports &gt; SFSP/ARAS &gt; Menus &gt; Pickup/Delivery Tracking</td>
+<td>Reports &gt; SFSP/ARAS &gt; Meals &amp; Attendance &gt; Pickup/Delivery Tracking</td>
+<td>Reports &gt; SFSP/ARAS &gt; Meals &amp; Attendance &gt; Pickup/Delivery Tracking</td>
+</tr>
+<tr>
+<td>Sponsorship Type dropdown</td>
+<td>Yes -- Sponsored, Independent</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Sponsor/IC selection</td>
+<td>Yes -- filtered by state</td>
+<td>N/A</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Center selection</td>
+<td>Yes -- multi-select, after sponsor selected</td>
+<td>Yes</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>From/To</td>
+<td>Date picker (past, current, future). Run disabled if From &gt; To.</td>
+<td>Same</td>
+<td>Same</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controls_1">Controls</h3>
+<p><strong>State User</strong> has additional controls:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sponsorship Type</td>
+<td>Sponsored or Independent. Determines whether Sponsor or IC dropdown shows.</td>
+</tr>
+<tr>
+<td>Sponsor dropdown</td>
+<td>Shows all sponsors in the same state as the State User. Single selection. Only if Sponsorship Type = Sponsored.</td>
+</tr>
+<tr>
+<td>IC dropdown</td>
+<td>Shows all SFSP ICs (if SFSP) or ARAS ICs (if ARAS). Single selection. Only if Sponsorship Type = Independent.</td>
+</tr>
+<tr>
+<td>Center dropdown</td>
+<td>Shows after selecting a sponsor. Lists SFSP or ARAS centers. Multi-select.</td>
+</tr>
+<tr>
+<td>From/To</td>
+<td>Can select or type a date. Past, current, and future dates allowed. Run button disabled if From &gt; To.</td>
+</tr>
+</tbody>
+</table>
+<p>State User behavior is the same as Sponsor after selecting the sponsor/IC.</p>
+<p><img alt="State User - Sponsored view" src="../images/satellite-report-1.png" /></p>
+<p><img alt="State User - report results" src="../images/satellite-report-2.png" /></p>
+<h3 id="sponsor-behavior">Sponsor Behavior</h3>
+<ol>
+<li>Select center(s), From, and To dates. Click <strong>Run</strong>.</li>
+<li>A data table displays with results.</li>
+<li>Click a <strong>Satellite Form</strong> hyperlink to open the PDF in a new browser tab.</li>
+<li>The PDF can be downloaded or printed.</li>
+</ol>
+<p><img alt="Sponsor data table with Satellite Form links" src="../images/satellite-report-3.png" /></p>
+<p><img alt="Sponsor PDF preview" src="../images/satellite-report-4.png" /></p>
+<h3 id="centeric-behavior">Center/IC Behavior</h3>
+<ol>
+<li>Select From and To dates. Click <strong>Run</strong>.</li>
+<li>A PDF file is automatically downloaded and opens in a new browser tab.</li>
+</ol>
+<p><strong>Center view:</strong></p>
+<p><img alt="Center auto-download PDF" src="../images/satellite-report-5.png" /></p>
+<p><strong>IC view:</strong></p>
+<p><img alt="IC auto-download PDF" src="../images/satellite-report-6.png" /></p>
+<h3 id="data-table-columns-sponsor-and-state-user">Data Table Columns (Sponsor and State User)</h3>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Source</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Site</td>
+<td><code>CENTER.center_name</code></td>
+<td></td>
+</tr>
+<tr>
+<td>Date &amp; Time Created</td>
+<td><code>SFSP_DELIVERY_PICKUP.create_date_time</code></td>
+<td></td>
+</tr>
+<tr>
+<td>User</td>
+<td><code>USER.username</code> (Admin) or <code>STAFF</code> name (Staff)</td>
+<td>Center Admin shows "Administrator Center"</td>
+</tr>
+<tr>
+<td>Satellite Form</td>
+<td><code>Satform_{Month}_{dd}_{order}</code></td>
+<td>e.g., Satform_Dec_22_1, Satform_Dec_22_2</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>Based on signature lock state</td>
+<td>Pending = 0 or 1 signatures; Complete = 2 signatures (locked)</td>
+</tr>
+</tbody>
+</table>
+<p>The table shows 10 records per page with Previous/Next pagination.</p>
+<h3 id="pdf-file-names">PDF File Names</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>File Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sponsor / State User</td>
+<td><code>exportSfsparasSatelliteReport.pdf</code></td>
+</tr>
+<tr>
+<td>Center / IC</td>
+<td><code>SatelliteAccountReport_{yyyy-mm-dd}-{number}.pdf</code> (e.g., <code>SatelliteAccountReport_2025-12-01-1.pdf</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">PDF endpoint</p>
+<p>Sponsor and State User PDFs are generated via <code>/kidkare/reports/exportSfsparasSatelliteReport</code>.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

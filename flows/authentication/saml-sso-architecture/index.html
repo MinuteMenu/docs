@@ -1,0 +1,2646 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/flows/authentication/saml-sso-architecture/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../saml-sso-client-migration-guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>SAML SSO Architecture - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#saml-sso-architecture" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SAML SSO Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saml-login-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAML Login Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SAML Login Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-domain-discovery-home-realm-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Domain Discovery (Home Realm Discovery)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-redirect-to-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Redirect to Identity Provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-saml-callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: SAML Callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-session-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Session Creation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-a13-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy A.13 Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idp-configuration-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IdP Configuration Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-migration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Migration Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-roles-and-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Roles and Flags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saml-assertion-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAML Assertion Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exchange-token-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exchange Token Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-password-for-sso-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Password for SSO Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sp-service-provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SP (Service Provider) Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-product-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Product Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-Product Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parachute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parachute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centers-cx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centers-CX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#system-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        System Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saml-login-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAML Login Flow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SAML Login Flow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-domain-discovery-home-realm-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1: Domain Discovery (Home Realm Discovery)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-redirect-to-identity-provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2: Redirect to Identity Provider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-saml-callback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3: SAML Callback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-session-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4: Session Creation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-a13-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Policy A.13 Gate
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idp-configuration-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IdP Configuration Lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-migration-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Migration Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-roles-and-flags" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        User Roles and Flags
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Design
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#saml-assertion-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAML Assertion Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exchange-token-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exchange Token Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-password-for-sso-users" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No Password for SSO Users
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sp-service-provider-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SP (Service Provider) Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-product-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Product Behavior
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-Product Behavior">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parachute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parachute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centers-cx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centers-CX
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HX
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="saml-sso-architecture">SAML SSO Architecture</h1>
+<p>This document describes the technical architecture of SAML federated authentication in MinuteMenu. It covers how the components connect, how the login flow works, and how the system manages IdP configurations and user migration.</p>
+<p>For end-user setup guides, see:</p>
+<ul>
+<li><a href="../saml-sso-client-migration-guide/">Client Migration Guide</a></li>
+<li><a href="../saml-sso-complete-guide/">Complete Guide</a></li>
+</ul>
+<hr />
+<h2 id="system-components">System Components</h2>
+<pre class="mermaid"><code>graph TB
+    Browser["Browser&lt;br/&gt;(KK or SSO SPA)"]
+
+    subgraph "MinuteMenu Services"
+        KK["KidKare API&lt;br/&gt;KK/Projects/KidKare.Service"]
+        SSO["SingleSignOn Service&lt;br/&gt;SingleSignOn-Service/SingleSignOn.Api"]
+        Redis[(Redis&lt;br/&gt;Sessions + Exchange Tokens)]
+    end
+
+    subgraph "External"
+        IdP["Identity Provider&lt;br/&gt;(Microsoft Entra ID)"]
+    end
+
+    subgraph "Databases"
+        CXADMIN[(CXADMIN&lt;br/&gt;SQL Server&lt;br/&gt;IdP configs, policies,&lt;br/&gt;CX users)]
+        SSO_DB[(SSO MySQL&lt;br/&gt;User accounts,&lt;br/&gt;roles, credentials)]
+    end
+
+    Browser --&gt;|"1. Enter email"| KK
+    KK --&gt;|"2. Discover domain"| SSO
+    SSO --&gt;|"3. Lookup config"| CXADMIN
+    Browser --&gt;|"4. Redirect"| IdP
+    IdP --&gt;|"5. SAML Response"| SSO
+    SSO --&gt;|"6. Exchange token"| Redis
+    Browser --&gt;|"7. Login with token"| KK
+    KK --&gt;|"8. Validate token"| Redis
+    KK --&gt;|"9. Create session"| Redis
+    SSO --&gt; SSO_DB</code></pre>
+<p><strong>Where things live:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Repo</th>
+<th>Key Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identifier-first login UI</td>
+<td>KK</td>
+<td><code>Projects/KidKare.Web/app/states/login/</code></td>
+</tr>
+<tr>
+<td>Domain discovery + SAML BLL</td>
+<td>KK</td>
+<td><code>Projects/KidKare.Bll/Authentication/TenantDiscoveryService.cs</code></td>
+</tr>
+<tr>
+<td>IdP config management</td>
+<td>KK</td>
+<td><code>Projects/KidKare.Bll/Authentication/FederatedIdpConfigBll.cs</code></td>
+</tr>
+<tr>
+<td>SAML assertion handling</td>
+<td>KK</td>
+<td><code>Projects/KidKare.Bll/Authentication/SamlService.cs</code> (ITfoxtec library)</td>
+</tr>
+<tr>
+<td>Federated auth endpoints</td>
+<td>SSO</td>
+<td><code>SingleSignOn.Api/Controllers/FederatedAuthController.cs</code></td>
+</tr>
+<tr>
+<td>Login with exchange token</td>
+<td>SSO</td>
+<td><code>SingleSignOn.Api/Services/LoginService.cs</code></td>
+</tr>
+<tr>
+<td>IdP config data model</td>
+<td>KK</td>
+<td><code>Projects/KidKare.Data/Models/Cx/FederatedIdpConfig.cs</code></td>
+</tr>
+<tr>
+<td>Policy A.13 constant</td>
+<td>KK</td>
+<td><code>Projects/KidKare.Bll/Constants/Policy.cs</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="saml-login-flow">SAML Login Flow</h2>
+<p>The login flow has four phases: <strong>discover</strong>, <strong>redirect to IdP</strong>, <strong>callback</strong>, and <strong>session creation</strong>.</p>
+<pre class="mermaid"><code>graph TD
+    A["User enters email&lt;br/&gt;on login page"] --&gt; B["GET /auth/federated/discover&lt;br/&gt;?email=user@company.com"]
+    B --&gt; C{"Domain is&lt;br/&gt;SSO-enabled?"}
+    C --&gt;|No| D["Show password field&lt;br/&gt;(normal login)"]
+    C --&gt;|Yes| E{"User account&lt;br/&gt;checks pass?"}
+    E --&gt;|Error| F["Show error message&lt;br/&gt;(disabled, locked, inactive)"]
+    E --&gt;|OK| G["Redirect to&lt;br/&gt;GET /auth/federated/initiate"]
+    G --&gt; H["302 → IdP SSO URL&lt;br/&gt;with SAML AuthnRequest"]
+    H --&gt; I["User authenticates&lt;br/&gt;at Azure AD"]
+    I --&gt; J["IdP POSTs SAMLResponse&lt;br/&gt;to /auth/federated/callback"]
+    J --&gt; K["Validate SAML assertion&lt;br/&gt;(signature, timestamps, audience)"]
+    K --&gt; L["Create exchange token&lt;br/&gt;in Redis (5-min TTL)"]
+    L --&gt; M["302 → KK SPA&lt;br/&gt;/#/login/federated:{token}"]
+    M --&gt; N["KK calls POST /auth&lt;br/&gt;with exchange token"]
+    N --&gt; O["Validate + delete&lt;br/&gt;exchange token from Redis"]
+    O --&gt; P["Create session in Redis&lt;br/&gt;Return session cookie"]
+
+    style A fill:#e1f5fe
+    style P fill:#c8e6c9
+    style D fill:#fff3e0
+    style F fill:#ffcdd2</code></pre>
+<h3 id="phase-1-domain-discovery-home-realm-discovery">Phase 1: Domain Discovery (Home Realm Discovery)</h3>
+<p>When the user enters their email and clicks Continue, the frontend calls the discover endpoint.</p>
+<div class="highlight"><pre><span></span><code>GET /auth/federated/discover?email=user@company.com
+</code></pre></div>
+<p><strong>What happens inside:</strong></p>
+<div class="highlight"><pre><span></span><code>TenantDiscoveryService.DiscoverByEmail(email)
+│
+├─ Parse domain from email (&quot;company.com&quot;)
+├─ Query CXADMIN for enabled IdP configs matching this domain
+├─ Check Policy A.13 = Y for the sponsor
+│   └─ Policy OFF → return null (show password field)
+├─ If multiple configs match → tie-break by CX user&#39;s client_id
+│
+└─ SSO FederatedAuthController.Discover()
+   ├─ Look up SSO user by email
+   ├─ Check: has FEDERATED_USER role?
+   │   └─ No role → isFederated: false
+   ├─ Check: account disabled? → error: SAML_USER_DISABLED
+   ├─ Check: account locked?   → error: SAML_USER_LOCKED
+   ├─ Check: CX staff active?  → error: SAML_STAFF_INACTIVE
+   └─ All OK → isFederated: true, tenantId: &quot;xxx&quot;
+</code></pre></div>
+<p><strong>Response:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;isFederated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;tenantId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;azure-company&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;displayName&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Company Inc.&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>or with error:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">&quot;isFederated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAML_USER_DISABLED&quot;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="phase-2-redirect-to-identity-provider">Phase 2: Redirect to Identity Provider</h3>
+<p>When discovery returns <code>isFederated: true</code>, the browser redirects to the initiate endpoint.</p>
+<div class="highlight"><pre><span></span><code>GET /auth/federated/initiate?tenantId=azure-company&amp;email=user@company.com
+</code></pre></div>
+<p><strong>What happens inside:</strong></p>
+<div class="highlight"><pre><span></span><code>FederatedAuthController.Initiate()
+│
+├─ Load IdP config by tenantId
+├─ Build SAML AuthnRequest (via SamlService / ITfoxtec)
+├─ Encode RelayState = returnUrl + &quot;|&quot; + email
+└─ 302 redirect → IdP SSO URL with SAMLRequest query param
+</code></pre></div>
+<p>The user now sees their corporate login page (Azure AD / Entra ID). After authenticating (and MFA if configured), Azure generates a SAML Response.</p>
+<h3 id="phase-3-saml-callback">Phase 3: SAML Callback</h3>
+<p>Azure POSTs the SAML Response back to the Assertion Consumer Service (ACS) endpoint.</p>
+<div class="highlight"><pre><span></span><code>POST /auth/federated/callback
+Body: SAMLResponse={base64}&amp;RelayState={encoded}
+</code></pre></div>
+<p><strong>What happens inside:</strong></p>
+<div class="highlight"><pre><span></span><code>FederatedAuthController.Callback()
+│
+├─ Decode SAMLResponse (base64 → XML)
+├─ ValidateWithAnyConfig(samlResponse)
+│   ├─ Try each enabled IdP config
+│   ├─ Verify XML signature using IdP&#39;s X.509 certificate
+│   ├─ Check NotOnOrAfter timestamp (reject expired assertions)
+│   ├─ Check Audience restriction matches our Entity ID
+│   └─ Extract email from NameID element
+│
+├─ Verify email matches expected email from RelayState
+├─ Verify user exists in SSO database
+│
+├─ Generate exchange token (GUID)
+│   └─ Store in Redis: key=&quot;saml_exchange:{token}&quot;, value=email, TTL=5 min
+│
+├─ Build BasicAuthToken = base64(email + &quot;:SAML:&quot; + token)
+└─ 302 redirect → /#/login/federated:{basicAuthToken}?returnUrl=...
+</code></pre></div>
+<h3 id="phase-4-session-creation">Phase 4: Session Creation</h3>
+<p>The KK SPA receives the redirect, parses the token from the URL, and calls the standard login endpoint.</p>
+<div class="highlight"><pre><span></span><code>POST /auth
+Body: { basicAuthToken: &quot;Basic {base64(email:SAML:{exchangeToken})}&quot; }
+</code></pre></div>
+<p><strong>What happens inside:</strong></p>
+<div class="highlight"><pre><span></span><code>LoginService.Post(LoginRequest)
+│
+├─ Parse credentials → detect &quot;SAML:&quot; prefix in password
+├─ Extract exchange token from password
+├─ Redis lookup: &quot;saml_exchange:{token}&quot;
+│   ├─ Not found → 401 &quot;Token expired or already used&quot;
+│   └─ Found → get email, delete key (one-time use)
+│
+├─ Verify email matches request
+├─ Add FEDERATED_USER role to user
+├─ Set Meta[&quot;AuthProvider&quot;] = &quot;SAML&quot;
+│
+├─ Fix BasicAuthHeader (critical step):
+│   ├─ KK: look up CX password from CXADMIN → override with real credential
+│   └─ SSO: create/reuse SelfMade token → override BasicAuthHeader
+│
+├─ Create session in Redis (same as normal login)
+└─ Return LoginResponse with session cookie
+</code></pre></div>
+<p><strong>Why BasicAuthHeader needs fixing:</strong> After SAML login, the BasicAuthHeader contains <code>email:SAML:{exchangeToken}</code>. But the exchange token is deleted from Redis — it's not a real credential. Downstream CX API calls that use BasicAuthHeader would fail. So the system replaces it with a valid credential immediately.</p>
+<hr />
+<h2 id="policy-a13-gate">Policy A.13 Gate</h2>
+<p>SAML is controlled per sponsor by Policy A.13 (<code>USE_SAML_SSO_FOR_LOGIN</code>). This policy is checked at multiple points.</p>
+<pre class="mermaid"><code>graph LR
+    A13{"Policy A.13 = Y?"}
+
+    A13 --&gt;|Yes| ON["SAML Active"]
+    A13 --&gt;|No| OFF["SAML Inactive"]
+
+    ON --&gt; D1["Discover returns isFederated: true"]
+    ON --&gt; D2["Sponsor sees SSO Config menu"]
+    ON --&gt; D3["Password UI hidden for SSO users"]
+    ON --&gt; D4["IsFederatedSsoUser = true in session"]
+
+    OFF --&gt; D5["Discover returns null → password field"]
+    OFF --&gt; D6["SSO Config menu hidden"]
+    OFF --&gt; D7["Normal password login"]
+    OFF --&gt; D8["IsFederatedSsoUser = false"]</code></pre>
+<p><strong>Check points in code:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Location</th>
+<th>What it checks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TenantDiscoveryService.DiscoverByEmail()</code></td>
+<td>Config + policy → return null if policy OFF</td>
+</tr>
+<tr>
+<td><code>TenantDiscoveryService.GetByTenantIdentifier()</code></td>
+<td>Same gate for direct config lookup</td>
+</tr>
+<tr>
+<td><code>TenantDiscoveryService.GetAllEnabled()</code></td>
+<td>Filter out configs where policy is OFF</td>
+</tr>
+<tr>
+<td>SSO <code>LoginService</code> (user details)</td>
+<td>Config enabled AND policy Y → set IsFederatedSsoUser</td>
+</tr>
+<tr>
+<td>KK <code>LoginTypeBase</code> (user details)</td>
+<td>FEDERATED_USER role AND setting CxUseSamlSsoForLogin</td>
+</tr>
+<tr>
+<td>Frontend left nav</td>
+<td><code>isCxSponsor() &amp;&amp; hasAdminBit() &amp;&amp; setting == true</code></td>
+</tr>
+<tr>
+<td><code>FederatedIdpConfigController</code></td>
+<td>Require sponsor admin AND policy for sponsor access</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="idp-configuration-lifecycle">IdP Configuration Lifecycle</h2>
+<p>IdP configurations are stored in CXADMIN database. They follow a draft → active lifecycle.</p>
+<pre class="mermaid"><code>graph TD
+    CREATE["SystemConfig creates config"] --&gt; DRAFT["INACTIVE&lt;br/&gt;(IsEnabled = false, always)"]
+
+    DRAFT --&gt; PATH_A["Create CX Account&lt;br/&gt;with SAML option"]
+    DRAFT --&gt; PATH_B["Sponsor Enable SSO flow"]
+
+    PATH_A --&gt; ACTIVE["ACTIVE&lt;br/&gt;(IsEnabled = true)"]
+    PATH_B --&gt; ACTIVE
+
+    ACTIVE --&gt; DISABLE["Sponsor or SystemConfig&lt;br/&gt;disables SSO"]
+    DISABLE --&gt; INACTIVE["INACTIVE"]
+
+    INACTIVE --&gt; NOTIFY["Find SAML_INVT users&lt;br/&gt;(no KK password)&lt;br/&gt;Email sponsor admin"]
+
+    PATH_A -.- NOTE_A["Auto: create SSO user,&lt;br/&gt;send invite, set policy A.13=Y,&lt;br/&gt;assign sponsor, enable config"]
+    PATH_B -.- NOTE_B["Steps: test connection,&lt;br/&gt;validate users, migrate valid,&lt;br/&gt;disable invalid, enable config,&lt;br/&gt;send invites, log migration"]
+
+    style DRAFT fill:#fff3e0
+    style ACTIVE fill:#c8e6c9
+    style INACTIVE fill:#ffcdd2</code></pre>
+<p><strong>IdP config data model (CXADMIN):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TenantIdentifier</td>
+<td>Unique ID for this config</td>
+</tr>
+<tr>
+<td>DisplayName</td>
+<td>Human-readable name (e.g., "Contoso Azure AD")</td>
+</tr>
+<tr>
+<td>IdpSsoUrl</td>
+<td>SAML SSO endpoint at the IdP</td>
+</tr>
+<tr>
+<td>IdpEntityId</td>
+<td>SAML issuer identifier</td>
+</tr>
+<tr>
+<td>X509Certificate</td>
+<td>Public cert for signature validation</td>
+</tr>
+<tr>
+<td>AllowedEmailDomains</td>
+<td>Comma-separated list of email domains</td>
+</tr>
+<tr>
+<td>DefaultSponsorId</td>
+<td>Associated CX sponsor</td>
+</tr>
+<tr>
+<td>IsEnabled</td>
+<td>Active/inactive flag</td>
+</tr>
+<tr>
+<td>MigrationLog</td>
+<td>JSON audit trail of user migrations</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="user-migration-flow">User Migration Flow</h2>
+<p>When a sponsor enables SSO for existing users, the system migrates usernames to corporate emails.</p>
+<div class="highlight"><pre><span></span><code>EnableWithMigration(configId)
+│
+├─ Load IdP config + allowed domains
+├─ Load all CX users for this sponsor
+├─ Skip deleted staff (status code 290)
+│
+├─ For each CX user:
+│   ├─ Look up SSO user by username
+│   │   └─ Not found → InvalidUser (NO_SSO_USER)
+│   │
+│   └─ Check email in priority order:
+│       ├─ 1. SSO Email → domain allowed? → ValidUser
+│       ├─ 2. SSO PrimaryEmail → domain allowed? → ValidUser
+│       ├─ 3. CX Staff Email → domain allowed? → ValidUser
+│       └─ None matched → InvalidUser (EMAIL_DOMAIN_NOT_ALLOWED)
+│
+├─ Migrate valid users:
+│   ├─ Change username to corporate email (SSO DB + CX DB)
+│   ├─ Add FEDERATED_USER role
+│   └─ Send federated invite email
+│
+├─ Disable invalid users:
+│   └─ Disable via SSO (no valid email = can&#39;t log in via SSO)
+│
+├─ Enable the IdP config
+└─ Append migration log (JSON) to config record
+</code></pre></div>
+<p><strong>Migration log format:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="p">[{</span>
+<span class="w">  </span><span class="nt">&quot;date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-03-19T10:00:00Z&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;migratedBy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;admin@company.com&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;migrated&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;UserId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;oldUsername&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;newUsername&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;john@company.com&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;disabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;UserId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;username&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;Reason&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NO_EMAIL&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}]</span>
+</code></pre></div>
+<hr />
+<h2 id="user-roles-and-flags">User Roles and Flags</h2>
+<p>SAML introduces two roles and one session flag.</p>
+<table>
+<thead>
+<tr>
+<th>Role / Flag</th>
+<th>Where set</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FEDERATED_USER</code></td>
+<td>SSO user roles</td>
+<td>Marks user as SAML-authenticated. Added during migration or SAML login.</td>
+</tr>
+<tr>
+<td><code>SAML_INVT</code></td>
+<td>SSO user roles</td>
+<td>Marks user as created via SAML invite (never had a KK password). Used to identify affected users when SSO is disabled.</td>
+</tr>
+<tr>
+<td><code>IsFederatedSsoUser</code></td>
+<td>Login response</td>
+<td>Frontend flag. True when user has FEDERATED_USER role AND policy A.13 is ON. Controls password UI visibility.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Impact of <code>IsFederatedSsoUser = true</code>:</strong></p>
+<ul>
+<li>Frontend hides password fields and "Change Password" button</li>
+<li>Backend rejects password change requests</li>
+<li>Sponsor sees "SSO Configuration" menu item</li>
+</ul>
+<hr />
+<h2 id="security-design">Security Design</h2>
+<h3 id="saml-assertion-validation">SAML Assertion Validation</h3>
+<p>The callback validates every SAML response before trusting it:</p>
+<ol>
+<li><strong>Signature</strong> — XML signature verified against IdP's X.509 certificate</li>
+<li><strong>Timestamps</strong> — <code>NotOnOrAfter</code> checked to reject expired assertions</li>
+<li><strong>Audience</strong> — Must match our Entity ID (<code>https://api.kidkare.com/ssoservice</code>)</li>
+<li><strong>Issuer</strong> — Must match a known, enabled IdP config</li>
+<li><strong>Email match</strong> — NameID email must match the email from RelayState</li>
+</ol>
+<h3 id="exchange-token-security">Exchange Token Security</h3>
+<p>The exchange token bridges the SAML callback (server-side) to the SPA login (client-side):</p>
+<ul>
+<li>One-time use: deleted from Redis after first read</li>
+<li>Short-lived: 5-minute TTL</li>
+<li>Random GUID: not guessable</li>
+<li>Email-bound: token is tied to a specific email address</li>
+</ul>
+<h3 id="no-password-for-sso-users">No Password for SSO Users</h3>
+<p>SAML-invited users (<code>SAML_INVT</code> role) never have a KidKare password. If SSO is disabled:</p>
+<ol>
+<li>System identifies all <code>SAML_INVT</code> users for the sponsor</li>
+<li>Emails sponsor admin with the list of affected users</li>
+<li>Those users must use "Forgot Password" to set a KidKare password</li>
+</ol>
+<hr />
+<h2 id="sp-service-provider-configuration">SP (Service Provider) Configuration</h2>
+<p>These are the MinuteMenu SAML endpoints that must be configured in the IdP (Azure AD).</p>
+<table>
+<thead>
+<tr>
+<th>SAML Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Entity ID (Identifier)</strong></td>
+<td><code>https://api.kidkare.com/ssoservice</code></td>
+</tr>
+<tr>
+<td><strong>ACS URL (Reply URL)</strong></td>
+<td><code>https://api.kidkare.com/ssoservice/auth/federated/callback</code></td>
+</tr>
+<tr>
+<td><strong>SP Metadata URL</strong></td>
+<td><code>https://api.kidkare.com/ssoservice/auth/federated/metadata</code></td>
+</tr>
+<tr>
+<td><strong>NameID format</strong></td>
+<td>Email (<code>user.mail</code>, not <code>user.userprincipalname</code>)</td>
+</tr>
+<tr>
+<td><strong>Binding</strong></td>
+<td>HTTP-POST (for SAML Response)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cross-product-behavior">Cross-Product Behavior</h2>
+<h3 id="parachute">Parachute</h3>
+<p>Parachute portal detects federated users and disables password UI. The <code>IsFederatedSsoUser</code> flag from the login response controls this.</p>
+<h3 id="centers-cx">Centers-CX</h3>
+<p>CX users are the primary audience for SAML. The IdP config is stored in CXADMIN database. CX user/staff status is checked during discovery to block inactive users before they reach the IdP.</p>
+<h3 id="hx">HX</h3>
+<p>HX users, Parents, and Independent Center users are <strong>not supported</strong> for SAML SSO. Only CX Sponsor and CX Center users can use federated login.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

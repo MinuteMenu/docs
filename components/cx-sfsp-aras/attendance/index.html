@@ -1,0 +1,3892 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/components/cx-sfsp-aras/attendance/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../food-transfer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Attendance & Meal Counts - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#attendance-meal-counts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Attendance & Meal Counts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_4_1" id="__nav_5_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#centeric-attendance-meal-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center/IC Attendance &amp; Meal Counts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Center/IC Attendance &amp; Meal Counts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-and-meal-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Date and Meal Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping-meal-and-attendance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping — Meal and Attendance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping-pickupdelivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping — Pickup/Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-in-sheets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-in Sheets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-la-vs-la-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-LA vs LA Differences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sponsor-attendance-meal-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sponsor Attendance &amp; Meal Counts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sponsor Attendance &amp; Meal Counts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#center-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meal-counter-toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meal Counter Toggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buttons_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulk-entry-sponsor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk Entry — Sponsor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bulk Entry — Sponsor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Column Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sorting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottom-totals-row" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bottom Totals Row
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-validation-and-auto-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Validation and Auto-Save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-history_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-congregate-meal-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Congregate Meal Delivery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Congregate Meal Delivery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-congregate-meal-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Congregate Meal Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Congregate Meal Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#day-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-congregate-meal-delivery-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Congregate Meal Delivery Page
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Congregate Meal Delivery Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calendar-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calendar Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabled-vs-disabled-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabled vs Disabled Days
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-text-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Text Labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-text-bottom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Text (Bottom)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-on-amc-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effect on A&amp;MC Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-fields-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Fields Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Fields Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliders-and-text-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sliders and Text Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Confirmation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-custom-fields-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Custom Fields Appear
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-license-centers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-License Centers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#centeric-attendance-meal-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center/IC Attendance &amp; Meal Counts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Center/IC Attendance &amp; Meal Counts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#date-and-meal-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Date and Meal Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping-meal-and-attendance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping — Meal and Attendance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping-pickupdelivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping — Pickup/Delivery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buttons" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sign-in-sheets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-in Sheets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-la-vs-la-differences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-LA vs LA Differences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sponsor-attendance-meal-counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sponsor Attendance &amp; Meal Counts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sponsor Attendance &amp; Meal Counts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#center-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Center Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grid-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grid Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meal-counter-toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Meal Counter Toggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#buttons_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Buttons
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bulk-entry-sponsor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bulk Entry — Sponsor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bulk Entry — Sponsor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#export_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Export
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#column-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Column Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sorting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sorting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottom-totals-row" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bottom Totals Row
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-validation-and-auto-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Validation and Auto-Save
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#audit-history_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit History
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Filters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-congregate-meal-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Congregate Meal Delivery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Congregate Meal Delivery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#non-congregate-meal-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Congregate Meal Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Congregate Meal Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#toggle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toggle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#day-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Day Selection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-congregate-meal-delivery-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Congregate Meal Delivery Page
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Non-Congregate Meal Delivery Page">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calendar-layout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calendar Layout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabled-vs-disabled-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabled vs Disabled Days
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#static-text-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Static Text Labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dynamic-text-bottom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dynamic Text (Bottom)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Input Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#field-mapping_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Field Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-on-amc-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effect on A&amp;MC Page
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-fields-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Fields Settings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom Fields Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#location" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Location
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sliders-and-text-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sliders and Text Fields
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#save-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Save Confirmation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#business-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Business Rules
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#where-custom-fields-appear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Where Custom Fields Appear
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-license-centers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-License Centers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="attendance-meal-counts">Attendance &amp; Meal Counts</h1>
+<p>This page covers how SFSP/ARAS attendance and meal count data is recorded across different roles — Center/IC users, Sponsors, and Bulk Entry. It also covers Non-Congregate Meal Delivery and Custom Fields settings.</p>
+<p>For general navigation and role information, <a href="../overview/">see Overview</a>.</p>
+<hr />
+<h2 id="centeric-attendance-meal-counts">Center/IC Attendance &amp; Meal Counts</h2>
+<p>Centers and ICs record attendance and meal counts one date and one meal at a time.</p>
+<p><img alt="Center/IC Attendance &amp; Meal Counts page" src="../images/amc-3.png" /></p>
+<h3 id="access">Access</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Can Access?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Center/IC Admin</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Center/IC Staff with A&amp;MC permission</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Center/IC Staff without A&amp;MC permission</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Sponsor Admin/Staff</td>
+<td>No (use Sponsor view instead)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Location:</strong> Center/IC &gt; Menus/Attendance &gt; Attendance &amp; Meal Count</p>
+<h3 id="date-and-meal-selection">Date and Meal Selection</h3>
+<ul>
+<li>Select a <strong>Date</strong> using the date picker. Future dates are not allowed.</li>
+<li>Select a <strong>Meal</strong> from the approved meals for that center.</li>
+</ul>
+<h3 id="field-mapping-meal-and-attendance">Field Mapping — Meal and Attendance</h3>
+<table>
+<thead>
+<tr>
+<th>UI Field</th>
+<th>DB Table</th>
+<th>DB Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date</td>
+<td>SFSP_ATTENDANCE</td>
+<td>attendance_date</td>
+<td></td>
+</tr>
+<tr>
+<td>Meal</td>
+<td>SFSP_ATTENDANCE</td>
+<td>meal_code</td>
+<td></td>
+</tr>
+<tr>
+<td>Served</td>
+<td>SFSP_ATTENDANCE_ITEM</td>
+<td>meal_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Seconds</td>
+<td>SFSP_ATTENDANCE</td>
+<td>second_meal_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Ordered</td>
+<td>SFSP_ATTENDANCE</td>
+<td>ordered</td>
+<td></td>
+</tr>
+<tr>
+<td>Delivered</td>
+<td>SFSP_ATTENDANCE</td>
+<td>delivered</td>
+<td></td>
+</tr>
+<tr>
+<td>Discarded</td>
+<td>SFSP_ATTENDANCE</td>
+<td>leftover</td>
+<td></td>
+</tr>
+<tr>
+<td>Leftover</td>
+<td>SFSP_ATTENDANCE</td>
+<td>leftover_ext</td>
+<td></td>
+</tr>
+<tr>
+<td>Damaged / Incomplete</td>
+<td>SFSP_ATTENDANCE</td>
+<td>waste</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Attendance</td>
+<td>SFSP_ATTENDANCE</td>
+<td>total_attendance</td>
+<td></td>
+</tr>
+<tr>
+<td>Non-Participating</td>
+<td>SFSP_ATTENDANCE</td>
+<td>non_participating_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Custom Field 1-4</td>
+<td>SFSP_ATTENDANCE_CUSTOM_VALUE</td>
+<td>custom_value</td>
+<td>Linked by custom_setting_id</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>SFSP_ATTENDANCE</td>
+<td>comments</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="field-mapping-pickupdelivery">Field Mapping — Pickup/Delivery</h3>
+<p>These fields track meal pickup or delivery details.</p>
+<table>
+<thead>
+<tr>
+<th>UI Field</th>
+<th>DB Table</th>
+<th>DB Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Service Type</td>
+<td>SFSP_ATTENDANCE</td>
+<td>service_type</td>
+<td></td>
+</tr>
+<tr>
+<td>Time of Pickup/Delivery</td>
+<td>SFSP_ATTENDANCE</td>
+<td>service_time</td>
+<td></td>
+</tr>
+<tr>
+<td>Temperature of Milk at Pickup/Delivery</td>
+<td>SFSP_ATTENDANCE</td>
+<td>milk_temperature</td>
+<td></td>
+</tr>
+<tr>
+<td>Temperature of Meal at Pickup/Delivery</td>
+<td>SFSP_ATTENDANCE</td>
+<td>meal_temperature</td>
+<td></td>
+</tr>
+<tr>
+<td>Temperature of Meal at Service</td>
+<td>SFSP_ATTENDANCE</td>
+<td>service_meal_temperature</td>
+<td></td>
+</tr>
+<tr>
+<td>Print Name</td>
+<td>SFSP_ATTENDANCE</td>
+<td>print_name</td>
+<td></td>
+</tr>
+<tr>
+<td>E-Signature</td>
+<td>SFSP_ATTENDANCE</td>
+<td>esignature_id</td>
+<td>Links to ELECTRONIC_SIGNATURE.esignature_id</td>
+</tr>
+<tr>
+<td>Comments/Concerns</td>
+<td>SFSP_ATTENDANCE</td>
+<td>service_note</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="filters">Filters</h3>
+<p>Users can show or hide field groups using the filter panel. Filter settings are saved per user in the config.</p>
+<table>
+<thead>
+<tr>
+<th>Filter Group</th>
+<th>Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Meal Fields</td>
+<td>Served, Seconds, Ordered, Delivered, Discarded, Leftover, Damaged / Incomplete</td>
+</tr>
+<tr>
+<td>Attendance Fields</td>
+<td>Total Attendance, Non-Participating</td>
+</tr>
+<tr>
+<td>Custom Fields</td>
+<td>Custom Field 1, 2, 3, 4</td>
+</tr>
+<tr>
+<td>Meal Count button</td>
+<td>Show / Hide</td>
+</tr>
+<tr>
+<td>Pickup/Delivery Fields</td>
+<td>Service Type, Time of P/D, Temperature of Milk at P/D, Temperature of Meal at P/D, Temperature of Meal at Service, Print Name, E-Signature, Comments/Concerns</td>
+</tr>
+</tbody>
+</table>
+<p>Filter config is stored in <code>KK_ConfigSettingDefinition.Name = 'CxArasSfspPageLayout'</code> with corresponding values in <code>KK_ConfigSettingValue</code>.</p>
+<h3 id="buttons">Buttons</h3>
+<ul>
+<li><strong>Save</strong> — Saves all data to SFSP_ATTENDANCE and SFSP_ATTENDANCE_ITEM.</li>
+<li><strong>Clear</strong> — Shows a confirmation popup. If confirmed, removes records from SFSP_ATTENDANCE and SFSP_ATTENDANCE_ITEM. Creates audit records in SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY with meal_count = 0 and meal_count_from = previous value.</li>
+</ul>
+<h3 id="sign-in-sheets">Sign-in Sheets</h3>
+<p><img alt="Sign-in Sheet options" src="../images/amc-4.png" /> <img alt="Daily sign-in sheet" src="../images/amc-5.png" /> <img alt="Weekly sign-in sheet" src="../images/amc-6.png" /></p>
+<ul>
+<li>Click the <strong>Sign-in Sheets</strong> link to download a blank PDF.</li>
+<li>Two formats: Daily and Weekly.</li>
+<li>File names: <code>DailySigninSheet_{number}.pdf</code>, <code>WeeklySigninSheet_{number}.pdf</code></li>
+<li>API: <code>/kidkare/reports/CxPdf/printSignInSheet</code></li>
+</ul>
+<h3 id="export">Export</h3>
+<p><img alt="Export options" src="../images/amc-7.png" /></p>
+<ul>
+<li>Exports attendance data as a CSV file.</li>
+<li><a href="../reports/#served-meals-report">See Served Meals Report</a> for export details.</li>
+</ul>
+<h3 id="non-la-vs-la-differences">Non-LA vs LA Differences</h3>
+<p><img alt="LA Center/IC A&amp;MC page" src="../images/amc-8.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">LA vs Non-LA</p>
+<p>LA (Louisiana) SFSP/ARAS centers use a different UI layout for the A&amp;MC page. All behaviors are the same as the Non-LA version — only the visual layout differs. The Pickup/Delivery fields section is not shown for LA centers.</p>
+</div>
+<hr />
+<h2 id="sponsor-attendance-meal-counts">Sponsor Attendance &amp; Meal Counts</h2>
+<p>Sponsors enter meal counts for one center at a time, across a date range and all approved meals.</p>
+<p><img alt="Sponsor A&amp;MC page" src="../images/amc-1.png" /></p>
+<h3 id="access_1">Access</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Can Access?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sponsor Admin</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Sponsor Staff with A&amp;MC permission</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Sponsor Staff without A&amp;MC permission</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Location:</strong> Sponsor &gt; Menus/Attendance &gt; Center Daily Attendance/Served Meals &gt; Select an SFSP/ARAS Center</p>
+<h3 id="center-selection">Center Selection</h3>
+<p>Select an SFSP/ARAS center from the Center dropdown. Only Open Enrolled SFSP/ARAS centers appear.</p>
+<h3 id="grid-layout">Grid Layout</h3>
+<ul>
+<li>Select a date range. Future dates are not allowed.</li>
+<li>Navigate back and forth within the date range.</li>
+<li>Each column shows one approved meal.</li>
+</ul>
+<h3 id="meal-counter-toggle">Meal Counter Toggle</h3>
+<ul>
+<li>Turn <strong>Meal Counter</strong> ON to use +/- buttons to increase or decrease values by 1.</li>
+<li>When Meal Counter is ON, clicking +/- and losing focus auto-saves the value.</li>
+</ul>
+<h3 id="input-validation">Input Validation</h3>
+<ul>
+<li>Numbers only (0-9).</li>
+<li>Maximum: 9999. Minimum: 0.</li>
+<li>After entering a value and losing focus, the value is auto-saved.</li>
+</ul>
+<h3 id="field-mapping">Field Mapping</h3>
+<table>
+<thead>
+<tr>
+<th>UI Field</th>
+<th>DB Table</th>
+<th>DB Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Served Meals</td>
+<td>SFSP_ATTENDANCE_ITEM</td>
+<td>meal_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Seconds</td>
+<td>SFSP_ATTENDANCE</td>
+<td>second_meal_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Attendance</td>
+<td>SFSP_ATTENDANCE</td>
+<td>total_attendance</td>
+<td></td>
+</tr>
+<tr>
+<td>Non-Participating</td>
+<td>SFSP_ATTENDANCE</td>
+<td>non_participating_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Meals Discarded</td>
+<td>SFSP_ATTENDANCE</td>
+<td>leftover</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Damaged/Incomplete Meals</td>
+<td>SFSP_ATTENDANCE</td>
+<td>waste</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Claimed</td>
+<td>Calculated</td>
+<td>—</td>
+<td>Read-only. Total Claimed = Served Meals + Seconds</td>
+</tr>
+</tbody>
+</table>
+<h3 id="audit-history">Audit History</h3>
+<p>Changes are tracked in <strong>SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>action_audit</th>
+<th>meal_count_from</th>
+<th>meal_count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First entry (new record)</td>
+<td>Add</td>
+<td>0</td>
+<td>entered value</td>
+</tr>
+<tr>
+<td>Update existing value</td>
+<td>Update</td>
+<td>previous value</td>
+<td>new value</td>
+</tr>
+<tr>
+<td>Update value to 0</td>
+<td>Update</td>
+<td>previous value</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Clear button (delete)</td>
+<td>Update</td>
+<td>previous value</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="buttons_1">Buttons</h3>
+<ul>
+<li><strong>Save</strong> — Saves all data to SFSP_ATTENDANCE, SFSP_ATTENDANCE_ITEM, and SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY.</li>
+<li><strong>Clear</strong> — Shows confirmation popup ("Yes, delete"). Removes records from SFSP_ATTENDANCE and SFSP_ATTENDANCE_ITEM. Creates audit records in SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY.</li>
+<li><strong>Export</strong> — Downloads an xlsx file. <a href="../reports/#served-meals-report">See Served Meals Report</a> for details.</li>
+<li><strong>Menu Production Record</strong> — Downloads a PDF. File name: <code>MenuProductionReport_{number}.pdf</code>. API: <code>/kidkare/cxreports/CxPdf/sfsparasMenusProductionRecord</code></li>
+</ul>
+<p><img alt="Clear confirmation popup" src="../images/amc-2.png" /></p>
+<hr />
+<h2 id="bulk-entry-sponsor">Bulk Entry — Sponsor</h2>
+<p>Bulk Entry lets sponsors enter meal data for multiple centers on a single page.</p>
+<p><img alt="Bulk Entry page" src="../images/bulk-entry-1.png" /></p>
+<h3 id="access_2">Access</h3>
+<p><strong>URL:</strong> <code>/#/bulk-entry</code></p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Can Access?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sponsor Admin</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Sponsor Staff</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Center Admin/Staff</td>
+<td>No</td>
+</tr>
+<tr>
+<td>IC Admin/Staff</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Visibility</p>
+<p>The Bulk Entry menu only appears if the sponsor has <strong>2 or more</strong> SFSP/ARAS centers. If the sponsor has 0 or 1 SFSP/ARAS center, the menu is hidden.</p>
+</div>
+<p>The Center dropdown is hidden on this page.</p>
+<h3 id="controls">Controls</h3>
+<p><strong>Search</strong> — Type text to filter by center name.</p>
+<p><strong>Meal dropdown</strong> — Single selection. Default: Lunch. Options: Breakfast, AM Snack, Lunch, PM Snack, Dinner, Eve. Snack.</p>
+<p><strong>Date</strong> — Default: current date. Cannot select future dates. Future dates highlight the field in red.</p>
+<h3 id="export_1">Export</h3>
+<p><img alt="Export popup" src="../images/bulk-entry-2.png" /></p>
+<p>Click the <strong>Export</strong> button to open a popup with:</p>
+<ul>
+<li><strong>Center dropdown</strong> — Default: empty. Options: All locations, or a specific SFSP/ARAS center.</li>
+<li><strong>From/To dates</strong> — Cannot select future dates.</li>
+<li>Error message "The date range entered is invalid." appears if:<ul>
+<li>Future dates are entered and Export is clicked.</li>
+<li>From date is after To date and Export is clicked.</li>
+</ul>
+</li>
+<li><strong>Cancel</strong> — Closes the popup.</li>
+<li><strong>Export</strong> — Downloads <code>ServedMealsReport.xlsx</code>.</li>
+</ul>
+<h3 id="column-mapping">Column Mapping</h3>
+<table>
+<thead>
+<tr>
+<th>UI Column</th>
+<th>DB Table</th>
+<th>DB Column</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Center</td>
+<td>CENTER</td>
+<td>center_name</td>
+<td></td>
+</tr>
+<tr>
+<td>Ordered</td>
+<td>SFSP_ATTENDANCE</td>
+<td>ordered</td>
+<td></td>
+</tr>
+<tr>
+<td>Delivered</td>
+<td>SFSP_ATTENDANCE</td>
+<td>delivered</td>
+<td></td>
+</tr>
+<tr>
+<td>Total Attendance</td>
+<td>SFSP_ATTENDANCE</td>
+<td>total_attendance</td>
+<td></td>
+</tr>
+<tr>
+<td>Served</td>
+<td>SFSP_ATTENDANCE_ITEM</td>
+<td>meal_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Seconds</td>
+<td>SFSP_ATTENDANCE</td>
+<td>second_meal_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Non-Participating</td>
+<td>SFSP_ATTENDANCE</td>
+<td>non_participating_count</td>
+<td></td>
+</tr>
+<tr>
+<td>Discarded</td>
+<td>SFSP_ATTENDANCE</td>
+<td>leftover</td>
+<td></td>
+</tr>
+<tr>
+<td>Leftover</td>
+<td>SFSP_ATTENDANCE</td>
+<td>leftover_ext</td>
+<td></td>
+</tr>
+<tr>
+<td>Damaged / Incomplete</td>
+<td>SFSP_ATTENDANCE</td>
+<td>waste</td>
+<td></td>
+</tr>
+<tr>
+<td>Custom Field 1-4</td>
+<td>SFSP_ATTENDANCE_CUSTOM_VALUE</td>
+<td>custom_value</td>
+<td>Linked by custom_setting_id, center_id, attendance_date, meal_code</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sorting">Sorting</h3>
+<p>Each column has sort icons. Click the up arrow for ascending, down arrow for descending.</p>
+<h3 id="bottom-totals-row">Bottom Totals Row</h3>
+<p>A read-only row at the bottom shows the sum of each column across all centers: Ordered, Delivered, Total Attendance, Served, Seconds, Non-Participating, Discarded, Leftover, Damaged / Incomplete, and Custom Fields.</p>
+<h3 id="input-validation-and-auto-save">Input Validation and Auto-Save</h3>
+<ul>
+<li>Default value: 0.</li>
+<li>Can enter text and numbers. Text characters are stripped — only valid numbers are saved.</li>
+<li>Maximum: 9999. Minimum: 0.</li>
+<li>Auto-save triggers when the input field loses focus:<ul>
+<li>Numbers only: the valid number is saved.</li>
+<li>Text only: the field resets to 0. Not saved.</li>
+<li>Mixed text and numbers: text is removed, the remaining number is saved.</li>
+</ul>
+</li>
+</ul>
+<h3 id="audit-history_1">Audit History</h3>
+<p>Changes to <strong>Served</strong> and <strong>Seconds</strong> are tracked in <strong>SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>meal_serving value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Served</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Seconds</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>action_audit</th>
+<th>meal_count_from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First entry, no existing SFSP_ATTENDANCE record</td>
+<td>Add</td>
+<td>0</td>
+</tr>
+<tr>
+<td>First entry, existing record but no Served/Seconds</td>
+<td>Update</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Subsequent entries</td>
+<td>Update</td>
+<td>previous value</td>
+</tr>
+</tbody>
+</table>
+<h3 id="filters_1">Filters</h3>
+<p><img alt="Filter panel" src="../images/bulk-entry-3.png" /></p>
+<ul>
+<li>Default selected: Ordered, Delivered, Served, Seconds, Total Attendance, Non-Participating, Discarded, Leftover, Damaged/Incomplete.</li>
+<li>Default deselected: Custom Field 1-4.</li>
+<li>Filter selections persist across logins.</li>
+</ul>
+<hr />
+<h2 id="non-congregate-meal-delivery">Non-Congregate Meal Delivery</h2>
+<p>Non-Congregate Meal Delivery allows centers to record meals delivered to children on specific days, instead of recording congregate (in-person) attendance.</p>
+<h3 id="non-congregate-meal-settings">Non-Congregate Meal Settings</h3>
+<p>This setting controls whether Non-Congregate Meal Delivery is enabled for a center and which days are allowed.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Sponsor</th>
+<th>IC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Location</strong></td>
+<td>Sponsor &gt; Center Management &gt; Manage Center Information &gt; License/Schedule tab</td>
+<td>IC &gt; Site Details</td>
+</tr>
+<tr>
+<td><strong>Who can access</strong></td>
+<td>Sponsor Admin/Staff</td>
+<td>IC Admin/Staff</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Sponsor Non-Congregate Settings" src="../images/non-congregate-1.png" /></p>
+<p><img alt="IC Non-Congregate Settings — Site Details" src="../images/non-congregate-2.png" /></p>
+<p><img alt="IC Non-Congregate Settings — Toggle" src="../images/non-congregate-3.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">When is this setting visible?</p>
+<p>Non-Congregate Meal Settings is hidden for:</p>
+<ul>
+<li>Regular centers</li>
+<li>SFSP/ARAS centers that have at least 1 active child</li>
+<li>Multi-license Regular-SFSP/ARAS centers that have at least 1 active child</li>
+</ul>
+<p>It is visible for SFSP/ARAS centers and Multi-license Regular-SFSP/ARAS centers (with no active children).</p>
+</div>
+<h4 id="toggle">Toggle</h4>
+<ul>
+<li>Default: <strong>No</strong> (off).</li>
+<li>Click to switch between Yes and No.</li>
+<li>DB: <code>CENTER_NON_CONGREGATE_MEAL.allow_meal_served_flag</code></li>
+</ul>
+<h4 id="day-selection">Day Selection</h4>
+<ul>
+<li>Shows 7 days: Sun, Mon, Tue, Wed, Thu, Fri, Sat.</li>
+<li>If toggle is <strong>No</strong>: all days are deselected and disabled.</li>
+<li>If toggle is <strong>Yes</strong>: only days that match the center's "Days Open" setting (from General Info and Hours) are enabled. Click enabled days to select or deselect.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Day</th>
+<th>DB Column</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sunday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_sunday_flag</td>
+</tr>
+<tr>
+<td>Monday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_monday_flag</td>
+</tr>
+<tr>
+<td>Tuesday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_tuesday_flag</td>
+</tr>
+<tr>
+<td>Wednesday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_wednesday_flag</td>
+</tr>
+<tr>
+<td>Thursday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_thursday_flag</td>
+</tr>
+<tr>
+<td>Friday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_friday_flag</td>
+</tr>
+<tr>
+<td>Saturday</td>
+<td>CENTER_NON_CONGREGATE_MEAL.allow_saturday_flag</td>
+</tr>
+</tbody>
+</table>
+<h3 id="non-congregate-meal-delivery-page">Non-Congregate Meal Delivery Page</h3>
+<p><strong>URL:</strong> <code>/#/cx-aras-sfsp-non-congregate-meals</code></p>
+<p><img alt="Non-Congregate Meal Delivery tab" src="../images/non-congregate-4.png" /></p>
+<p><img alt="Non-Congregate Meal Delivery calendar" src="../images/non-congregate-5.png" /></p>
+<h4 id="access_3">Access</h4>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Non-Congregate toggle = OFF</td>
+<td>Both tabs (A&amp;MC and Non-Congregate) are hidden</td>
+</tr>
+<tr>
+<td>Non-Congregate toggle = ON</td>
+<td>Both tabs display</td>
+</tr>
+<tr>
+<td>Center/IC Admin</td>
+<td>Can access</td>
+</tr>
+<tr>
+<td>Center/IC Staff with A&amp;MC permission</td>
+<td>Can access</td>
+</tr>
+<tr>
+<td>Center/IC Staff without A&amp;MC permission</td>
+<td>Cannot access</td>
+</tr>
+</tbody>
+</table>
+<h4 id="calendar-layout">Calendar Layout</h4>
+<ul>
+<li>Month view with columns: SUN, MON, TUE, WED, THU, FRI, SAT.</li>
+<li>Shows all days in the selected month. Days from other months are disabled and blurred.</li>
+<li>Use the Month/Year navigation (with Next/Previous icons) to change months. Default: current month.</li>
+</ul>
+<h4 id="enabled-vs-disabled-days">Enabled vs Disabled Days</h4>
+<ul>
+<li><strong>Enabled days</strong> (Non-Congregate Meal Days): show "No. of Meals" text and input fields for each approved meal.</li>
+<li><strong>Disabled days</strong> (not Non-Congregate Meal Days): grayed out, no meal inputs shown.</li>
+</ul>
+<h4 id="static-text-labels">Static Text Labels</h4>
+<p>Read-only labels in the top-right corner:</p>
+<table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Meal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>Breakfast</td>
+</tr>
+<tr>
+<td>A</td>
+<td>AM Snack</td>
+</tr>
+<tr>
+<td>L</td>
+<td>Lunch</td>
+</tr>
+<tr>
+<td>P</td>
+<td>PM Snack</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Dinner</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Eve. Snack</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dynamic-text-bottom">Dynamic Text (Bottom)</h4>
+<table>
+<thead>
+<tr>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number of Days</td>
+<td>Count of recorded days in the selected month</td>
+</tr>
+<tr>
+<td>Meals Allowed</td>
+<td>All approved meals for this center</td>
+</tr>
+<tr>
+<td>Total Number of Meals Delivered</td>
+<td>Sum of all meal counts</td>
+</tr>
+<tr>
+<td>Multi Issuance Days</td>
+<td>Valid Non-Congregate Meal Days from CENTER_NON_CONGREGATE_MEAL</td>
+</tr>
+</tbody>
+</table>
+<h4 id="input-fields">Input Fields</h4>
+<ul>
+<li>Default: 0. Numbers only (0-9). Maximum: 9999. Minimum: 0.</li>
+<li>Auto-saves when the field loses focus.</li>
+</ul>
+<h4 id="field-mapping_1">Field Mapping</h4>
+<table>
+<thead>
+<tr>
+<th>Meal</th>
+<th>DB Column (CENTER_NON_CONGREGATE_MEAL_COUNT)</th>
+<th>Also writes to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Breakfast (B)</td>
+<td>breakfast_meal_count</td>
+<td>SFSP_ATTENDANCE.total_attendance, SFSP_ATTENDANCE_ITEM.meal_count</td>
+</tr>
+<tr>
+<td>AM Snack (A)</td>
+<td>am_snack_meal_count</td>
+<td>SFSP_ATTENDANCE.total_attendance, SFSP_ATTENDANCE_ITEM.meal_count</td>
+</tr>
+<tr>
+<td>Lunch (L)</td>
+<td>lunch_meal_count</td>
+<td>SFSP_ATTENDANCE.total_attendance, SFSP_ATTENDANCE_ITEM.meal_count</td>
+</tr>
+<tr>
+<td>PM Snack (P)</td>
+<td>pm_snack_meal_count</td>
+<td>SFSP_ATTENDANCE.total_attendance, SFSP_ATTENDANCE_ITEM.meal_count</td>
+</tr>
+<tr>
+<td>Dinner (D)</td>
+<td>dinner_meal_count</td>
+<td>SFSP_ATTENDANCE.total_attendance, SFSP_ATTENDANCE_ITEM.meal_count</td>
+</tr>
+<tr>
+<td>Eve. Snack (E)</td>
+<td>evening_snack_meal_count</td>
+<td>SFSP_ATTENDANCE.total_attendance, SFSP_ATTENDANCE_ITEM.meal_count</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">No audit history</p>
+<p>Non-Congregate Meal Delivery does <strong>not</strong> write to SFSP_MEAL_SERVED_BULK_ENTRY_HISTORY.</p>
+</div>
+<h4 id="effect-on-amc-page">Effect on A&amp;MC Page</h4>
+<p>When Non-Congregate Meal Days are set, the A&amp;MC page date picker disables those days. For example, if Mon and Tue are Non-Congregate days, all Mondays and Tuesdays are disabled on the A&amp;MC calendar.</p>
+<p><img alt="A&amp;MC calendar with disabled Non-Congregate days" src="../images/non-congregate-6.png" /> <img alt="A&amp;MC calendar — disabled days example" src="../images/non-congregate-7.png" /></p>
+<hr />
+<h2 id="custom-fields-settings">Custom Fields Settings</h2>
+<p>Sponsors and SFSP/ARAS ICs can define up to 4 custom fields that appear on the A&amp;MC page, Bulk Entry page, and Served Meals Report.</p>
+<p><img alt="Custom Fields settings" src="../images/custom-fields-1.png" /></p>
+<h3 id="location">Location</h3>
+<p><strong>URL:</strong> <code>/#/global-settings</code></p>
+<p><strong>Location:</strong> Settings icon &gt; Settings page &gt; ARAS/SFSP Settings section</p>
+<p><strong>API:</strong> <code>/kidkare/centers/meal/sfspattendancecustom?clientId={client_id}</code></p>
+<h3 id="access_4">Access</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Can Access?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sponsor Admin (with at least 1 SFSP/ARAS center)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Sponsor Staff (with Kidkare - Settings = Y)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>SFSP/ARAS IC Admin/Staff</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Sponsor Admin (Regular centers only)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Sponsor Staff (with Kidkare - Settings = N)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Center Admin/Staff</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Regular IC Admin/Staff</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sliders-and-text-fields">Sliders and Text Fields</h3>
+<p><img alt="Sliders default state" src="../images/custom-fields-2.png" /></p>
+<p>There are 4 slider + text field pairs. They enable sequentially:</p>
+<ol>
+<li><strong>Slider 1</strong> is enabled by default. Sliders 2, 3, 4 are disabled.</li>
+<li>Turn Slider 1 to <strong>Yes</strong> — Text Field 1 appears (required, red outline). Slider 2 stays disabled.</li>
+<li>Enter a name in Text Field 1 — red outline removed. Slider 2 becomes enabled.</li>
+<li>Repeat the same pattern for Slider 2 to enable Slider 3, and so on.</li>
+</ol>
+<p><img alt="Slider 1 enabled, text field required" src="../images/custom-fields-3.png" /></p>
+<p><img alt="Text field filled, next slider enabled" src="../images/custom-fields-4.png" /></p>
+<p><strong>Text field rules:</strong></p>
+<ul>
+<li>Empty by default. Maximum 100 characters.</li>
+<li>"Current custom field" shows the active custom field name for the current month (blank if none).</li>
+</ul>
+<p><strong>Save button:</strong></p>
+<ul>
+<li>Disabled when no custom field is defined or when a required text field is empty.</li>
+<li>Enabled when at least one text field has a value.</li>
+</ul>
+<h3 id="save-confirmation">Save Confirmation</h3>
+<p><img alt="Save popup" src="../images/custom-fields-5.png" /></p>
+<p>When Save is clicked, a popup appears:</p>
+<blockquote>
+<p>"Changes to custom fields will be effective from the 1st of next month."</p>
+</blockquote>
+<ul>
+<li><strong>Cancel</strong> — Closes the popup. No changes saved.</li>
+<li><strong>Confirm</strong> — Saves data to <code>SFSP_ATTENDANCE_CUSTOM</code>.</li>
+</ul>
+<h3 id="business-rules">Business Rules</h3>
+<p>All custom field changes take effect from the <strong>1st of next month</strong>, not immediately.</p>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Create a new custom field this month</td>
+<td>Active from next month. Current month shows blank.</td>
+</tr>
+<tr>
+<td>Update a custom field name this month</td>
+<td>New name applies from next month. Current month keeps old name.</td>
+</tr>
+<tr>
+<td>Update a custom field that has data</td>
+<td>New name applies from next month. Existing data values are kept.</td>
+</tr>
+<tr>
+<td>Remove a custom field that has data</td>
+<td>Hidden from next month. Current month still shows the field and data.</td>
+</tr>
+<tr>
+<td>Remove a higher field (e.g., Field 1)</td>
+<td>Lower fields (2, 3, 4) stay in their same positions.</td>
+</tr>
+<tr>
+<td>Create and update name in the same month</td>
+<td>Applied from next month.</td>
+</tr>
+<tr>
+<td>Create and remove in the same month</td>
+<td>Applied from next month.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="where-custom-fields-appear">Where Custom Fields Appear</h3>
+<p>Custom fields appear in these locations:</p>
+<ul>
+<li><strong>Bulk Entry page</strong> (Sponsor) — as columns with input fields, and in the Filters panel.</li>
+<li><strong>A&amp;MC page</strong> (Center/IC) — as input fields, and in the Filters panel.</li>
+<li><strong>Served Meals Report</strong> — as columns.</li>
+</ul>
+<p>All custom field values are stored in <code>SFSP_ATTENDANCE_CUSTOM_VALUE</code>.</p>
+<hr />
+<h2 id="multi-license-centers">Multi-License Centers</h2>
+<p>Centers with both Regular and SFSP/ARAS licenses can switch between the two program views on the A&amp;MC page.</p>
+<p><img alt="Multi-license — Regular view" src="../images/amc-9.png" /> <img alt="Multi-license — SFSP/ARAS view" src="../images/amc-10.png" /></p>
+<p><img alt="Multi-license — Program Type dropdown" src="../images/amc-11.png" /></p>
+<p>After loading the A&amp;MC page, a <strong>Program Type</strong> dropdown appears with two options:</p>
+<ul>
+<li><strong>Regular</strong> — Shows the standard Regular A&amp;MC page with existing behaviors.</li>
+<li><strong>SFSP/ARAS</strong> — Shows the SFSP/ARAS A&amp;MC page (same as the Non-LA SFSP/ARAS view described above).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

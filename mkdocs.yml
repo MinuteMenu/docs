@@ -34,6 +34,8 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Process:
+    - Development Workflow Change: process/development-workflow-change.md
   - Architecture:
     - System Overview: architecture/system-overview.md
   - Flows:

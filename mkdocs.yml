@@ -45,6 +45,9 @@ nav:
       - SAML SSO Architecture: flows/authentication/saml-sso-architecture.md
       - SAML SSO - Client Migration Guide: flows/authentication/saml-sso-client-migration-guide.md
       - SAML SSO - Complete Guide: flows/authentication/saml-sso-complete-guide.md
+    - Parachute:
+      - Payment:
+        - Adyen Integration: flows/parachute/payment/adyen-integration-review.md
     - EForm:
       - Enrollment Flow: flows/eform/enrollment-flow.md
   - Components:

@@ -10,8 +10,8 @@
 - **Every PR** gets an automated architecture and performance check (Agent 5 in code review).
 - **Major features** (multi-week, multi-repo) require a plan review before coding starts.
 - **Every release** gets a technical release note reviewed by DevOps and architect before production.
-- **No process is perfect.** Performance issues will still slip through. We need alerts that catch problems before clients complain, and enough system headroom to survive spikes while we fix them.
-- **Goal:** catch infrastructure and performance problems before they reach production — and survive when they do.
+- **In case an issue still slips through,** DevOps must have performance alerts in place so we detect problems before clients are affected, and enough system headroom to keep services running while the team investigates.
+- **Goal:** catch infrastructure and performance problems before they reach production — and respond fast if they do.
 
 ---
 
@@ -464,25 +464,26 @@ flowchart TB
 
 ## 7. When Things Still Slip Through
 
-No process catches everything. Even with all three gates in place, a performance issue can still reach production. A query that runs fine on dev data can choke on production scale. A load pattern nobody predicted can spike. A third-party service can slow down.
+Even with all three gates in place, an issue can still reach production. A query that runs fine on dev data can choke on production scale. A load pattern nobody predicted can spike. A third-party service can slow down.
 
-**The question is not "will it happen?" but "how fast do we know, and how long can the system survive?"**
+In case that happens, two things must be ready so we respond before clients are affected:
 
 ```
- THREE GATES = PREVENTION              THIS SECTION = SAFETY NET
+ THREE GATES = PREVENTION              SAFETY NET = FAST RESPONSE
  ┌──────────────────────────┐         ┌──────────────────────────────┐
- │ Plan Review              │         │ Performance alerts           │
- │ Code Review Agent 5      │         │ System headroom              │
+ │ Plan Review              │         │ Performance alerts (DevOps)  │
+ │ Code Review Agent 5      │         │ System headroom (DevOps)     │
  │ Release Review           │         │                              │
- │                          │         │ Catch what the gates miss.   │
- │ Stop problems before     │         │ Buy time to fix before       │
- │ they reach production.   │         │ the system goes down.        │
+ │                          │         │ Detect the issue before      │
+ │ Stop problems before     │         │ clients notice. Keep the     │
+ │ they reach production.   │         │ system running while the     │
+ │                          │         │ team investigates.           │
  └──────────────────────────┘         └──────────────────────────────┘
 ```
 
 ### Performance Alerts Must Be in Place
 
-We should know about a problem before a client calls to complain.
+DevOps must configure alerts so the team knows about a problem before a client calls to complain.
 
 ```
  WITHOUT ALERTS                        WITH ALERTS
@@ -493,10 +494,10 @@ We should know about a problem before a client calls to complain.
  Response time degrades                Response time degrades
       │                                    │
       ▼                                    ▼
- Users notice slowness                 Alert fires ◄── we know
+ Users notice slowness                 Alert fires ◄── DevOps knows
       │                                    │
       ▼                                    ▼
- Users complain to support             Team investigates
+ Users complain to support             DevOps + Dev investigate
       │                                    │
       ▼                                    ▼
  Support creates ticket                Fix deployed
@@ -509,12 +510,12 @@ We should know about a problem before a client calls to complain.
  (days later)
 ```
 
-What we need:
+What DevOps needs to set up:
 
-- **API response time alerts** — if an endpoint average exceeds its baseline by 3x or crosses a threshold (e.g., 5 seconds), alert immediately.
+- **API response time alerts** — if an endpoint average exceeds its baseline by 3x or crosses a threshold (e.g., 5 seconds), alert DevOps and dev lead immediately.
 - **Database query alerts** — long-running queries, connection pool exhaustion, high CPU on database VMs.
 - **Error rate alerts** — sudden spike in 500 errors, timeout exceptions, or connection failures.
-- **Application Insights dashboards** — per-endpoint P50/P95/P99 response times, trended daily so regressions are visible before they become critical.
+- **Application Insights dashboards** — per-endpoint P50/P95/P99 response times, trended daily so DevOps and dev team can spot regressions before they become critical.
 
 Both incidents would have been detected earlier with alerts:
 - **Incident 1:** API response time on `/review/providers` went from 752ms → 10.1s on day one. A 3x threshold alert would fire within hours.
@@ -522,7 +523,7 @@ Both incidents would have been detected earlier with alerts:
 
 ### System Headroom Must Exist
 
-When a performance issue hits production, the system needs to survive long enough for the team to respond. If the system runs at 90% capacity on a normal day, any spike kills it instantly. There is no time to fix anything.
+DevOps must ensure the infrastructure has enough headroom to absorb a sudden spike. If the system runs at 90% capacity on a normal day, any spike kills it instantly. There is no time to fix anything.
 
 ```
  NO HEADROOM                           WITH HEADROOM
@@ -538,10 +539,10 @@ When a performance issue hits production, the system needs to survive long enoug
                                                      and fix.
 ```
 
-What we need:
+What DevOps needs to ensure:
 
 - **Connection pool headroom** — do not set Max Pool Size to the exact number we normally use. Leave room for spikes. SSO incident showed 617 connections when normal was <30 — the VM only had 2 vCPUs.
-- **Database VM sizing** — CPU and memory should handle 2-3x normal load without degradation. Scaling up during an incident is too slow to help.
+- **Database VM sizing** — CPU and memory should handle 2-3x normal load without degradation. Scaling up during an incident is too slow to help. DevOps should review VM sizing as part of the release review (Gate 3).
 - **Timeout values that fail fast** — a 360-second command timeout holds resources for 6 minutes per blocked request. A 30-second timeout releases resources quickly, preventing cascade failure. Fail fast, recover fast.
 - **Connection cleanup** — `wait_timeout` should be minutes, not hours. Leaked connections should be cleaned up automatically, not accumulate until the pool is exhausted.
 
@@ -594,9 +595,9 @@ Both incidents would have been less severe with headroom:
  ║  and architecture problems. Different problems need different    ║
  ║  review at different stages.                                     ║
  ║                                                                  ║
- ║  SAFETY NET (when things still slip through):                    ║
- ║  - Performance alerts: know in minutes, not days.                ║
- ║  - System headroom: survive the spike, buy time to fix.          ║
+ ║  SAFETY NET (if an issue still slips through):                   ║
+ ║  - DevOps: performance alerts — detect in minutes, not days.     ║
+ ║  - DevOps: system headroom — survive the spike, buy time to fix. ║
  ║                                                                  ║
  ║  OVERHEAD:                                                       ║
  ║  - Plan review: only major features. Not every ticket.           ║

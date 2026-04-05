@@ -10,7 +10,8 @@
 - **Every PR** gets an automated architecture and performance check (Agent 5 in code review).
 - **Major features** (multi-week, multi-repo) require a plan review before coding starts.
 - **Every release** gets a technical release note reviewed by DevOps and architect before production.
-- **Goal:** catch infrastructure and performance problems before they reach production.
+- **No process is perfect.** Performance issues will still slip through. We need alerts that catch problems before clients complain, and enough system headroom to survive spikes while we fix them.
+- **Goal:** catch infrastructure and performance problems before they reach production — and survive when they do.
 
 ---
 
@@ -461,7 +462,107 @@ flowchart TB
 
 ---
 
-## 7. Summary
+## 7. When Things Still Slip Through
+
+No process catches everything. Even with all three gates in place, a performance issue can still reach production. A query that runs fine on dev data can choke on production scale. A load pattern nobody predicted can spike. A third-party service can slow down.
+
+**The question is not "will it happen?" but "how fast do we know, and how long can the system survive?"**
+
+```
+ THREE GATES = PREVENTION              THIS SECTION = SAFETY NET
+ ┌──────────────────────────┐         ┌──────────────────────────────┐
+ │ Plan Review              │         │ Performance alerts           │
+ │ Code Review Agent 5      │         │ System headroom              │
+ │ Release Review           │         │                              │
+ │                          │         │ Catch what the gates miss.   │
+ │ Stop problems before     │         │ Buy time to fix before       │
+ │ they reach production.   │         │ the system goes down.        │
+ └──────────────────────────┘         └──────────────────────────────┘
+```
+
+### Performance Alerts Must Be in Place
+
+We should know about a problem before a client calls to complain.
+
+```
+ WITHOUT ALERTS                        WITH ALERTS
+ ──────────────────────────           ──────────────────────────
+ Issue deployed                       Issue deployed
+      │                                    │
+      ▼                                    ▼
+ Response time degrades                Response time degrades
+      │                                    │
+      ▼                                    ▼
+ Users notice slowness                 Alert fires ◄── we know
+      │                                    │
+      ▼                                    ▼
+ Users complain to support             Team investigates
+      │                                    │
+      ▼                                    ▼
+ Support creates ticket                Fix deployed
+      │                                (hours, not days)
+      ▼
+ Team investigates
+      │
+      ▼
+ Fix deployed
+ (days later)
+```
+
+What we need:
+
+- **API response time alerts** — if an endpoint average exceeds its baseline by 3x or crosses a threshold (e.g., 5 seconds), alert immediately.
+- **Database query alerts** — long-running queries, connection pool exhaustion, high CPU on database VMs.
+- **Error rate alerts** — sudden spike in 500 errors, timeout exceptions, or connection failures.
+- **Application Insights dashboards** — per-endpoint P50/P95/P99 response times, trended daily so regressions are visible before they become critical.
+
+Both incidents would have been detected earlier with alerts:
+- **Incident 1:** API response time on `/review/providers` went from 752ms → 10.1s on day one. A 3x threshold alert would fire within hours.
+- **Incident 2:** Auth response time went from 0.4s → 55s. MySQL connections spiked from <30 to 617. Both would trigger alerts immediately.
+
+### System Headroom Must Exist
+
+When a performance issue hits production, the system needs to survive long enough for the team to respond. If the system runs at 90% capacity on a normal day, any spike kills it instantly. There is no time to fix anything.
+
+```
+ NO HEADROOM                           WITH HEADROOM
+ ──────────────────────────           ──────────────────────────
+
+ Normal load:  ████████░░ 90%         Normal load:  █████░░░░░ 50%
+
+ Spike:        ██████████ 100% DEAD   Spike:        ████████░░ 80%
+                                                     System still
+               No time to fix.                       running. Team
+               System down.                          has time to
+               Users affected.                       investigate
+                                                     and fix.
+```
+
+What we need:
+
+- **Connection pool headroom** — do not set Max Pool Size to the exact number we normally use. Leave room for spikes. SSO incident showed 617 connections when normal was <30 — the VM only had 2 vCPUs.
+- **Database VM sizing** — CPU and memory should handle 2-3x normal load without degradation. Scaling up during an incident is too slow to help.
+- **Timeout values that fail fast** — a 360-second command timeout holds resources for 6 minutes per blocked request. A 30-second timeout releases resources quickly, preventing cascade failure. Fail fast, recover fast.
+- **Connection cleanup** — `wait_timeout` should be minutes, not hours. Leaked connections should be cleaned up automatically, not accumulate until the pool is exhausted.
+
+Both incidents would have been less severe with headroom:
+- **Incident 1:** If the database VM had more capacity, the 35x regression would have been slower but survivable while the team investigated.
+- **Incident 2:** If the SSO MySQL VM had 4+ vCPUs instead of 2, and `wait_timeout` was 300s instead of 28800s, the connection spike would not have cascaded into a full outage.
+
+```
+ ┌─────────────────────────────────────────────────────────────────┐
+ │  RULE OF THUMB                                                  │
+ │                                                                 │
+ │  Alerts      = know about the problem in minutes, not days.     │
+ │  Headroom    = system survives the spike, team has time to fix. │
+ │  Together    = the difference between "we fixed a slow query"   │
+ │                and "production was down for 8 hours."            │
+ └─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 8. Summary
 
 ```
  ╔═══════════════════════════════════════════════════════════════════╗
@@ -492,6 +593,10 @@ flowchart TB
  ║  Code review catches bugs. These gates catch infrastructure      ║
  ║  and architecture problems. Different problems need different    ║
  ║  review at different stages.                                     ║
+ ║                                                                  ║
+ ║  SAFETY NET (when things still slip through):                    ║
+ ║  - Performance alerts: know in minutes, not days.                ║
+ ║  - System headroom: survive the spike, buy time to fix.          ║
  ║                                                                  ║
  ║  OVERHEAD:                                                       ║
  ║  - Plan review: only major features. Not every ticket.           ║

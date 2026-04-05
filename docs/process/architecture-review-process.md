@@ -7,64 +7,40 @@
 
 ## Quick Summary
 
-- **Every PR** gets an automated architecture and performance check (Agent 5 in code review).
-- **Major features** (multi-week, multi-repo) require a plan review before coding starts.
-- **Every release** gets a technical release note reviewed by DevOps and architect before production.
-- **In case an issue still slips through,** DevOps must have performance alerts in place so we detect problems before clients are affected, and enough system headroom to keep services running while the team investigates.
-- **Goal:** catch infrastructure and performance problems before they reach production — and respond fast if they do.
+- **Every PR** — developer and agent review architecture and performance impact (Agent 5 in code review).
+- **Major features** (multi-week, multi-repo) — agent plan must be reviewed and approved before execution.
+- **Every release** — dev lead provides a technical release note, reviewed by DevOps and architect before production.
+- **If an issue still slips through** — DevOps must have performance alerts and system headroom in place so we detect and respond before clients are affected.
 
 ---
 
-## 1. Why We Are Changing
+## 1. Why We Are Improving
 
-Two production incidents in March 2026 showed that our code review catches bugs and guideline violations, but misses architecture changes and infrastructure stress.
+We already have AI-assisted code review in place. It catches bugs, guideline violations, and ticket alignment issues. But a couple of recent production incidents — including a stored procedure performance regression and a login degradation after a major release — showed that we are missing architecture and infrastructure impact during review.
 
-```
- INCIDENT 1: 35x Performance Regression (#319632)
- ─────────────────────────────────────────────────
- Ticket asked for:   2-line filter fix (change != 290 to = 288)
- Developer did:      Rewrote the entire stored procedure
- What changed:       Simple indexed lookup on materialized view
-                     → real-time computation with 25 temp table ops
- Result:             752ms → 26.3 seconds (35x slower)
-                     Got worse every day as data grew.
+We are improving the process to:
 
- Code review:        Did NOT catch the architecture change.
-```
+- **Eliminate** architecture and performance issues before they reach production.
+- **Increase** system reliability through better review at every stage.
+- **Improve** client satisfaction by preventing incidents rather than reacting to them.
 
 ```
- INCIDENT 2: SSO Login Degradation (Release #317989)
- ────────────────────────────────────────────────────
- Release included:   New login form UI
- Side effect:        Broke "remember me" → all users re-enter credentials
- What happened:      Thousands of logins + password resets at once
- Exposed:            Connection leaks, undersized MySQL VM,
-                     8-hour wait_timeout, 360s command timeout
- Result:             Auth response: 0.4s → 55s average
-                     Password resets: 5/30min → 316/30min
-
- Code review:        Did NOT assess infrastructure impact.
-```
-
-**Common pattern:** Code changes had infrastructure implications. Nobody flagged them.
-
-```
- WHAT WE REVIEW TODAY              WHAT WE MISSED
+ WHAT WE REVIEW TODAY              WHAT WE ARE ADDING
  ┌──────────────────────┐         ┌──────────────────────────────┐
- │ ✓ Code bugs          │         │ ✗ Architecture changes       │
- │ ✓ Guideline rules    │         │ ✗ Performance impact         │
- │ ✓ Git history context│         │ ✗ Infrastructure stress      │
- │ ✓ Ticket alignment   │         │ ✗ Scope creep beyond ticket  │
- │                      │         │ ✗ Cross-repo side effects    │
+ │ ✓ Code bugs          │         │ + Architecture changes       │
+ │ ✓ Guideline rules    │         │ + Performance impact         │
+ │ ✓ Git history context│         │ + Infrastructure stress      │
+ │ ✓ Ticket alignment   │         │ + Cross-repo side effects    │
+ │                      │         │ + Release-level impact       │
  └──────────────────────┘         └──────────────────────────────┘
-  Caught by Agents 1-4             Now caught by 3 new review gates
+  Existing Agents 1-4              Three new review gates
 ```
 
 ---
 
 ## 2. The Three Review Gates
 
-Three new review steps at different stages of the delivery process.
+Three review steps added at different stages of the delivery process.
 
 ```mermaid
 flowchart LR
@@ -94,8 +70,8 @@ flowchart LR
  └─────────────┘    └─────────────┘    └──────────┘    └──────┘
        │                   │                  │
   Major features      Every PR         Every release
-  only (weeks/        automatically     after QA passes
-  months of work)     via Agent 5       before deploy
+  only (weeks/        Developer +       Dev lead provides
+  months of work)     Agent review      release note
 ```
 
 ---
@@ -104,7 +80,9 @@ flowchart LR
 
 ### What It Is
 
-Before coding a major feature, create a short implementation plan. Commit it to the docs repo. Open a PR. Stakeholders review and approve before work starts.
+When developers work with AI coding assistants (Claude Code, GitHub Copilot, Antigravity), there is a plan mode where the agent works with the developer to create a comprehensive implementation plan. For major features, this plan must be reviewed and approved by stakeholders before the developer proceeds to execution.
+
+The plan is committed to the docs repo as a PR so architect, dev lead, DevOps, and stakeholders can review it.
 
 ### When Required
 
@@ -127,52 +105,18 @@ Before coding a major feature, create a short implementation plan. Commit it to 
 
 ```mermaid
 flowchart TD
-    A[Feature assigned] --> B[Dev + Agent create plan]
+    A[Feature assigned] --> B[Dev + Agent create plan in plan mode]
     B --> C[Commit plan to docs repo]
     C --> D[Open PR in docs repo]
     D --> E[Assign reviewers]
     E --> F{Approved?}
     F -->|No| G[Revise plan]
     G --> D
-    F -->|Yes| H[Start implementation]
+    F -->|Yes| H[Dev proceeds to execution]
     H --> I[Update plan with PR links as work progresses]
 ```
 
 **Reviewers:** architect, dev lead, DevOps (if infra impact), client stakeholder (if needed).
-
-### What the Plan Covers
-
-The plan template forces answers to the questions that would have caught Incident 1:
-
-```
- ARCHITECTURE DECISIONS CHECKLIST
- ────────────────────────────────────────────────────────────────
- [ ] Data access change?    Do I change how data is queried?
-                            New tables, removed views, new joins
-                            on large tables?
-
- [ ] Auth/session change?   Does this affect login, session, tokens,
-                            or "remember me"? Could this force users
-                            to re-authenticate?
-
- [ ] Cross-repo change?     Which repos are touched? What is the
-                            deploy order?
-
- [ ] New API calls?         New endpoints or increased call frequency?
-                            Estimate additional load.
-
- [ ] Database schema?       New tables, columns, indexes, stored
-                            procedures?
-
- [ ] Infrastructure need?   Does this need VM scaling, new config,
-                            connection pool changes, or new services?
-```
-
-### What It Would Have Caught
-
-**Incident 1:** A plan for ticket #292344 would say "I will rewrite `select_review_providers_sp` to compute ReviewNeeded at query time instead of using `ProvidersDueReviewsMart`." The architect would immediately ask: "Why not just fix the 2-line filter in the existing lookup?"
-
-**Incident 2:** A plan for SAML SSO integration would say "New login form replaces the existing one. Users will need to re-enter credentials." DevOps would ask: "How many users? What is the expected concurrent load? Is the SSO database sized for this?"
 
 Plan template: [plans/template.md](../plans/template.md)
 
@@ -182,7 +126,7 @@ Plan template: [plans/template.md](../plans/template.md)
 
 ### What It Is
 
-A new agent (Agent 5) added to the automated code review skill. It runs on every PR alongside the existing 4 agents. It checks for architecture changes and performance implications.
+A new agent (Agent 5) added to the existing code review. It runs on every PR alongside the existing 4 agents. Developer reviews Agent 5 findings and triages them — we never fully rely on the agent alone.
 
 ### How It Fits with Existing Code Review
 
@@ -197,10 +141,10 @@ A new agent (Agent 5) added to the automated code review skill. It runs on every
  │                          │      │          Performance ← NEW   │
  └──────────────────────────┘      └──────────────────────────────┘
                                           │
-                                   Always produces an
-                                   "Infrastructure Impact
-                                   Assessment" that can be
-                                   shared with DevOps.
+                                   Developer reviews findings
+                                   and produces Infrastructure
+                                   Impact Assessment to share
+                                   with DevOps.
 ```
 
 ### What Agent 5 Checks
@@ -210,8 +154,8 @@ Six categories of architecture and performance risk:
 ```
  CATEGORY                  WHAT IT LOOKS FOR
  ─────────────────────────────────────────────────────────────
- Scope Creep               Diff does much more than the ticket
-                           asks for. Small fix → full rewrite.
+ Scope Creep               Diff does significantly more than
+                           the ticket asks for.
 
  Data Access Change        Materialized view → real-time query.
                            Indexed lookup → table scan.
@@ -248,28 +192,9 @@ Every PR gets an Infrastructure Impact Assessment, even when no issues are found
 
 This section can be copied directly to share with DevOps.
 
-### What It Would Have Caught
-
-**Incident 1:** Agent 5 would flag:
-- "Scope creep: ticket asks for 2-line filter fix, diff rewrites entire stored procedure"
-- "Data access change: `ProvidersDueReviewsMart` indexed lookup replaced with 25 temp table operations on MEAL_RECORD (millions of rows)"
-- "Risk Level: Critical. DevOps action needed: review query plan, add indexes or revert."
-
-**Incident 2:** Agent 5 would flag:
-- "Infrastructure stress: login form change may invalidate saved credentials for all users"
-- "Cross-repo impact: SSO changes affect KK, CX, and Parachute simultaneously"
-- "Risk Level: High. DevOps action needed: assess SSO database capacity for mass re-auth."
-
 ### Learning from Incidents
 
-Agent 5 references a `known-patterns.md` file with patterns from past incidents. When the same pattern appears in a new PR, Agent 5 scores it higher. This file is updated whenever a new incident reveals a pattern.
-
-Current patterns:
-1. Materialized view replaced with real-time computation
-2. UI change forces mass re-authentication
-3. Connection leak under error path
-4. Oversized timeout values
-5. Scope creep beyond ticket requirements
+Agent 5 references a `known-patterns.md` file with example patterns from past incidents. These are starting examples, not a complete list — the agent uses them as guidance to recognize similar risks, not as a strict checklist. The file is updated whenever a new incident reveals a useful pattern.
 
 ---
 
@@ -277,29 +202,27 @@ Current patterns:
 
 ### What It Is
 
-After all tickets merge to the release branch and QA testing passes, generate a technical release note. DevOps and architect review it before production deployment.
+After all tickets merge to the release branch and QA testing passes, the dev lead provides a technical release note. DevOps and architect review it before production deployment.
 
 ### When Required
 
-**Every release.** No exceptions. The release note is auto-generated — the overhead is reviewing, not writing.
+**Every release.** No exceptions.
 
 ### How It Works
 
 ```mermaid
 flowchart TD
     A[All tickets merged to release branch] --> B[QA testing passes]
-    B --> C[Run /release-review skill]
-    C --> D[Auto-generate technical release note]
-    D --> E[Dev reviews and fills gaps]
-    E --> F[Commit to docs repo, open PR]
-    F --> G[DevOps reviews]
-    F --> H[Architect reviews]
-    G --> I{Both approve?}
-    H --> I
-    I -->|No| J[Address concerns]
-    J --> F
-    I -->|Yes| K[Deploy to production]
-    K --> L[Merge release to master]
+    B --> C[Dev lead prepares technical release note]
+    C --> D[Commit to docs repo, open PR]
+    D --> E[DevOps reviews]
+    D --> F[Architect reviews]
+    E --> G{Both approve?}
+    F --> G
+    G -->|No| H[Address concerns]
+    H --> D
+    G -->|Yes| I[Deploy to production]
+    I --> J[Merge release to master]
 ```
 
 ### What the Release Note Covers
@@ -344,32 +267,6 @@ flowchart TD
     Deploy approved      ☐
 ```
 
-### What It Would Have Caught
-
-**Incident 2:** The SAML SSO release note would show:
-
-```
- RELEASE: SAML SSO Integration (#317989)
- ────────────────────────────────────────────────────────
-
- Auth/Session Changes:
-   Login flow changes:   New login form replaces existing form
-   Re-auth impact:       ALL USERS will need to re-enter
-                         credentials (remember-me broken)
-
- Cross-Repo Dependencies:
-   Repos:     KK, SSO, Parachute, Database (CXADMIN + MMADMIN)
-   Deploy:    Database → SSO → KK → Parachute
-   Rollback:  Parachute → KK → SSO → Database
-
- Risk Assessment:
-   Worst case: all users re-authenticate at once, SSO
-   database cannot handle the load. Cascading failure
-   across KK, CX, and Parachute.
-```
-
-DevOps would see this and ask: "Is the SSO MySQL VM sized for this? What is the connection pool limit? Should we scale up before deploying?"
-
 Release note template: [releases/template.md](../releases/template.md)
 
 ---
@@ -387,9 +284,8 @@ Each gate catches different types of problems at different stages.
                                                              Stakeholder
 
  Per PR         Code Review       Architecture changes       Developer
-                Agent 5           Performance regression     (automated)
-                (every PR)        Scope creep
-                                  Infrastructure stress
+                Agent 5           Performance regression     + Agent
+                (every PR)        Infrastructure stress
 
  Before deploy  Release Review    Aggregate impact           DevOps
                 (every release)   Cross-repo coordination    Architect
@@ -434,132 +330,18 @@ flowchart TB
     R4 --> PROD[Production Deploy]
 ```
 
-### What Each Gate Would Have Caught for Each Incident
-
-```
- INCIDENT 1: SP Rewrite (#319632)
- ──────────────────────────────────────────────────────────────
- Gate 1 (Plan):     Would catch if it was a major feature.
-                    In this case it was a ticket, so Gate 1
-                    does not apply.
- Gate 2 (Agent 5):  ✓ CATCHES IT. Flags scope creep (2-line
-                    fix → full rewrite) and data access change
-                    (materialized view → real-time computation).
- Gate 3 (Release):  ✓ CATCHES IT. Release note shows stored
-                    procedure change on large tables.
-
- INCIDENT 2: SSO Login Degradation (#317989)
- ──────────────────────────────────────────────────────────────
- Gate 1 (Plan):     ✓ CATCHES IT. SAML SSO is a major feature.
-                    Plan review would surface re-auth impact
-                    and infrastructure requirements.
- Gate 2 (Agent 5):  ✓ CATCHES IT. Flags login form change that
-                    invalidates saved credentials for all users.
- Gate 3 (Release):  ✓ CATCHES IT. Release note shows auth
-                    change affecting all users, 6-repo deploy,
-                    and SSO database load concern.
-```
-
 ---
 
-## 7. When Things Still Slip Through
+## 7. If an Issue Still Slips Through
 
-Even with all three gates in place, an issue can still reach production. A query that runs fine on dev data can choke on production scale. A load pattern nobody predicted can spike. A third-party service can slow down.
+Even with all three gates, an issue can still reach production. DevOps must ensure the following are in place so we detect and respond before clients are affected:
 
-In case that happens, two things must be ready so we respond before clients are affected:
+- **Performance alerts** — API response time, database query duration, error rate spikes. The team should know about a problem within minutes, not hear about it from clients days later.
+- **System headroom** — infrastructure should handle sudden spikes without going down. If the system runs at capacity on a normal day, any spike becomes an outage with no time to respond.
+- **Fail-fast timeouts** — short command and connection timeouts so blocked requests release resources quickly instead of holding them for minutes.
+- **Connection cleanup** — automatic cleanup of idle connections so leaks do not accumulate silently.
 
-```
- THREE GATES = PREVENTION              SAFETY NET = FAST RESPONSE
- ┌──────────────────────────┐         ┌──────────────────────────────┐
- │ Plan Review              │         │ Performance alerts (DevOps)  │
- │ Code Review Agent 5      │         │ System headroom (DevOps)     │
- │ Release Review           │         │                              │
- │                          │         │ Detect the issue before      │
- │ Stop problems before     │         │ clients notice. Keep the     │
- │ they reach production.   │         │ system running while the     │
- │                          │         │ team investigates.           │
- └──────────────────────────┘         └──────────────────────────────┘
-```
-
-### Performance Alerts Must Be in Place
-
-DevOps must configure alerts so the team knows about a problem before a client calls to complain.
-
-```
- WITHOUT ALERTS                        WITH ALERTS
- ──────────────────────────           ──────────────────────────
- Issue deployed                       Issue deployed
-      │                                    │
-      ▼                                    ▼
- Response time degrades                Response time degrades
-      │                                    │
-      ▼                                    ▼
- Users notice slowness                 Alert fires ◄── DevOps knows
-      │                                    │
-      ▼                                    ▼
- Users complain to support             DevOps + Dev investigate
-      │                                    │
-      ▼                                    ▼
- Support creates ticket                Fix deployed
-      │                                (hours, not days)
-      ▼
- Team investigates
-      │
-      ▼
- Fix deployed
- (days later)
-```
-
-What DevOps needs to set up:
-
-- **API response time alerts** — if an endpoint average exceeds its baseline by 3x or crosses a threshold (e.g., 5 seconds), alert DevOps and dev lead immediately.
-- **Database query alerts** — long-running queries, connection pool exhaustion, high CPU on database VMs.
-- **Error rate alerts** — sudden spike in 500 errors, timeout exceptions, or connection failures.
-- **Application Insights dashboards** — per-endpoint P50/P95/P99 response times, trended daily so DevOps and dev team can spot regressions before they become critical.
-
-Both incidents would have been detected earlier with alerts:
-- **Incident 1:** API response time on `/review/providers` went from 752ms → 10.1s on day one. A 3x threshold alert would fire within hours.
-- **Incident 2:** Auth response time went from 0.4s → 55s. MySQL connections spiked from <30 to 617. Both would trigger alerts immediately.
-
-### System Headroom Must Exist
-
-DevOps must ensure the infrastructure has enough headroom to absorb a sudden spike. If the system runs at 90% capacity on a normal day, any spike kills it instantly. There is no time to fix anything.
-
-```
- NO HEADROOM                           WITH HEADROOM
- ──────────────────────────           ──────────────────────────
-
- Normal load:  ████████░░ 90%         Normal load:  █████░░░░░ 50%
-
- Spike:        ██████████ 100% DEAD   Spike:        ████████░░ 80%
-                                                     System still
-               No time to fix.                       running. Team
-               System down.                          has time to
-               Users affected.                       investigate
-                                                     and fix.
-```
-
-What DevOps needs to ensure:
-
-- **Connection pool headroom** — do not set Max Pool Size to the exact number we normally use. Leave room for spikes. SSO incident showed 617 connections when normal was <30 — the VM only had 2 vCPUs.
-- **Database VM sizing** — CPU and memory should handle 2-3x normal load without degradation. Scaling up during an incident is too slow to help. DevOps should review VM sizing as part of the release review (Gate 3).
-- **Timeout values that fail fast** — a 360-second command timeout holds resources for 6 minutes per blocked request. A 30-second timeout releases resources quickly, preventing cascade failure. Fail fast, recover fast.
-- **Connection cleanup** — `wait_timeout` should be minutes, not hours. Leaked connections should be cleaned up automatically, not accumulate until the pool is exhausted.
-
-Both incidents would have been less severe with headroom:
-- **Incident 1:** If the database VM had more capacity, the 35x regression would have been slower but survivable while the team investigated.
-- **Incident 2:** If the SSO MySQL VM had 4+ vCPUs instead of 2, and `wait_timeout` was 300s instead of 28800s, the connection spike would not have cascaded into a full outage.
-
-```
- ┌─────────────────────────────────────────────────────────────────┐
- │  RULE OF THUMB                                                  │
- │                                                                 │
- │  Alerts      = know about the problem in minutes, not days.     │
- │  Headroom    = system survives the spike, team has time to fix. │
- │  Together    = the difference between "we fixed a slow query"   │
- │                and "production was down for 8 hours."            │
- └─────────────────────────────────────────────────────────────────┘
-```
+DevOps will follow up with the specific alert thresholds, capacity targets, and monitoring setup.
 
 ---
 
@@ -570,12 +352,11 @@ Both incidents would have been less severe with headroom:
  ║       ARCHITECTURE & PERFORMANCE REVIEW — SUMMARY                ║
  ╠═══════════════════════════════════════════════════════════════════╣
  ║                                                                  ║
- ║  WHY:  Two production incidents caused by architecture and       ║
- ║        performance changes that code review did not catch.       ║
- ║        35x performance regression. Login degradation for all     ║
- ║        users. Both were preventable.                             ║
+ ║  WHY:  Improve our review process to catch architecture and      ║
+ ║        performance issues before production. Increase system     ║
+ ║        reliability. Improve client satisfaction.                  ║
  ║                                                                  ║
- ║  THREE NEW REVIEW GATES:                                         ║
+ ║  THREE REVIEW GATES:                                              ║
  ║  ┌─────────────┬─────────────────────┬─────────────────────────┐ ║
  ║  │ Gate        │ When                │ Who Reviews             │ ║
  ║  ├─────────────┼─────────────────────┼─────────────────────────┤ ║
@@ -583,17 +364,12 @@ Both incidents would have been less severe with headroom:
  ║  │             │ (major features     │ DevOps, Stakeholder     │ ║
  ║  │             │  only)              │                         │ ║
  ║  ├─────────────┼─────────────────────┼─────────────────────────┤ ║
- ║  │ Code Review │ Every PR            │ Automated (Agent 5)     │ ║
- ║  │ Agent 5     │ (automatic)         │ + Developer triage      │ ║
+ ║  │ Code Review │ Every PR            │ Developer + Agent       │ ║
+ ║  │ Agent 5     │                     │                         │ ║
  ║  ├─────────────┼─────────────────────┼─────────────────────────┤ ║
  ║  │ Release     │ Every release       │ DevOps, Architect       │ ║
  ║  │ Review      │ (before deploy)     │                         │ ║
  ║  └─────────────┴─────────────────────┴─────────────────────────┘ ║
- ║                                                                  ║
- ║  KEY PRINCIPLE:                                                  ║
- ║  Code review catches bugs. These gates catch infrastructure      ║
- ║  and architecture problems. Different problems need different    ║
- ║  review at different stages.                                     ║
  ║                                                                  ║
  ║  SAFETY NET (if an issue still slips through):                   ║
  ║  - DevOps: performance alerts — detect in minutes, not days.     ║
@@ -601,8 +377,8 @@ Both incidents would have been less severe with headroom:
  ║                                                                  ║
  ║  OVERHEAD:                                                       ║
  ║  - Plan review: only major features. Not every ticket.           ║
- ║  - Agent 5: fully automated. Zero developer effort.              ║
- ║  - Release review: auto-generated. Review, not write.            ║
+ ║  - Agent 5: developer + agent review. Part of existing workflow. ║
+ ║  - Release review: dev lead provides release note.               ║
  ║                                                                  ║
  ║  TEMPLATES:                                                      ║
  ║  - Plan template: docs/plans/template.md                         ║

@@ -1,72 +1,109 @@
-# Release: [Release Name]
+# Release: [RELEASE_NAME]
 
-**Release ID:** #RELEASE_ID
-**Date:** YYYY-MM-DD
-**Branch:** release/RELEASE_BRANCH
+**Release ID:** #[RELEASE_ID]
+**Prepared by:** [DEV_LEAD_NAME]
+**Date:** [YYYY-MM-DD]
+**Branch:** release/[BRANCH_NAME]
 
-## Tickets in This Release
+---
 
-| Ticket | Title | Type | Infra Impact |
-|--------|-------|------|-------------|
-| #ID | Title | Bug/Story | None/Low/Medium/High |
+## 1. Functional Summary
 
-## Summary of Changes
+<!-- What this release does from a USER perspective. 2-5 bullet points. Source: TP ticket descriptions. -->
 
-Brief description of what this release does from a user perspective.
+- [Bullet point 1]
+- [Bullet point 2]
 
-## Infrastructure Impact
+---
 
-### Database Changes
+## 2. Tickets
 
-- Schema changes: [list or "none"]
-- Stored procedure changes: [list or "none"]
-- New indexes: [list or "none"]
-- Data migration scripts: [list or "none"]
+<!-- ALL tickets in this release. One row per ticket. -->
 
-### Auth/Session Changes
+| Ticket | Title | Type | State | Infra Impact |
+|--------|-------|------|-------|-------------|
+| #[ID] | [Title] | Bug / Story | Done / Released | None / Low / Medium / High / Critical |
 
-- Login flow changes: [describe or "none"]
-- Session/token changes: [describe or "none"]
-- Expected re-authentication impact: [describe or "none"]
+---
 
-### API Changes
+## 3. Infrastructure Impact
 
-- New endpoints: [list or "none"]
-- Changed endpoints: [list or "none"]
-- Removed endpoints: [list or "none"]
-- Expected traffic pattern changes: [describe or "none"]
+<!-- Source: Git diff of release branch vs master, merged PRs, Agent 5 assessments. -->
 
-### Performance Considerations
+**Overall Risk Level:** None / Low / Medium / High / Critical
 
-- Queries on large tables: [list or "none"]
-- Removed optimizations: [list or "none"]
-- New background jobs: [list or "none"]
+### 3.1 Database Changes
 
-### Cross-Repo Dependencies
+<!-- Every SQL change. File path + one-sentence description. Or "None". -->
 
-- Repos involved: [list]
-- Deploy order: [specify order]
-- Rollback order: [specify reverse order]
+- [List or "None"]
 
-## Web Configuration Changes
+### 3.2 Auth / Session Changes
 
-List any web.config / appsettings changes needed per environment.
+<!-- Login, SSO, tokens, sessions, cookies, "remember me". If users may need to re-auth, say so. -->
+
+- [List or "None"]
+- Expected re-authentication impact: [describe scope or "None — no auth changes"]
+
+### 3.3 API Changes
+
+<!-- New, changed, or removed endpoints. Include HTTP method + route. Or "None". -->
+
+- [List or "None"]
+
+### 3.4 Performance Considerations
+
+<!-- Large table queries, changed stored procs, removed caching/indexes, new background jobs. Or "None". -->
+
+- [List or "None"]
+
+### 3.5 Cross-Repo Dependencies
+
+<!-- If multi-repo: list repos, deploy order, rollback order. If single repo: say so. -->
+
+- Repos involved: [list or "Single repo: KK"]
+- Deploy order: [specify or "N/A"]
+- Rollback order: [specify or "N/A"]
+
+---
+
+## 4. Web Configuration Changes
+
+<!-- web.config, appsettings, Octopus variable changes per service. Or "None". -->
 
 | Service | Key | Value | Notes |
 |---------|-----|-------|-------|
-| | | | |
+| [Service] | [Key] | [Value] | [Why] |
 
-## Risk Assessment
+---
 
-What is the worst-case scenario? How likely? How do we detect it?
+## 5. Rollback Plan
 
-## Deployment Checklist
+<!-- Step-by-step. Specific enough that someone unfamiliar with the release can execute it. -->
 
-| Step | Owner | Status |
-|------|-------|--------|
-| DevOps review | [name] | Pending |
-| Architect review | [name] | Pending |
-| SQL scripts verified | [name] | Pending |
-| Web config changes documented | [name] | Pending |
-| Rollback plan confirmed | [name] | Pending |
-| Production deployment approved | [name] | Pending |
+1. [Step 1]
+2. [Step 2]
+
+---
+
+## 6. Risk Assessment
+
+- **Worst case:** [What happens if something goes wrong?]
+- **How we detect it:** [What alert or check tells us?]
+- **How we recover:** [Reference rollback plan + any additional steps]
+
+---
+
+## 7. Deployment Checklist
+
+<!-- ALL rows must be Done before production deployment. -->
+
+| # | Step | Owner | Status |
+|---|------|-------|--------|
+| 1 | Dev lead prepared release note | [name] | Done / Pending |
+| 2 | DevOps reviewed infrastructure impact | [name] | Pending |
+| 3 | Architect reviewed changes | [name] | Pending |
+| 4 | SQL scripts verified on staging | [name] | Pending |
+| 5 | Web config changes documented and ready | [name] | Pending |
+| 6 | Rollback plan confirmed | [name] | Pending |
+| 7 | Production deployment approved | [name] | Pending |

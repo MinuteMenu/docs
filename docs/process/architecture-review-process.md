@@ -10,7 +10,7 @@
 ### Dev
 
 - **Expand the scope of regular PR code review** — add architecture and performance impact review with developer and agent (Agent 5 in code review). Every PR now includes an Infrastructure Impact Assessment.
-- **Submit the agent implementation plan for review** before executing major features (multi-week, multi-repo). Llewellyn and Harry review the plan early to catch architecture concerns, align on approach, and avoid costly rework later.
+- **Submit the agent implementation plan for review** before executing major features (multi-week, multi-repo). Catch architecture concerns early, align on approach, and avoid costly rework. Keep Llewellyn and Harry in the loop so we can get their valuable feedback.
 - **Provide a technical release note** for every release. Dev lead prepares the note covering all tickets, infrastructure impact, deploy order, and rollback plan — reviewed by DevOps and architect before production deployment.
 
 ### DevOps

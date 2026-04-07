@@ -15,8 +15,8 @@
 
 ### DevOps
 
-- **Set up performance alerts** — API response time, database query duration, error rate spikes. If an issue still slips through the review gates, the team must know within minutes, not hear about it from clients days later.
-- **Maintain system headroom** — infrastructure must handle traffic spikes without going down, especially during the first week of each month when sponsors run reporting and billing cycles and traffic peaks significantly.
+- **Set up performance alerts** to identify the issue sooner instead of hearing from client's complain, for example: cpu & ram usage alert, average API response time, database connection health, error rate spikes... 
+- **Maintain system headroom** — infrastructure must absorb sudden spikes in a system with significant traffic variation throughout its billing cycle.
 
 ### QA
 
@@ -374,7 +374,7 @@ DevOps will follow up with the specific alert thresholds, capacity targets, and 
  ║                                                                       ║
  ║  DEVOPS:                                                              ║
  ║  - Set up performance alerts — detect issues in minutes, not days.    ║
- ║  - Maintain system headroom — especially for month-start peak loads.  ║
+ ║  - Maintain system headroom for significant traffic variation.        ║
  ║                                                                       ║
  ║  QA:                                                                  ║
  ║  - Collaborate with dev on solution review for complex tickets.       ║

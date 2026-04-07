@@ -15,12 +15,12 @@
 
 ### DevOps
 
-- **Set up performance alerts** to identify the issue sooner instead of hearing from client's complain, for example: cpu & ram usage alert, average API response time, database connection health, error rate spikes... 
-- **Maintain system headroom** — infrastructure must absorb sudden spikes in a system with significant traffic variation throughout its billing cycle.
+- **Set up performance alerts** to identify the issue sooner instead of hearing from client's complain, for example: cpu & ram usage alert, average API response time, database connection health, error rate spikes...
+- **Maintain system headroom** — infrastructure must absorb sudden spikes in a system with significant traffic variation throughout its claim cycle.
 
 ### QA
 
-- **Collaborate with dev on solution review** for complex tickets. Share insight on performance from a business perspective — which screens are used most, which data volumes are realistic, what user patterns to expect.
+- **Collaborate with dev on solution review** for complex tickets. Share insight on performance from a business perspective — which screens are used most, which data volumes are realistic, what user patterns to expect...
 - **Test with realistic data volumes** — for features that interact with large datasets or change filtering and querying logic, QA tests with accounts that have significant data to make sure results are accurate and performance is acceptable under real conditions.
 
 ---
@@ -128,8 +128,6 @@ flowchart TD
 ```
 
 **Reviewers:** architect, dev lead, DevOps (if infra impact), client stakeholder (if needed).
-
-Plan template: [plans/template.md](../plans/template.md)
 
 ---
 

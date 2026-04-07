@@ -7,10 +7,21 @@
 
 ## Quick Summary
 
-- **Every PR** — developer and agent review architecture and performance impact (Agent 5 in code review).
-- **Major features** (multi-week, multi-repo) — agent plan must be reviewed and approved before execution.
-- **Every release** — dev lead provides a technical release note, reviewed by DevOps and architect before production.
-- **If an issue still slips through** — DevOps must have performance alerts and system headroom in place so we detect and respond before clients are affected.
+### Dev
+
+- **Expand the scope of regular PR code review** — add architecture and performance impact review with developer and agent (Agent 5 in code review). Every PR now includes an Infrastructure Impact Assessment.
+- **Submit the agent implementation plan for review** before executing major features (multi-week, multi-repo). Llewellyn and Harry review the plan early to catch architecture concerns, align on approach, and avoid costly rework later.
+- **Provide a technical release note** for every release. Dev lead prepares the note covering all tickets, infrastructure impact, deploy order, and rollback plan — reviewed by DevOps and architect before production deployment.
+
+### DevOps
+
+- **Set up performance alerts** — API response time, database query duration, error rate spikes. If an issue still slips through the review gates, the team must know within minutes, not hear about it from clients days later.
+- **Maintain system headroom** — infrastructure must handle traffic spikes without going down, especially during the first week of each month when sponsors run reporting and billing cycles and traffic peaks significantly.
+
+### QA
+
+- **Collaborate with dev on solution review** for complex tickets. Share insight on performance from a business perspective — which screens are used most, which data volumes are realistic, what user patterns to expect.
+- **Test with realistic data volumes** — for features that interact with large datasets or change filtering and querying logic, QA tests with accounts that have significant data to make sure results are accurate and performance is acceptable under real conditions.
 
 ---
 
@@ -348,41 +359,30 @@ DevOps will follow up with the specific alert thresholds, capacity targets, and 
 ## 8. Summary
 
 ```
- ╔═══════════════════════════════════════════════════════════════════╗
- ║       ARCHITECTURE & PERFORMANCE REVIEW — SUMMARY                ║
- ╠═══════════════════════════════════════════════════════════════════╣
- ║                                                                  ║
- ║  WHY:  Improve our review process to catch architecture and      ║
- ║        performance issues before production. Increase system     ║
- ║        reliability. Improve client satisfaction.                  ║
- ║                                                                  ║
- ║  THREE REVIEW GATES:                                              ║
- ║  ┌─────────────┬─────────────────────┬─────────────────────────┐ ║
- ║  │ Gate        │ When                │ Who Reviews             │ ║
- ║  ├─────────────┼─────────────────────┼─────────────────────────┤ ║
- ║  │ Plan Review │ Before coding       │ Architect, Dev Lead,    │ ║
- ║  │             │ (major features     │ DevOps, Stakeholder     │ ║
- ║  │             │  only)              │                         │ ║
- ║  ├─────────────┼─────────────────────┼─────────────────────────┤ ║
- ║  │ Code Review │ Every PR            │ Developer + Agent       │ ║
- ║  │ Agent 5     │                     │                         │ ║
- ║  ├─────────────┼─────────────────────┼─────────────────────────┤ ║
- ║  │ Release     │ Every release       │ DevOps, Architect       │ ║
- ║  │ Review      │ (before deploy)     │                         │ ║
- ║  └─────────────┴─────────────────────┴─────────────────────────┘ ║
- ║                                                                  ║
- ║  SAFETY NET (if an issue still slips through):                   ║
- ║  - DevOps: performance alerts — detect in minutes, not days.     ║
- ║  - DevOps: system headroom — survive the spike, buy time to fix. ║
- ║                                                                  ║
- ║  OVERHEAD:                                                       ║
- ║  - Plan review: only major features. Not every ticket.           ║
- ║  - Agent 5: developer + agent review. Part of existing workflow. ║
- ║  - Release review: dev lead provides release note.               ║
- ║                                                                  ║
- ║  TEMPLATES:                                                      ║
- ║  - Plan template: docs/plans/template.md                         ║
- ║  - Release note template: docs/releases/template.md              ║
- ║                                                                  ║
- ╚═══════════════════════════════════════════════════════════════════╝
+ ╔════════════════════════════════════════════════════════════════════════╗
+ ║       ARCHITECTURE & PERFORMANCE REVIEW — SUMMARY                     ║
+ ╠════════════════════════════════════════════════════════════════════════╣
+ ║                                                                       ║
+ ║  WHY:  Improve our review process to catch architecture and           ║
+ ║        performance issues before production. Increase system          ║
+ ║        reliability. Improve client satisfaction.                       ║
+ ║                                                                       ║
+ ║  DEV:                                                                 ║
+ ║  - Expand PR code review scope with architecture + performance agent. ║
+ ║  - Submit agent plan for review before executing major features.      ║
+ ║  - Provide technical release note for every release.                  ║
+ ║                                                                       ║
+ ║  DEVOPS:                                                              ║
+ ║  - Set up performance alerts — detect issues in minutes, not days.    ║
+ ║  - Maintain system headroom — especially for month-start peak loads.  ║
+ ║                                                                       ║
+ ║  QA:                                                                  ║
+ ║  - Collaborate with dev on solution review for complex tickets.       ║
+ ║  - Test with realistic data volumes for data-heavy features.          ║
+ ║                                                                       ║
+ ║  TEMPLATES:                                                           ║
+ ║  - Plan template: docs/plans/template.md                              ║
+ ║  - Release note template: docs/releases/template.md                   ║
+ ║                                                                       ║
+ ╚════════════════════════════════════════════════════════════════════════╝
 ```

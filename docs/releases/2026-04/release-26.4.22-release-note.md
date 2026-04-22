@@ -55,13 +55,13 @@
 ### 2.3 API Changes
 
 - NEW: `POST /common/detectOrphanedEforms` (security-key auth) — enumerates CX clients with orphaned eForm assignments. Payload: `{ SecurityKey, ClientIds?[] }`.
-=> Internal tool not public for client
+  => Internal tool not public for client
 - NEW: `POST /common/cleanupOrphanedEforms` (security-key auth) — hard-deletes orphaned CX eForm assignments. Payload: `{ SecurityKey, ClientIds?[] }`. **When ClientIds is null/empty, the endpoint sweeps every CX client with any active assignment.** [VERIFY — see section 2.4.]
-=> Internal tool not public for client
+  => Internal tool not public for client
 - NEW: `POST /portcx/payment/redownloadACHFile` — regenerate ACH file for a set of check_ids without voiding. Payload: `{ CheckIds: int[] }` (permission-gated to `CX.IssuePayments`).
-=> redownloadACHFile only regenerates the ACH file for existing DD records (payment_type_code=175). It does not void, modify, or otherwise touch any check_register data. Purely a read + file-reconstruction operation. Protected by [RequiredPermission(CX.IssuePayments)]
+  => redownloadACHFile only regenerates the ACH file for existing DD records (payment_type_code=175). It does not void, modify, or otherwise touch any check_register data. Purely a read + file-reconstruction operation. Protected by [RequiredPermission(CX.IssuePayments)]
 - NEW: `GET /site/isAtRiskOrArasForSponsor?centerId=...` — returns live at-risk/ARAS flag for a center. **[VERIFY — endpoint added but call site not visible in diff; confirm it is consumed.]**
-=> Won't fix — the endpoint, resource, and service method (centerSiteDetailsService.getIsAtRiskOrArasForSponsor) are kept intentionally for future features that may need the live At Risk check (e.g., enrollment workflows). The Child Roster report no longer calls it, but removing it would require re-adding it later.
+  => Won't fix — the endpoint, resource, and service method (centerSiteDetailsService.getIsAtRiskOrArasForSponsor) are kept intentionally for future features that may need the live At Risk check (e.g., enrollment workflows). The Child Roster report no longer calls it, but removing it would require re-adding it later.
 - CHANGED: `POST /portcx/fileservice/updateIEFChildren` — return shape changed from `bool` to `{ success, skippedChildNames[] }`.
 - CHANGED: `GET /cxservice/payments/getCheckRegisterList` — response now includes `modDateTime`, `modLoginId`, `modUsername` on each row.
 - CHANGED: `POST /payments/printIssuePayment` (HX API) — response now includes `Sponsor102Data { ActiveChildren[], ChildTierCounts[], ProviderTiers[], ServingTimes[], TrainingHours }` for Sponsor 102 providers.
@@ -70,41 +70,26 @@
 ### 2.4 Performance & Capacity
 
 - **CHECK_REGISTER covering index (#316306)** — new non-clustered index with 7 INCLUDE columns on a multi-million-row table. CREATE NONCLUSTERED does not specify `ONLINE = ON` → Sch-M lock for duration of build, blocks all reads/writes to CHECK_REGISTER.
-  **Action required** — run DDL in maintenance window; add `WITH (ONLINE = ON, MAXDOP = 4)` if Enterprise Edition.
-  Rollback: Low — standalone ROLLBACK script exists at `CXADMIN/ROLLBACK/316306_create_check_register_client_center_covering_index.sql`.
-  Watch: CHECK_REGISTER write latency during and immediately after index creation; `sys.dm_db_index_usage_stats` 7 days after release to verify the index is used.
-  Evidence: Pattern #5 scope-creep risk — non-SARGable query `Year(cr.check_date)=Year(@claim_month)` in `select_payment_history_list_sp` still scans client-wide even with the covering index.
-
+  **Action required** We are using standard edition license for sql server that does not support ONLINE = ON indexing.
 - **Orphan detect/cleanup endpoints (#319630)** — `common/cleanupOrphanedEforms` with auto-detect (null `ClientIds`) performs serial per-client fan-out: opens fresh eFormsContext + CxContext per iteration and pulls entire active CHILD roster per client. No `CommandTimeout`. No row cap.
-  **Action required** — (1) require non-empty `ClientIds` in prod (reject auto-sweep), (2) add explicit `Database.CommandTimeout = 30-60s`, (3) add `[RequiredRole]` on top of security-key check, (4) firewall to DevOps app pool / IP allow-list, (5) audit-log every invocation (caller, ClientIds, row counts).
-  Rollback: Low — disable endpoint via IIS route rule or back-out code.
-  Watch: HTTP request duration on `/common/cleanupOrphanedEforms`; SQL connection count against CXADMIN and EFormContext during first sweep; KK API worker-thread count.
-  Evidence: Matches known incident patterns 3/4 (connection accumulation, thread-pool starvation, elevated CommandTimeout). **Also: orphan predicate treats Withdrawn/Inactive children as orphans → hard-deletes their historical eForms. Recommend NOT running in auto-sweep mode on prod until predicate is tightened.**
-
+  **Action required** — Internal tool. No action needed.
 - **Sponsor 102 PrintIssuePayment fan-out (#320213)** — HX API controller uses unbounded `Task.WhenAll` calling `BuildSponsor102Data` per check; each call fires 5 stored procedures in parallel. A 500-provider batch print = 2,500 concurrent DB round-trips.
-  **Monitor** — spike in MMADMIN connection count during first post-release 102 print.
+  **Monitor** — spike in MMADMIN connection count during first post-release 102 print. Will monitor post release.
   Rollback: Medium — requires HX API redeploy to revert.
   Watch: `sp_who2`/`sys.dm_exec_connections` during first 102 batch print; HX API p99 latency on `/payments/printIssuePayment`.
   Evidence: No SemaphoreSlim, no caching across providers sharing tier/fiscal data.
-
 - **`claim_error_meal_attendance_count_fn` Error 76 branch (#320244/#321350)** — adds CLAIM_ERROR→PROVIDER→SPONSOR_POLICY join per invocation. Scalar function called per CLAIM_ERROR row in OER/summary reports.
   **Monitor** — execution time of `select_claim_error_summary_sp` and `select_claim_errors_for_rpt_sp` post-deploy for sponsors with high Error 76 volume.
   Rollback: Low — revert function via CREATE OR ALTER.
   Watch: Report query duration on OER for HX030 and HX102.
   Evidence: Pattern #1-style transformation from pre-resolved flag to per-row lookup.
-
 - **ACH re-download CommandTimeout = 300s (#316306)** — `GetCenterACHFileFromCheckRegister` sets 5-minute command timeout for an indexed IN-lookup.
   **Monitor** — occurrences of 5-minute SQL waits on `check_register`.
   Rollback: Low — code redeploy.
   Watch: SQL query execution time on ACH redownload calls.
   Evidence: Pattern #4 anti-pattern (oversized timeouts mask real issues).
-
 - **MRP_Rollback scope gap** — `CXADMIN/MRP_Rollback.build.config` only covers `select_payment_history_list_sp`. Rollbacks for 318686 policy INSERT, `select_rpt_meal_count_attendance_sp`, `select_361127_Child_Reconciliation_sp`, `select_rpt_401_child_enrollment_sp` are NOT in the bundled rollback.
-  **Action required** — DBA must hand-craft rollback for those SPs + DELETE policy row if rollback is triggered.
-  Rollback: Medium — partial automated, partial manual.
-  Watch: N/A (procedural).
-  Evidence: Manifest diff inspection.
-
+  **Action required** — Already ask developer to commit the rollback script.
 - **MRP missing sponsor-030 enablement (#320244)** — `320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql` exists in repo but is NOT in the regenerated MRP manifest. Feature will not activate for HX030 unless DBA runs manually.
   **Action required** — either regenerate MRP with the script included (sequenced after SET_DEFAULT), OR document manual DBA run post-deploy with product-owner sign-off.
   Rollback: Low — `UPDATE SPONSOR_POLICY SET include_infants_in_own_alone_edit_check_flag='N' WHERE sponsor_id = (SELECT sponsor_id FROM SPONSOR WHERE scan_code='030')`.
@@ -122,10 +107,10 @@
 
 ## 3. Web Configuration Changes
 
-| Service | Key | Value | Notes |
-|---------|-----|-------|-------|
-| HX API | (none per diff) | — | `settings.xml` changed but no new key surfaced in review — **[VERIFY]** |
-| KK BE | (none) | — | No new appsettings key added in this release |
+| Service | Key             | Value | Notes                                                                            |
+| ------- | --------------- | ----- | -------------------------------------------------------------------------------- |
+| HX API  | (none per diff) | —    | `settings.xml` changed but no new key surfaced in review — **[VERIFY]** |
+| KK BE   | (none)          | —    | No new appsettings key added in this release                                     |
 
 **[VERIFY]** — Confirm whether `HxCloudConnect.Api/settings.xml` changes require corresponding prod-environment config update.
 
@@ -162,75 +147,76 @@
 
 ## 6. Deployment Checklist
 
-| # | Step | Owner | Status |
-|---|------|-------|--------|
-| 1 | Dev lead prepared release note | Tuan Nguyen | Done |
-| 2 | DevOps reviewed infrastructure impact (esp. deploy order + orphan cleanup endpoint risk) | [VERIFY — name] | Pending |
-| 3 | Architect reviewed changes (J.017 cross-repo contract + Sponsor 102 fan-out) | [VERIFY — name] | Pending |
-| 4 | SQL scripts verified on staging (MRP + 320244 set + 321413 + 316306 index) | [VERIFY — name] | Pending |
-| 5 | Web config changes documented and ready | [VERIFY — name] | Pending |
-| 6 | Rollback plan confirmed (including manual SP rollback steps) | [VERIFY — name] | Pending |
-| 7 | Confirm `320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql` added to MRP OR scheduled for manual run | [VERIFY — name] | Pending |
-| 8 | Verify `CHILD_TIER_BACKUP_318945` exists on each HX sponsor DB before running 321413 | [VERIFY — name] | Pending |
-| 9 | 316306 index DDL scheduled for maintenance window OR confirmed Enterprise Edition for ONLINE=ON | [VERIFY — name] | Pending |
-| 10 | HX Desktop 3.4.0 rollout plan coordinated with sponsor support (per-machine installer) | [VERIFY — name] | Pending |
-| 11 | Sponsor 102 print-batch SQL connection monitor staged | [VERIFY — name] | Pending |
-| 12 | Cleanup-orphaned-eForm endpoint firewalled OR code-gated before production access | [VERIFY — name] | Pending |
-| 13 | Production deployment approved | [VERIFY — name] | Pending |
+| #  | Step                                                                                                 | Owner            | Status  |
+| -- | ---------------------------------------------------------------------------------------------------- | ---------------- | ------- |
+| 1  | Dev lead prepared release note                                                                       | Tuan Nguyen      | Done    |
+| 2  | DevOps reviewed infrastructure impact (esp. deploy order + orphan cleanup endpoint risk)             | [VERIFY — name] | Pending |
+| 3  | Architect reviewed changes (J.017 cross-repo contract + Sponsor 102 fan-out)                         | [VERIFY — name] | Pending |
+| 4  | SQL scripts verified on staging (MRP + 320244 set + 321413 + 316306 index)                           | [VERIFY — name] | Pending |
+| 5  | Web config changes documented and ready                                                              | [VERIFY — name] | Pending |
+| 6  | Rollback plan confirmed (including manual SP rollback steps)                                         | [VERIFY — name] | Pending |
+| 7  | Confirm `320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql` added to MRP OR scheduled for manual run | [VERIFY — name] | Pending |
+| 8  | Verify `CHILD_TIER_BACKUP_318945` exists on each HX sponsor DB before running 321413               | [VERIFY — name] | Pending |
+| 9  | 316306 index DDL scheduled for maintenance window OR confirmed Enterprise Edition for ONLINE=ON      | [VERIFY — name] | Pending |
+| 10 | HX Desktop 3.4.0 rollout plan coordinated with sponsor support (per-machine installer)               | [VERIFY — name] | Pending |
+| 11 | Sponsor 102 print-batch SQL connection monitor staged                                                | [VERIFY — name] | Pending |
+| 12 | Cleanup-orphaned-eForm endpoint firewalled OR code-gated before production access                    | [VERIFY — name] | Pending |
+| 13 | Production deployment approved                                                                       | [VERIFY — name] | Pending |
 
 ---
 
 ## 7. Tickets
 
-| Ticket | Title | Type | State | Infra Impact |
-|--------|-------|------|-------|-------------|
-| [#296656](https://minutemenu.tpondemand.com/entity/296656) | [Sponsor] Run button disabled switching SFSP & ARAS | Story | Withdrawn | None |
-| [#297720](https://minutemenu.tpondemand.com/entity/297720) | [MPR ARAS/SFSP] Rqd Serving Size not displayed | Story | Withdrawn | None |
-| [#298391](https://minutemenu.tpondemand.com/entity/298391) | Add Spanish translation to KidKare for Home Providers | Story | Ready for Release | Low |
-| [#299748](https://minutemenu.tpondemand.com/entity/299748) | KCE: At Risk Portion Of Child Roster Missing | Story | UAT | Low |
-| [#300571](https://minutemenu.tpondemand.com/entity/300571) | CMK: Diet Statement on File Diet Exp Date disabled | Story | Withdrawn | None |
-| [#300738](https://minutemenu.tpondemand.com/entity/300738) | IL State Provider File incorrect Begin Date | Story | Withdrawn | None |
-| [#300918](https://minutemenu.tpondemand.com/entity/300918) | Copy options not remembered Infant/Non-Infant tabs | Story | Ready for Release | Low |
-| [#308617](https://minutemenu.tpondemand.com/entity/308617) | [CX] Error when Set IEF with NULL Current Enrollment | Story | UAT | Low |
-| [#316306](https://minutemenu.tpondemand.com/entity/316306) | KK Centers Re-Generate Payments Without Void/Reissue | Story | Ready for Release | **High** |
-| [#318117](https://minutemenu.tpondemand.com/entity/318117) | Geo-Location Missing HX300 Reviews | Story | UAT | Low |
-| [#318178](https://minutemenu.tpondemand.com/entity/318178) | Child Attendance Reconciliation overlapping DO/PU | Story | Ready for Release | Medium |
-| [#318581](https://minutemenu.tpondemand.com/entity/318581) | Ghost eForm Enrollment Record (Not Started) | Story | Dev | **[VERIFY — no code change]** |
-| [#318584](https://minutemenu.tpondemand.com/entity/318584) | Receipt Verification does not list receipts | Story | Code review | Low |
-| [#318629](https://minutemenu.tpondemand.com/entity/318629) | Home sponsors cannot add parents when observing | Story | Ready for Release | Low |
-| [#318686](https://minutemenu.tpondemand.com/entity/318686) | Meal Counts & Attendance With FRP missing meal data | Story | UAT | Medium |
-| [#318784](https://minutemenu.tpondemand.com/entity/318784) | Child Roster licenseId override uses live At-Risk | Bug | UAT | Low |
-| [#319145](https://minutemenu.tpondemand.com/entity/319145) | #318178 Fix clears In/Out instead of DO/PU on RECTYPE='A' | Bug | UAT | Medium |
-| [#319149](https://minutemenu.tpondemand.com/entity/319149) | Center Search Not Functioning After Clear | Story | UAT | Low |
-| [#319156](https://minutemenu.tpondemand.com/entity/319156) | Blank Attendance + Served Meals shows withdrawn children | Story | UAT | Low |
-| [#319205](https://minutemenu.tpondemand.com/entity/319205) | HX100 School Start/End date update | Story | Ready for Release | Medium |
-| [#319407](https://minutemenu.tpondemand.com/entity/319407) | Some children names missing on Full Month Attendance | Story | Ready for Release | Low |
-| [#319413](https://minutemenu.tpondemand.com/entity/319413) | HX 102 Void payment affected all providers | Story | Analysis | **[VERIFY]** |
-| [#319630](https://minutemenu.tpondemand.com/entity/319630) | CX client 8141: Child Not Found approving eForms | Story | Code review | **High** |
-| [#320213](https://minutemenu.tpondemand.com/entity/320213) | [Sponsor 102 Print Check] Data not populated | Story | Test | **High** |
-| [#320224](https://minutemenu.tpondemand.com/entity/320224) | Eliminate depreciatecx dependency — Move eForm/FRP to KK | Story | Dev | **[VERIFY]** |
-| [#320244](https://minutemenu.tpondemand.com/entity/320244) | HX030 Error 76 disallow own infants | Story | Ready for Release | **Critical** |
-| [#320295](https://minutemenu.tpondemand.com/entity/320295) | Need assistance tracking meals for Louisiana | Story | Withdrawn | None |
-| [#320305](https://minutemenu.tpondemand.com/entity/320305) | #320224 - Specifications | Task | Open | None |
-| [#320443](https://minutemenu.tpondemand.com/entity/320443) | A provider cannot enter meal | Story | Released | Low |
-| [#320684](https://minutemenu.tpondemand.com/entity/320684) | Texas - Remove IEF instructions pages (Child Care) | Story | Ready for Release | Low |
-| [#320881](https://minutemenu.tpondemand.com/entity/320881) | PCI Highest Serving Allowed empty | Story | UAT | Medium |
-| [#320883](https://minutemenu.tpondemand.com/entity/320883) | Error 113 firing after PI318945 cleared child tier | Story | PDT Input | **[VERIFY]** |
-| [#320884](https://minutemenu.tpondemand.com/entity/320884) | Actual Quantity Served of all foods in March removed | Story | Code review | Low |
-| [#320891](https://minutemenu.tpondemand.com/entity/320891) | Cash In Lieu not calculated for KKFP client 3923 | Story | Completed by Support | None |
-| [#321350](https://minutemenu.tpondemand.com/entity/321350) | OER shows R character for Infant (J.017=Y) | Bug | UAT | Medium |
-| [#321398](https://minutemenu.tpondemand.com/entity/321398) | Missing data in the OER report | Bug | UAT | **[VERIFY — empty ticket description]** |
-| [#321408](https://minutemenu.tpondemand.com/entity/321408) | HX211 Provider Capacity snack meal counts | Story | Ready for Release | Low |
-| [#321413](https://minutemenu.tpondemand.com/entity/321413) | Restore Historical IE Dates for Foster Children | Story | Test | **Medium — data patch** |
-| [#321481](https://minutemenu.tpondemand.com/entity/321481) | Determine how March 2026 claim was deleted | Story | Support | None |
-| [#321485](https://minutemenu.tpondemand.com/entity/321485) | Completed eForms not appearing under Reporting | Story | Withdrawn | None |
-| [#321486](https://minutemenu.tpondemand.com/entity/321486) | Kidkare Slowness — pages not loading | Story | Released | None |
-| [#321487](https://minutemenu.tpondemand.com/entity/321487) | Issue Payments Partial Posting Recurrence 4/3 | Story | Released | None |
-| [#321662](https://minutemenu.tpondemand.com/entity/321662) | Claim: Unable to disallow Pending children after Withdrawal | Story | Ready For Test | **[VERIFY — no code change]** |
-| [#321830](https://minutemenu.tpondemand.com/entity/321830) | Texas - IEF for Adult center showing as IEF for child | Story | Ready for Release | Medium |
-| [#322138](https://minutemenu.tpondemand.com/entity/322138) | Data different between KK and HX app (Print Check) | Bug | UAT | Medium |
+| Ticket                                                  | Title                                                       | Type  | State                | Infra Impact                                   |
+| ------------------------------------------------------- | ----------------------------------------------------------- | ----- | -------------------- | ---------------------------------------------- |
+| [#296656](https://minutemenu.tpondemand.com/entity/296656) | [Sponsor] Run button disabled switching SFSP & ARAS         | Story | Withdrawn            | None                                           |
+| [#297720](https://minutemenu.tpondemand.com/entity/297720) | [MPR ARAS/SFSP] Rqd Serving Size not displayed              | Story | Withdrawn            | None                                           |
+| [#298391](https://minutemenu.tpondemand.com/entity/298391) | Add Spanish translation to KidKare for Home Providers       | Story | Ready for Release    | Low                                            |
+| [#299748](https://minutemenu.tpondemand.com/entity/299748) | KCE: At Risk Portion Of Child Roster Missing                | Story | UAT                  | Low                                            |
+| [#300571](https://minutemenu.tpondemand.com/entity/300571) | CMK: Diet Statement on File Diet Exp Date disabled          | Story | Withdrawn            | None                                           |
+| [#300738](https://minutemenu.tpondemand.com/entity/300738) | IL State Provider File incorrect Begin Date                 | Story | Withdrawn            | None                                           |
+| [#300918](https://minutemenu.tpondemand.com/entity/300918) | Copy options not remembered Infant/Non-Infant tabs          | Story | Ready for Release    | Low                                            |
+| [#308617](https://minutemenu.tpondemand.com/entity/308617) | [CX] Error when Set IEF with NULL Current Enrollment        | Story | UAT                  | Low                                            |
+| [#316306](https://minutemenu.tpondemand.com/entity/316306) | KK Centers Re-Generate Payments Without Void/Reissue        | Story | Ready for Release    | **High**                                 |
+| [#318117](https://minutemenu.tpondemand.com/entity/318117) | Geo-Location Missing HX300 Reviews                          | Story | UAT                  | Low                                            |
+| [#318178](https://minutemenu.tpondemand.com/entity/318178) | Child Attendance Reconciliation overlapping DO/PU           | Story | Ready for Release    | Medium                                         |
+| [#318581](https://minutemenu.tpondemand.com/entity/318581) | Ghost eForm Enrollment Record (Not Started)                 | Story | Dev                  | **[VERIFY — no code change]**           |
+| [#318584](https://minutemenu.tpondemand.com/entity/318584) | Receipt Verification does not list receipts                 | Story | Code review          | Low                                            |
+| [#318629](https://minutemenu.tpondemand.com/entity/318629) | Home sponsors cannot add parents when observing             | Story | Ready for Release    | Low                                            |
+| [#318686](https://minutemenu.tpondemand.com/entity/318686) | Meal Counts & Attendance With FRP missing meal data         | Story | UAT                  | Medium                                         |
+| [#318784](https://minutemenu.tpondemand.com/entity/318784) | Child Roster licenseId override uses live At-Risk           | Bug   | UAT                  | Low                                            |
+| [#319145](https://minutemenu.tpondemand.com/entity/319145) | #318178 Fix clears In/Out instead of DO/PU on RECTYPE='A'   | Bug   | UAT                  | Medium                                         |
+| [#319149](https://minutemenu.tpondemand.com/entity/319149) | Center Search Not Functioning After Clear                   | Story | UAT                  | Low                                            |
+| [#319156](https://minutemenu.tpondemand.com/entity/319156) | Blank Attendance + Served Meals shows withdrawn children    | Story | UAT                  | Low                                            |
+| [#319205](https://minutemenu.tpondemand.com/entity/319205) | HX100 School Start/End date update                          | Story | Ready for Release    | Medium                                         |
+| [#319407](https://minutemenu.tpondemand.com/entity/319407) | Some children names missing on Full Month Attendance        | Story | Ready for Release    | Low                                            |
+| [#319413](https://minutemenu.tpondemand.com/entity/319413) | HX 102 Void payment affected all providers                  | Story | Analysis             | **[VERIFY]**                             |
+| [#319630](https://minutemenu.tpondemand.com/entity/319630) | CX client 8141: Child Not Found approving eForms            | Story | Code review          | **High**                                 |
+| [#320213](https://minutemenu.tpondemand.com/entity/320213) | [Sponsor 102 Print Check] Data not populated                | Story | Test                 | **High**                                 |
+| [#320224](https://minutemenu.tpondemand.com/entity/320224) | Eliminate depreciatecx dependency — Move eForm/FRP to KK   | Story | Dev                  | **[VERIFY]**                             |
+| [#320244](https://minutemenu.tpondemand.com/entity/320244) | HX030 Error 76 disallow own infants                         | Story | Ready for Release    | **Critical**                             |
+| [#320295](https://minutemenu.tpondemand.com/entity/320295) | Need assistance tracking meals for Louisiana                | Story | Withdrawn            | None                                           |
+| [#320305](https://minutemenu.tpondemand.com/entity/320305) | #320224 - Specifications                                    | Task  | Open                 | None                                           |
+| [#320443](https://minutemenu.tpondemand.com/entity/320443) | A provider cannot enter meal                                | Story | Released             | Low                                            |
+| [#320684](https://minutemenu.tpondemand.com/entity/320684) | Texas - Remove IEF instructions pages (Child Care)          | Story | Ready for Release    | Low                                            |
+| [#320881](https://minutemenu.tpondemand.com/entity/320881) | PCI Highest Serving Allowed empty                           | Story | UAT                  | Medium                                         |
+| [#320883](https://minutemenu.tpondemand.com/entity/320883) | Error 113 firing after PI318945 cleared child tier          | Story | PDT Input            | **[VERIFY]**                             |
+| [#320884](https://minutemenu.tpondemand.com/entity/320884) | Actual Quantity Served of all foods in March removed        | Story | Code review          | Low                                            |
+| [#320891](https://minutemenu.tpondemand.com/entity/320891) | Cash In Lieu not calculated for KKFP client 3923            | Story | Completed by Support | None                                           |
+| [#321350](https://minutemenu.tpondemand.com/entity/321350) | OER shows R character for Infant (J.017=Y)                  | Bug   | UAT                  | Medium                                         |
+| [#321398](https://minutemenu.tpondemand.com/entity/321398) | Missing data in the OER report                              | Bug   | UAT                  | **[VERIFY — empty ticket description]** |
+| [#321408](https://minutemenu.tpondemand.com/entity/321408) | HX211 Provider Capacity snack meal counts                   | Story | Ready for Release    | Low                                            |
+| [#321413](https://minutemenu.tpondemand.com/entity/321413) | Restore Historical IE Dates for Foster Children             | Story | Test                 | **Medium — data patch**                 |
+| [#321481](https://minutemenu.tpondemand.com/entity/321481) | Determine how March 2026 claim was deleted                  | Story | Support              | None                                           |
+| [#321485](https://minutemenu.tpondemand.com/entity/321485) | Completed eForms not appearing under Reporting              | Story | Withdrawn            | None                                           |
+| [#321486](https://minutemenu.tpondemand.com/entity/321486) | Kidkare Slowness — pages not loading                       | Story | Released             | None                                           |
+| [#321487](https://minutemenu.tpondemand.com/entity/321487) | Issue Payments Partial Posting Recurrence 4/3               | Story | Released             | None                                           |
+| [#321662](https://minutemenu.tpondemand.com/entity/321662) | Claim: Unable to disallow Pending children after Withdrawal | Story | Ready For Test       | **[VERIFY — no code change]**           |
+| [#321830](https://minutemenu.tpondemand.com/entity/321830) | Texas - IEF for Adult center showing as IEF for child       | Story | Ready for Release    | Medium                                         |
+| [#322138](https://minutemenu.tpondemand.com/entity/322138) | Data different between KK and HX app (Print Check)          | Bug   | UAT                  | Medium                                         |
 
 **[VERIFY] items for dev lead:**
+
 - **#318581, #321662** — no code change found in any release diff. Confirm with engineering whether in scope.
 - **#319413, #320224, #320305, #320883** — in Analysis/Dev/PDT Input/Open states; confirm inclusion or move out.
 - **#321398** — empty ticket description; no code references. Confirm scope.

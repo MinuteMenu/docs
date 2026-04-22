@@ -90,11 +90,6 @@
   Evidence: Pattern #4 anti-pattern (oversized timeouts mask real issues).
 - **MRP_Rollback scope gap** — `CXADMIN/MRP_Rollback.build.config` only covers `select_payment_history_list_sp`. Rollbacks for 318686 policy INSERT, `select_rpt_meal_count_attendance_sp`, `select_361127_Child_Reconciliation_sp`, `select_rpt_401_child_enrollment_sp` are NOT in the bundled rollback.
   **Action required** — Already ask developer to commit the rollback script.
-- **MRP missing sponsor-030 enablement (#320244)** — `320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql` exists in repo but is NOT in the regenerated MRP manifest. Feature will not activate for HX030 unless DBA runs manually.
-  **Action required** — either regenerate MRP with the script included (sequenced after SET_DEFAULT), OR document manual DBA run post-deploy with product-owner sign-off.
-  Rollback: Low — `UPDATE SPONSOR_POLICY SET include_infants_in_own_alone_edit_check_flag='N' WHERE sponsor_id = (SELECT sponsor_id FROM SPONSOR WHERE scan_code='030')`.
-  Watch: HX030's Error 76 behavior post-deploy — if no change observed, the script was not run.
-  Evidence: MRP manifest inspection.
 
 ### 2.5 Cross-Repo Dependencies
 

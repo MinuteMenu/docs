@@ -55,9 +55,13 @@
 ### 2.3 API Changes
 
 - NEW: `POST /common/detectOrphanedEforms` (security-key auth) — enumerates CX clients with orphaned eForm assignments. Payload: `{ SecurityKey, ClientIds?[] }`.
+=> Internal tool not public for client
 - NEW: `POST /common/cleanupOrphanedEforms` (security-key auth) — hard-deletes orphaned CX eForm assignments. Payload: `{ SecurityKey, ClientIds?[] }`. **When ClientIds is null/empty, the endpoint sweeps every CX client with any active assignment.** [VERIFY — see section 2.4.]
+=> Internal tool not public for client
 - NEW: `POST /portcx/payment/redownloadACHFile` — regenerate ACH file for a set of check_ids without voiding. Payload: `{ CheckIds: int[] }` (permission-gated to `CX.IssuePayments`).
+=> redownloadACHFile only regenerates the ACH file for existing DD records (payment_type_code=175). It does not void, modify, or otherwise touch any check_register data. Purely a read + file-reconstruction operation. Protected by [RequiredPermission(CX.IssuePayments)]
 - NEW: `GET /site/isAtRiskOrArasForSponsor?centerId=...` — returns live at-risk/ARAS flag for a center. **[VERIFY — endpoint added but call site not visible in diff; confirm it is consumed.]**
+=> Won't fix — the endpoint, resource, and service method (centerSiteDetailsService.getIsAtRiskOrArasForSponsor) are kept intentionally for future features that may need the live At Risk check (e.g., enrollment workflows). The Child Roster report no longer calls it, but removing it would require re-adding it later.
 - CHANGED: `POST /portcx/fileservice/updateIEFChildren` — return shape changed from `bool` to `{ success, skippedChildNames[] }`.
 - CHANGED: `GET /cxservice/payments/getCheckRegisterList` — response now includes `modDateTime`, `modLoginId`, `modUsername` on each row.
 - CHANGED: `POST /payments/printIssuePayment` (HX API) — response now includes `Sponsor102Data { ActiveChildren[], ChildTierCounts[], ProviderTiers[], ServingTimes[], TrainingHours }` for Sponsor 102 providers.

@@ -82,7 +82,7 @@ Two findings consolidated:
 - File a follow-up TP ticket to track the typo correction as its own entry with regression tests.
 - Refactor the duplicated `LogicService.cs` / `LogicServiceToKK.cs` (structural code-smell that has caused historical drift bugs).
 
-=> Reply
+=> Invalid feedback > This is not an issue because:
 - Finding 1: Apply rename in LogicService.cs — NOT FIX
   The typo does NOT exist in LogicService.cs. The two files diverged structurally for the bread oz-eq path:
   
@@ -238,6 +238,11 @@ PR is a binary-only DLL drop — 7 DLLs updated, no source code in KK repo. The 
 - Lock KK#22599 ↔ CX#4142 as a single deploy unit; rollback must roll both back.
 - File a follow-up ticket to remove the empty `catch` in `AttendanceBll.cs:1204-1212`.
 
+=> Invalid feedback > This is not an issue because:
+- Lock KK#22599 ↔ CX#4142 as single deploy unit — NOT FIX (acknowledged)
+  Coordinated deploy/rollback documented in release runbook. The DLL in KK#22599 was built from CX#4142's merged SHA (see C4 reply). Both PRs target the same release branch.
+- Remove empty catch in AttendanceBll.cs:1204-1212 — NOT FIX in this PR (out of scope)
+  Pre-existing fire-and-forget pattern, unrelated to the `continue` bug fix. Touching it requires a separate ticket with its own test plan, since changing exception handling on an attendance hot path can surface previously-hidden errors and trigger false-positive support tickets. File follow-up ticket for backlog.
 ---
 
 #### H6. [Centers-CX#4142](https://github.com/MinuteMenu/Centers-CX/pull/4142) — Untracked typo fix + duplicate code drift
@@ -252,6 +257,16 @@ Two structurally-identical files (`LogicService.cs` and `LogicServiceToKK.cs`) c
 
 **Recommendation**: Add a unit test for `policyM16 && rowForInfantActual == null` with mixed infant/non-infant menu sets. Refactor duplicated files in a follow-up ticket.
 
+=> Invalid feedback > This is not an issue because:
+
+- Cross-file inconsistency (typo only in one file) — NOT FIX (see C3 reply)
+  The `Inf611Cereal, 1129` pattern does NOT exist in `LogicService.cs`. The two files diverged for the bread oz-eq path: `LogicService.cs` writes via `SaveClaimMenuOzEq(...bread_food_id, ...)` direct DB write, never had the typo. Verified via grep — both `Inf611Cereal` references in `LogicService.cs` (lines 7571, 7578) correctly write cereal data.
+- `actualQuantities.Add` unconditional / spurious zero rows — NOT A CONCERN (verified)
+  When `rowForInfantActual == null`, `mptItems` contains only non-infant items already computed earlier. Downstream `FillMissing(FoodQuantity.Null, ...)` adds null for missing infant keys, but `FoodQuantitiesToDelete` only triggers when existing DB values are present AND the update is null. Since `rowForInfantActual == null` means no existing Actual row in DB, the delete path is unreachable — no risk of spurious zero rows or wiping data.
+- Unit test for `policyM16 && rowForInfantActual == null` mixed-menu case — NOT FIX in this PR
+  Existing QA test plan #319183 has 6 test cases covering this exact path (TC1 is the bug path, TC2 covers Actual-row-exists, TC3-6 are regressions). Manual coverage already in place; unit test addition is a separate technical-debt item.
+- Refactor duplicated `LogicService.cs` / `LogicServiceToKK.cs` — NOT FIX in this PR (acknowledged)
+  Valid technical debt; out of scope for this hotfix. File separate consolidation ticket for backlog.
 ---
 
 #### H7. [KK#22650](https://github.com/MinuteMenu/KK/pull/22650) — Backend guard broadened (defense-in-depth, net-positive but data correctness depends on flags)

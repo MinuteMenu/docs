@@ -45,6 +45,7 @@ The PR fixes #22764's broken keying by re-keying `latestChildrenMap` to `centerC
 
 **Recommendation**: Standardize the server separator — change `AttendanceBll.cs:1447` from `"-"` to `"_"` so both new-child and existing-child paths match the client's lookup key. Add a unit test that asserts `latestChildrenMap[child.childId]` resolves on the composite-string key for both paths.
 
+=> It's OK. Fixed.
 ---
 
 ### C2. [KK#22763](https://github.com/MinuteMenu/KK/pull/22763) — Edit on Pending child overwrites `never_activated_flag` back to false
@@ -80,6 +81,25 @@ Two findings consolidated:
 - Apply the same `Inf611Cereal` → `Inf611Bread` rename in `LogicService.cs` within the OzEq fallback block, OR confirm `LogicService.cs` is dead code and remove it. Verify routing via DI/factory bindings before merge.
 - File a follow-up TP ticket to track the typo correction as its own entry with regression tests.
 - Refactor the duplicated `LogicService.cs` / `LogicServiceToKK.cs` (structural code-smell that has caused historical drift bugs).
+
+=> Reply
+- Finding 1: Apply rename in LogicService.cs — NOT FIX
+  The typo does NOT exist in LogicService.cs. The two files diverged structurally for the bread oz-eq path:
+  
+  LogicServiceToKK.cs:7637 (had typo, fixed): setMptItems(mptItems, Inf611Cereal, 1129, BreadAltOzEqRequiredQty.Value)
+  LogicService.cs: writes bread oz-eq via SaveClaimMenuOzEq(...bread_food_id, ...) direct DB write — never had the typo
+  
+  $ grep -n "Inf611Cereal,\s*\d" LogicService.cs
+  (no matches)
+  Both Inf611Cereal references in LogicService.cs (lines 7571, 7578) correctly write cereal data. The CACFP corruption scenario described in the impact cannot occur via this file.
+
+- Finding 2: Scope creep / piggy-back fix — NOT FIX (acknowledged)
+  Correct that the typo is unrelated to the non-infant ticket goal. Kept in-place because:
+  
+  Caught by automated 5-agent review on this PR (Agent 3 flagged it at 90/100 confidence)
+  1-character identifier rename, no logic change
+  Splitting to a separate ticket = another PR + DLL build + deploy for a trivial fix
+  Documented in commit 70bd565 (with code comment) and the TP #317707 implementation summary.
 
 ---
 

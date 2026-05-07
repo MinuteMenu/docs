@@ -60,7 +60,7 @@ Removing `.Ignore()` at `CxChildMapping.cs:301` plus the explicit assignment at 
 
 **Recommendation**: Read existing `never_activated_flag` from `childRow` into `updatedDatasetRow` before mapping, e.g., `updatedDatasetRow.never_activated_flag = childRow.never_activated_flag;`, and only override on the auto-activate path or for new children. Alternatively, preserve the value in `IgnoreInvalidFields`.
 
-=> This is a special case and seems unlikely to occur, so I don’t think we need to fix it.
+=> Invalid feedback > This is not an issue because this is a special case and seems unlikely to occur, so I don’t think we need to fix it.
 ---
 
 ### C3. [Centers-CX#4142](https://github.com/MinuteMenu/Centers-CX/pull/4142) — `LogicService.cs` missing the `Inf611Cereal -> Inf611Bread` fix; also untracked scope change

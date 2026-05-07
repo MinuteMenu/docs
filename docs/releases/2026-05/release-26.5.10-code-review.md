@@ -45,7 +45,7 @@ The PR fixes #22764's broken keying by re-keying `latestChildrenMap` to `centerC
 
 **Recommendation**: Standardize the server separator — change `AttendanceBll.cs:1447` from `"-"` to `"_"` so both new-child and existing-child paths match the client's lookup key. Add a unit test that asserts `latestChildrenMap[child.childId]` resolves on the composite-string key for both paths.
 
-=> It's OK. Fixed.
+=> This is a special case and seems unlikely to occur, so I don’t think we need to fix it.
 ---
 
 ### C2. [KK#22763](https://github.com/MinuteMenu/KK/pull/22763) — Edit on Pending child overwrites `never_activated_flag` back to false

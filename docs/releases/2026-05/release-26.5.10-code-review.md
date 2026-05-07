@@ -140,7 +140,7 @@ The KK code has no direct SP reference (calls service layer), so the contract is
 - Add a runbook smoke test: save a capacity with `0` in a visible field and verify DB column is NULL post-deploy.
 - Consider a temporary monitoring query to alert if `provider_capacity` rows are inserted with non-NULL `0` in any of the normalized columns (would indicate the SP didn't deploy).
 
-=> It's OK
+=> Invalid feedback
 ---
 
 ### C6. [MinuteMenu.Database#727](https://github.com/MinuteMenu/MinuteMenu.Database/pull/727) — `CREATE UNIQUE INDEX` lacks `ONLINE = ON` on hot table
@@ -177,7 +177,7 @@ If DB rollback executes (#725/#726) without rolling back KK#22769, capacity save
 **Impact**: Whole-release coordinated rollback is required; partial rollback silently corrupts data on every Licensing save.
 
 **Recommendation**: Tie KK release 26.5.10 to this SP version explicitly in the runbook. Document atomic rollback requirement.
-=> It's OK, not fix
+=> Invalid feedback, not fix
 ---
 
 #### H2. [KK#22765](https://github.com/MinuteMenu/KK/pull/22765) — Extra licensing init round-trip on every Licensing-tab save

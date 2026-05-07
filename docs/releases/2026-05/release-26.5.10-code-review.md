@@ -59,6 +59,7 @@ Removing `.Ignore()` at `CxChildMapping.cs:301` plus the explicit assignment at 
 
 **Recommendation**: Read existing `never_activated_flag` from `childRow` into `updatedDatasetRow` before mapping, e.g., `updatedDatasetRow.never_activated_flag = childRow.never_activated_flag;`, and only override on the auto-activate path or for new children. Alternatively, preserve the value in `IgnoreInvalidFields`.
 
+=> It's OK
 ---
 
 ### C3. [Centers-CX#4142](https://github.com/MinuteMenu/Centers-CX/pull/4142) — `LogicService.cs` missing the `Inf611Cereal -> Inf611Bread` fix; also untracked scope change
@@ -96,6 +97,7 @@ PR contains only updated binary DLLs in `ExternalReferences/MinuteMenu.CX.Servic
 - Verify the DLL artifact was built from the merged CX#4142 SHA (post-merge, not from a feature branch).
 - Add a small text artifact (e.g., `ExternalReferences/MinuteMenu.CX.Services/VERSION.txt` or PR description) recording the source commit SHA and build timestamp.
 - Lock KK#22599 ↔ CX#4142 as a single deploy unit; rollback must roll both back.
+=> The DLL has been built.
 
 ---
 
@@ -118,6 +120,7 @@ The KK code has no direct SP reference (calls service layer), so the contract is
 - Add a runbook smoke test: save a capacity with `0` in a visible field and verify DB column is NULL post-deploy.
 - Consider a temporary monitoring query to alert if `provider_capacity` rows are inserted with non-NULL `0` in any of the normalized columns (would indicate the SP didn't deploy).
 
+=> It's OK
 ---
 
 ### C6. [MinuteMenu.Database#727](https://github.com/MinuteMenu/MinuteMenu.Database/pull/727) — `CREATE UNIQUE INDEX` lacks `ONLINE = ON` on hot table
@@ -136,7 +139,7 @@ The KK code has no direct SP reference (calls service layer), so the contract is
 - DevOps deploy order: cleanup DML → index DDL → KK code deploy. Add filename prefixes (`01_`, `02_`, `03_`) to enforce sort order.
 - Add a `SELECT COUNT(*) ... HAVING COUNT(*)>1` precheck before `CREATE UNIQUE INDEX` to fail fast with a clear message if any duplicates remain.
 - Add a smoke check post-DB-deploy that `UX_KK_EnrollmentReport_LogicalKey` exists before promoting KK#22773.
-
+=> It's OK
 ---
 
 ## High Severity Findings (80-89)
@@ -154,7 +157,7 @@ If DB rollback executes (#725/#726) without rolling back KK#22769, capacity save
 **Impact**: Whole-release coordinated rollback is required; partial rollback silently corrupts data on every Licensing save.
 
 **Recommendation**: Tie KK release 26.5.10 to this SP version explicitly in the runbook. Document atomic rollback requirement.
-
+=> It's OK, not fix
 ---
 
 #### H2. [KK#22765](https://github.com/MinuteMenu/KK/pull/22765) — Extra licensing init round-trip on every Licensing-tab save

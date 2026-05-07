@@ -159,7 +159,7 @@ The KK code has no direct SP reference (calls service layer), so the contract is
 - DevOps deploy order: cleanup DML → index DDL → KK code deploy. Add filename prefixes (`01_`, `02_`, `03_`) to enforce sort order.
 - Add a `SELECT COUNT(*) ... HAVING COUNT(*)>1` precheck before `CREATE UNIQUE INDEX` to fail fast with a clear message if any duplicates remain.
 - Add a smoke check post-DB-deploy that `UX_KK_EnrollmentReport_LogicalKey` exists before promoting KK#22773.
-=> It's OK
+=> Invalid feedback, not fix
 ---
 
 ## High Severity Findings (80-89)

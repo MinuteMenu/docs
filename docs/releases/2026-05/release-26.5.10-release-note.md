@@ -100,23 +100,12 @@
   Watch: Errors in `SaveActualQuantitiesAsRequired` on attendance-certify path; spot-check `claim_menu_quantity` non-infant Actual rows after attendance certify for a sample of M01a1=Y/M16=Y centers.
   Evidence: Manual DLL drop pattern (commit `a55775cee2 317707 build dll from 26.5.10`).
 
-- **`Inf611Cereal → Inf611Bread` typo correction shipped only in `LogicServiceToKK.cs` (#317707 / Centers-CX#4142) [VERIFY]** — Same `SaveActualQuantitiesAsRequired` exists in `LogicService.cs`; the Cereal→Bread rename was applied to `LogicServiceToKK.cs:7637` only. Cereal→Bread is also unrelated to the ticket (which is about Non-Infant menus) — piggy-back fix without test coverage.
-  **Action required** — Verify whether `LogicService.cs` is dead code; if not, port the rename. File a follow-up TP ticket to track the typo correction with regression tests.
-  Rollback: Medium — revert via Centers-CX redeploy + KK DLL rebuild.
-  Watch: Infant 6-11 BreadAlt OzEq cereal slot values on `claim_menu_quantity` — should not be silently overwritten.
-  Evidence: Diff at line 7637 changes `Constants.MealPatternItemCode.Inf611Cereal` → `Inf611Bread`; `LogicService.cs` parallel block unchanged.
-
 - **L2=N phantom claim_attendance row reduction (#318492 / KK#22650)** — Backend guard broadened: skips inserting empty `claim_attendance` rows for L2=N centers when child has no meal flags AND no in/out times. Net load REDUCER for L2=N centers (majority of CX). PR ships frontend "approved meals failed to load" fail-closed banner so users cannot save into a stale/error state.
   **Monitor** — `claim_attendance` insert volume per center per day should DROP on L2=N centers.
   Rollback: Low — revert KK BLL commit.
   Watch: AppInsights `CHECK_DEVICE_DATE_SETTINGS` events; attendance save error rate (`SaveClaimAttendance`).
   Evidence: PR describes 35-199 unique users/week and peak 8064 errors triggering this path. Cleanup of pre-existing phantom rows requires a separate gated DBA query.
 
-- **Centers attendance conflict-resolution — separator mismatch (#322557 / KK#22774) [VERIFY]** — KK#22774 supersedes KK#22764. Lookup uses composite `centerChildId` ("centerId_childId"). Server existing-child path emits `_` (correct). **Server new-child path at `AttendanceBll.cs:1447` still emits `-`** — when another user adds a child in parallel, the lookup misses and the conflict-merge bypasses, reproducing the original "meal data disappears" symptom for new-child concurrency.
-  **Action required** — Standardize the server separator to `_` before deploy, or add a unit test asserting both paths use the same separator.
-  Rollback: Low — KK BLL revert.
-  Watch: Attendance save 4xx/5xx ratio post-deploy; reports of meal data still disappearing.
-  Evidence: Diff of `AttendanceBll.cs:1447` vs `1458`.
 
 ### 2.5 Cross-Repo Dependencies
 

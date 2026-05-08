@@ -81,6 +81,7 @@
   Rollback: High — without proper scripts, DBA must hand-write rollback statements during incident.
   Watch: N/A (action prevents future incident response failure).
   Evidence: Diff of `MMADMIN/ROLLBACK/305316_*.sql` vs `MMADMIN/Updates/305316_*.sql`.
+=> Valid and we have fixed
 
 - **AutoMapper write-path broadening on `never_activated_flag` (#322375 / KK#22763)** — Removing `Ignore()` at `CxChildMapping.cs:301` means EVERY `Mapper.Map<dsChild.CHILDRow>(child)` and `Mapper.Map(child, updatedDatasetRow)` call now writes the flag from the model — not only the targeted AddChild path. Affects all CX child save/update flows (Add, Update, Reactivate, Withdraw, Import).
   **Monitor** — daily count of CHILD rows where `never_activated_flag` flips for the first week post-deploy.

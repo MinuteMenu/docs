@@ -10,15 +10,16 @@
 
 ## 1. The path of a meal
 
-A child eats a snack after school at an ARAS center. The center logs the meal. A month later the claim processor walks each meal row and asks: *should this meal be reimbursed as ARAS?*
+A child eats a snack after school at an ARAS center. The center logs the meal. A month later the claim processor walks the meals and asks: *should this be reimbursed as ARAS?*
 
-The answer turns on three checkpoints.
+**The answer depends on which of two paths the claim takes.** The router is `IsCenterARASSFSPWithSingleLicense()` in `LogicService.cs:7137`.
 
-1. **Is the license an at-risk license?** If yes, the next two questions matter. If no, the meal goes through standard CACFP rules.
-2. **Was school out on this day?** Only school-out days qualify for ARAS reimbursement.
-3. **Do the usual CACFP enrollment-disallow rules apply, or are they skipped?** For an at-risk license, **nine** rules skip — at-risk children are not subject to those gates.
+| Path | Used when | What runs |
+|---|---|---|
+| **Per-child** — `claim.Process` | Center has child records (closed-enrolled ARAS or SFSP) | Iterates each child. Runs the nine enrollment-bypass rules, the at-risk flag checks, and the school-calendar rules (95, 97) via `SchoolEntryEligibleDetector`. |
+| **Count-based** — `claim.ProcessArassfsp` | Center has no child records (open-enrolled SFSP / count-only ARAS, Non-LA) | Reads aggregate `SFSP_ATTENDANCE` rows. Runs menu/food rules only (16, 21, 22, 100). **No school-calendar check. No per-child iteration. No enrollment-bypass rules.** |
 
-The rest of this doc walks each checkpoint with file:line citations.
+Most of this doc walks the per-child path, since that is where almost all of the at-risk logic lives. Sections that apply to only one path say so explicitly.
 
 ---
 
@@ -26,20 +27,24 @@ The rest of this doc walks each checkpoint with file:line citations.
 
 ```mermaid
 flowchart TD
-    A["1. Child eats meal at ARAS site"] --> B["2. Attendance save<br/>VerifyAtRiskMeals sets at_risk_*_flag"]
-    B --> C["3. Month-end: claim processor<br/>iterates each meal row"]
-    C --> D{"License is<br/>at-risk?"}
-    D -- "No" --> E["Standard CACFP rules apply<br/>enrollment, schedule, age, IEF all checked"]
-    D -- "Yes" --> F["9 enrollment-bypass rules<br/>SKIP enrollment-based disallows"]
-    F --> G{"School was out<br/>on this date?"}
-    G -- "Yes" --> H["Reimburse meal as ARAS"]
-    G -- "No" --> I["Disallow<br/>at_risk_*_disallow_flag set"]
-    classDef bypass fill:#fff3cd,stroke:#e0a800,stroke-width:2px
+    A["Child eats meal at ARAS site"] --> B["Attendance save"]
+    B --> C{"Center has<br/>child records?"}
+    C -- "Yes (closed-enrolled)" --> P["Per-child claim path<br/>claim.Process"]
+    C -- "No (open-enrolled / count-only)" --> Q["Count-based claim path<br/>claim.ProcessArassfsp"]
+    P --> R["ChildChecker iterates each child<br/>9 enrollment-bypass rules<br/>+ Rule 95/97 school-calendar"]
+    Q --> S["Menu/food rules only<br/>16, 21, 22, 100"]
+    R --> T{"School was out<br/>this date?"}
+    T -- "Yes" --> U["Reimburse as ARAS"]
+    T -- "No" --> V["Disallow<br/>at_risk_*_disallow_flag set"]
+    S --> W["Reimburse based on<br/>aggregate counts"]
+    classDef perchild fill:#fff3cd,stroke:#e0a800,stroke-width:2px
+    classDef countbased fill:#cce5ff,stroke:#004085,stroke-width:2px
     classDef pass fill:#d4edda,stroke:#155724
     classDef fail fill:#fde2e4,stroke:#c1121f
-    class F bypass
-    class H pass
-    class I fail
+    class P,R,T perchild
+    class Q,S countbased
+    class U,W pass
+    class V fail
 ```
 
 ---
@@ -47,6 +52,8 @@ flowchart TD
 ## 3. The license-level at-risk check
 
 Two methods. Same conceptual question. Different scopes. Both must be updated for AtRiskHybrid.
+
+> ⚠️ **Both gates fire only on the per-child path.** The count-based path (`ProcessArassfsp`) reads neither.
 
 ### 3.1 `AtRiskCenterHelper.IsCenterLicenseAtRisk()` — drives the school-calendar logic
 
@@ -86,6 +93,8 @@ private bool isLicenseAtRiskOrEmergencyShelter()
 
 ## 4. School-out gating
 
+> ⚠️ **Per-child path only.** Invoked from `ChildChecker` Rules 95 and 97. The count-based path (`ProcessArassfsp`) never reaches this code.
+
 Driven by the `CALENDAR_ENTRY` table.
 
 - A day is "school out" when `CalendarEntryTypeCode = SchoolOut` for a date within the claim month.
@@ -119,6 +128,8 @@ Writer: `AttendanceService.VerifyAtRiskMeals`, called at two points:
 ---
 
 ## 6. The 9 enrollment-bypass rules
+
+> ⚠️ **Per-child path only.** These rules run inside the per-child `claim.Process` loop. `ProcessArassfsp` does not iterate per child and does not run these rules.
 
 All live in `csProcessClaimBusiness.cs`. All gate on `isLicenseAtRiskOrEmergencyShelter()`.
 
@@ -196,6 +207,7 @@ Open in this order. If a developer reads files 1, 2, and 4 carefully and skims t
 
 ## 10. What this means for the hybrid feature
 
+- **Path routing for hybrid is the real lever.** ARAS Hybrid uses per-child meal save (`/centers/meal/sfspattendance/save`) → claim takes the per-child path → school-calendar Rules 95/97 fire. SFSP Hybrid uses count-based meal save (`/centers/meal/bulksfspattendance/save`) → claim takes the count-based path → no school-calendar check, no per-child iteration. This is what Phan flagged on [TP 323015 comment 429998](https://minutemenu.tpondemand.com/entity/323015): the spec line "ARAS Hybrid school-calendar checks: same as ARAS" needs explicit reconciliation with the per-child path's hard dependency on `SchoolTypeCode`, `SchoolDistrictId`, and `SchoolName` — fields that hybrid lightweight kids do not capture.
 - The ticket's one-line CX changes (§7.1 of the main plan) are correct in shape but land on logic that **was not obvious** without this map. Specifically: Rule 49 uses only the license-level gate, Rule 45 has special at-risk age handling, and the `at_risk_flag` on CENTER row already exists.
-- The "no Paid claim" line in the hybrid behavioral model needs a product call: enforce in code now (and add the equivalent enforcement for ARAS while we are there)? Or honor operationally as today?
-- A hybrid kid with no `attend_<weekday>_flag` and no `attend_*_flag` will hit Rules 58 and 59. Both skip for at-risk licenses, so the bypass should hold — but worth verifying with a test meal-save on dev once the enum value is added.
+- The "no Paid claim" line in the hybrid behavioral model needs a product call: enforce in code now (and add the equivalent enforcement for ARAS while we are there), or honor operationally as today.
+- A hybrid kid with no `attend_<weekday>_flag` and no `attend_*_flag` will hit Rules 58 and 59 (per-child path only). Both skip for at-risk licenses, so the bypass should hold — but worth verifying with a test meal-save on dev once the enum value is added.

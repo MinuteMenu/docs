@@ -260,7 +260,9 @@ Decisions the engineering team is making (or proposing) based on the code we hav
 
 ### 7.1 Hybrid child storage — same `CHILD` table, or separate table?
 
-**Recommendation (proposed):** create a new lightweight table (`CHILD_HYBRID` or `WALKIN_CHILD`) rather than store hybrid records in the existing `CHILD` table.
+**Status:** raised to product on [TP 323019 / comment 429994](https://minutemenu.tpondemand.com/entity/323019). Awaiting Jay's decision.
+
+**Recommendation (proposed):** create two new minimal tables — `OPEN_ENROLLED_CHILD` (transient roster) and `SFSP_CHILD_ATTENDANCE` (per-child attendance with FK to `OPEN_ENROLLED_CHILD`) — rather than store hybrid records in the existing `CHILD` and `CLAIM_ATTENDANCE` tables. Aggregate counts still roll up into the existing `SFSP_ATTENDANCE` in the same transaction, so `ProcessArassfsp()` keeps reading the same shape.
 
 **Why this matters.** `CHILD` is a load-bearing table. Its consumers include enrollment validation, IEF policy, CACFP eligibility, claim processing, Parachute sync, SSO LoginAdapter, CX Admin lists, monthly reports, annual renewal, and `HISTORIC_DATA` audit. Saving an incomplete record (only first name, no guardian, no schedule, no IEF) turns every existing reader of `CHILD` into a potential bug site — each business rule has to learn "what if this row has nulls?"
 
@@ -333,10 +335,10 @@ Where the Answer column shows `_(proposed)_` it is our working assumption; produ
 
 | Q#  | Question                                                                                                                                                                                                          | Answer                                                                                                                                                          | Status |
 | --- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| Q3a | After we save a walk-in child, what does the center do with that record? Two paths. **(a)** A one-time audit trail — a name on the sign-in sheet, kept for compliance, never reused. **(b)** A working record the center reuses across days and weeks. We need the answer because the two paths need different storage shapes and different upkeep. Feeds §7.1. | | draft |
-| Q3b | Can a walk-in child be converted to a full-enrolled child later? Yes or no. If yes, briefly describe what the center expects — same record with fields filled in, or a new enrollment that supersedes the walk-in? Feeds §7.1. | | draft |
-| Q3c | What does CACFP/ARAS/SFSP regulation actually require of these records — just a name on the sign-in sheet, or the same audit-trail compliance as enrolled kids? Drives how much compliance scaffolding hybrid records need. Feeds §7.1. | | draft |
-| Q3d | Where do hybrid kids show up in reports? Alongside full-enrolled kids in sponsor monthly reports and headcount dashboards, or in a separate hybrid-only view? If mixed, reporting queries have to know about both worlds. Feeds §7.1. | | draft |
+| Q3a | After we save a walk-in child, what does the center do with that record? Two paths. **(a)** A one-time audit trail — a name on the sign-in sheet, kept for compliance, never reused. **(b)** A working record the center reuses across days and weeks. We need the answer because the two paths need different storage shapes and different upkeep. Feeds §7.1. [TP 323019 comment 429994](https://minutemenu.tpondemand.com/entity/323019) | | asked |
+| Q3b | Can a walk-in child be converted to a full-enrolled child later? Yes or no. If yes, briefly describe what the center expects — same record with fields filled in, or a new enrollment that supersedes the walk-in? Feeds §7.1. [TP 323019 comment 429994](https://minutemenu.tpondemand.com/entity/323019) | | asked |
+| Q3c | What does CACFP/ARAS/SFSP regulation actually require of these records — just a name on the sign-in sheet, or the same audit-trail compliance as enrolled kids? Drives how much compliance scaffolding hybrid records need. Feeds §7.1. [TP 323019 comment 429994](https://minutemenu.tpondemand.com/entity/323019) | | asked |
+| Q3d | Where do hybrid kids show up in reports? Alongside full-enrolled kids in sponsor monthly reports and headcount dashboards, or in a separate hybrid-only view? If mixed, reporting queries have to know about both worlds. Feeds §7.1. [TP 323019 comment 429994](https://minutemenu.tpondemand.com/entity/323019) | | asked |
 
 ### Behavior and scope
 
@@ -346,7 +348,7 @@ Where the Answer column shows `_(proposed)_` it is our working assumption; produ
 | Q4  | Walk-in dedup rule: same first+last in this center today only, or across history?                                                                 |        | draft  |
 | Q5  | Multiple licenses per center — does the FE pass `licenseId` for walk-in, and where does it get it (session, user pick, single required field)? |        | draft  |
 | Q6  | Sign-in sheet date range: calendar month / service month / user-selected? Daily, weekly, or both variants kept?                                   |        | draft  |
-| Q7  | SFSP Hybrid: are meals count-based at the group level or per child rolled up? Behavioral model says count, story 323020 says child-level.         |        | draft  |
+| Q7  | For ATMC on hybrid sites: should attendance be saved per child in a new `SFSP_CHILD_ATTENDANCE` table, with the aggregate count in the existing `SFSP_ATTENDANCE` recalculated as a sum on every save (same transaction)? UI and audit stay per-child; the claim engine still reads only `SFSP_ATTENDANCE`, so `ProcessArassfsp()` runs exactly as today. [TP 323020 comment 429997](https://minutemenu.tpondemand.com/entity/323020) | _(proposed)_ Yes — per-child rows in `SFSP_CHILD_ATTENDANCE`, aggregate `SFSP_ATTENDANCE` recalculated on every save. Same transaction. No separate batch job. | asked |
 | Q8  | Permissions: who can use Add Walk-in and lightweight enrollment? Same role as today's full enrollment, or new role?                               |        | draft  |
 | Q9  | Migration: are existing ARAS/SFSP centers in scope for being flipped to hybrid in v1, or strictly new sites only?                                 |        | draft  |
 | Q10 | Can a walk-in child be later "promoted" to full enrollment without losing attendance history? Same `child_id`?                                  |        | draft  |
@@ -358,7 +360,7 @@ Where the Answer column shows `_(proposed)_` it is our working assumption; produ
 | --- | -------------------------------------------------------------------------------------------------- | ------ | ------ |
 | Q12 | Where do hybrid claim totals roll up in monthly reports — existing ARAS/SFSP buckets or new ones? |        | draft  |
 | Q13 | Is the "CACFP Paid restriction = No (regulatory)" enforced at claim time, at UI entry, or both?    |        | draft  |
-| Q14 | ARAS Hybrid school-calendar checks — exactly the same rules as ARAS today, or any variation?      |        | draft  |
+| Q14 | The spec says "ARAS Hybrid school-calendar checks: same as ARAS." But `ProcessArassfsp()` (the claim path used by open-enrolled and the count-based path) does not run school-calendar checks today — those live in the per-child ChildChecker path used by closed-enrolled ARAS, and they read child properties (`SchoolTypeCode`, `SchoolDistrictId`, `SchoolName`) that hybrid lightweight kids do not capture. What should hybrid do — skip these checks entirely, add a hybrid-specific version into `ProcessArassfsp()`, or something between? [TP 323015 comment 429998](https://minutemenu.tpondemand.com/entity/323015) | | asked |
 
 ### Operations
 

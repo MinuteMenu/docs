@@ -1,0 +1,2858 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/process/architecture-review-process/">
+      
+      
+        <link rel="prev" href="../development-workflow-change/">
+      
+      
+        <link rel="next" href="../targetprocess-skill-guide/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Architecture & Performance Review - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#architecture-performance-review-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Architecture & Performance Review
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Performance Review
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Performance Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dev
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DevOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-we-are-improving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why We Are Improving
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-three-review-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Three Review Gates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-gate-1-feature-plan-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Gate 1: Feature Plan Review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Gate 1: Feature Plan Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gate-2-code-review-architecture-performance-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Gate 2: Code Review — Architecture &amp; Performance Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Gate 2: Code Review — Architecture &amp; Performance Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-fits-with-existing-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Fits with Existing Code Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-agent-5-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Agent 5 Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-produces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Produces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-from-incidents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning from Incidents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gate-3-release-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Gate 3: Release Review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Gate 3: Release Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-required_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-release-note-covers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Release Note Covers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-the-three-gates-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How the Three Gates Work Together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-if-an-issue-still-slips-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. If an Issue Still Slips Through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Plans
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../plans/template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../releases/template.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flows/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flows/authentication/saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flows/authentication/saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flows/authentication/saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flows/eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sfsp-aras/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sfsp-aras/attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sfsp-aras/food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sfsp-aras/meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sfsp-aras/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../components/cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quick-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Quick Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dev
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#devops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DevOps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QA
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-why-we-are-improving" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Why We Are Improving
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-three-review-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Three Review Gates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-gate-1-feature-plan-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Gate 1: Feature Plan Review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Gate 1: Feature Plan Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-required" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-gate-2-code-review-architecture-performance-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Gate 2: Code Review — Architecture &amp; Performance Agent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Gate 2: Code Review — Architecture &amp; Performance Agent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-fits-with-existing-code-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Fits with Existing Code Review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-agent-5-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What Agent 5 Checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-it-produces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Produces
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-from-incidents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Learning from Incidents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-gate-3-release-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Gate 3: Release Review
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Gate 3: Release Review">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-it-is_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What It Is
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-required_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Required
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-the-release-note-covers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the Release Note Covers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-how-the-three-gates-work-together" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. How the Three Gates Work Together
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-if-an-issue-still-slips-through" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. If an Issue Still Slips Through
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="architecture-performance-review-process">Architecture &amp; Performance Review Process</h1>
+<p><strong>Effective:</strong> April 2026
+<strong>Team:</strong> MinuteMenu KidKare</p>
+<hr />
+<h2 id="quick-summary">Quick Summary</h2>
+<h3 id="dev">Dev</h3>
+<ul>
+<li><strong>Expand the scope of regular PR code review</strong> — add architecture and performance impact review with developer and agent (Agent 5 in code review). Every PR now includes an Infrastructure Impact Assessment.</li>
+<li><strong>Submit the agent implementation plan for review</strong> before executing major features (multi-week, multi-repo). Catch architecture concerns early, align on approach, and avoid costly rework. Keep Llewellyn and Harry in the loop so we can get their valuable feedback.</li>
+<li><strong>Provide a technical release note</strong> for every release. Dev lead prepares the note covering all tickets, infrastructure impact, deploy order, and rollback plan — reviewed by DevOps and architect before production deployment.</li>
+</ul>
+<h3 id="devops">DevOps</h3>
+<ul>
+<li><strong>Set up performance alerts</strong> to identify the issue sooner instead of hearing from client's complain, for example: cpu &amp; ram usage alert, average API response time, database connection health, error rate spikes...</li>
+<li><strong>Maintain system headroom</strong> — infrastructure must absorb sudden spikes in a system with significant traffic variation throughout its claim cycle.</li>
+</ul>
+<h3 id="qa">QA</h3>
+<ul>
+<li><strong>Collaborate with dev on solution review</strong> for complex tickets. Share insight on performance from a business perspective — which screens are used most, which data volumes are realistic, what user patterns to expect...</li>
+<li><strong>Test with realistic data volumes</strong> — for features that interact with large datasets or change filtering and querying logic, QA tests with accounts that have significant data to make sure results are accurate and performance is acceptable under real conditions.</li>
+</ul>
+<hr />
+<h2 id="1-why-we-are-improving">1. Why We Are Improving</h2>
+<p>We already have AI-assisted code review in place. It catches bugs, guideline violations, and ticket alignment issues. But a couple of recent production incidents — including a stored procedure performance regression and a login degradation after a major release — showed that we are missing architecture and infrastructure impact during review.</p>
+<p>We are improving the process to:</p>
+<ul>
+<li><strong>Eliminate</strong> architecture and performance issues before they reach production.</li>
+<li><strong>Increase</strong> system reliability through better review at every stage.</li>
+<li><strong>Improve</strong> client satisfaction by preventing incidents rather than reacting to them.</li>
+</ul>
+<div class="highlight"><pre><span></span><code> WHAT WE REVIEW TODAY              WHAT WE ARE ADDING
+ ┌──────────────────────┐         ┌──────────────────────────────┐
+ │ ✓ Code bugs          │         │ + Architecture changes       │
+ │ ✓ Guideline rules    │         │ + Performance impact         │
+ │ ✓ Git history context│         │ + Infrastructure stress      │
+ │ ✓ Ticket alignment   │         │ + Cross-repo side effects    │
+ │                      │         │ + Release-level impact       │
+ └──────────────────────┘         └──────────────────────────────┘
+  Existing Agents 1-4              Three new review gates
+</code></pre></div>
+<hr />
+<h2 id="2-the-three-review-gates">2. The Three Review Gates</h2>
+<p>Three review steps added at different stages of the delivery process.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph GATE 1
+        A[Feature Plan Review]
+    end
+    subgraph GATE 2
+        B[Code Review Agent 5]
+    end
+    subgraph GATE 3
+        C[Release Review]
+    end
+    A --&gt;|Plan approved| D[Dev builds tickets]
+    D --&gt;|PR created| B
+    B --&gt;|All tickets merged| E[QA testing]
+    E --&gt;|Testing passed| C
+    C --&gt;|DevOps + Architect approve| F[Production]</code></pre>
+<div class="highlight"><pre><span></span><code> WHEN EACH GATE RUNS
+ ────────────────────────────────────────────────────────────────
+
+ ┌─────────────┐    ┌─────────────┐    ┌──────────┐    ┌──────┐
+ │ Plan Review │───&gt;│ Code Review │───&gt;│ Release  │───&gt;│ Prod │
+ │ (features)  │    │ (every PR)  │    │ Review   │    │      │
+ └─────────────┘    └─────────────┘    └──────────┘    └──────┘
+       │                   │                  │
+  Major features      Every PR         Every release
+  only (weeks/        Developer +       Dev lead provides
+  months of work)     Agent review      release note
+</code></pre></div>
+<hr />
+<h2 id="3-gate-1-feature-plan-review">3. Gate 1: Feature Plan Review</h2>
+<h3 id="what-it-is">What It Is</h3>
+<p>When developers work with AI coding assistants (Claude Code, GitHub Copilot, Antigravity), there is a plan mode where the agent works with the developer to create a comprehensive implementation plan. For major features, this plan must be reviewed and approved by stakeholders before the developer proceeds to execution.</p>
+<p>The plan is committed to the docs repo as a PR so architect, dev lead, DevOps, and stakeholders can review it.</p>
+<h3 id="when-required">When Required</h3>
+<div class="highlight"><pre><span></span><code> REQUIRED                              NOT REQUIRED
+ ┌─────────────────────────────┐      ┌─────────────────────────────┐
+ │ Multi-week/month features   │      │ Individual tickets          │
+ │ Changes to auth/payments    │      │ Bug fixes                   │
+ │ Changes touching 3+ repos   │      │ Small enhancements          │
+ │ Core flow changes (claims)  │      │ Config changes              │
+ │                             │      │ UI text/style changes       │
+ │ Examples:                   │      │                             │
+ │ - SAML SSO integration     │      │ We deliver hundreds of      │
+ │ - Adyen payment integration │      │ tickets per 2-week cycle.   │
+ │ - Claims processor rewrite  │      │ Cannot review plans for all.│
+ └─────────────────────────────┘      └─────────────────────────────┘
+</code></pre></div>
+<h3 id="how-it-works">How It Works</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[Feature assigned] --&gt; B[Dev + Agent create plan in plan mode]
+    B --&gt; C[Commit plan to docs repo]
+    C --&gt; D[Open PR in docs repo]
+    D --&gt; E[Assign reviewers]
+    E --&gt; F{Approved?}
+    F --&gt;|No| G[Revise plan]
+    G --&gt; D
+    F --&gt;|Yes| H[Dev proceeds to execution]
+    H --&gt; I[Update plan with PR links as work progresses]</code></pre>
+<p><strong>Reviewers:</strong> architect, dev lead, DevOps (if infra impact), client stakeholder (if needed).</p>
+<hr />
+<h2 id="4-gate-2-code-review-architecture-performance-agent">4. Gate 2: Code Review — Architecture &amp; Performance Agent</h2>
+<h3 id="what-it-is_1">What It Is</h3>
+<p>A new agent (Agent 5) added to the existing code review. It runs on every PR alongside the existing 4 agents. Developer reviews Agent 5 findings and triages them — we never fully rely on the agent alone.</p>
+<h3 id="how-it-fits-with-existing-code-review">How It Fits with Existing Code Review</h3>
+<div class="highlight"><pre><span></span><code> BEFORE (4 agents)                  NOW (5 agents)
+ ┌──────────────────────────┐      ┌──────────────────────────────┐
+ │ Agent 1: Guidelines      │      │ Agent 1: Guidelines          │
+ │ Agent 2: Bug detection   │      │ Agent 2: Bug detection       │
+ │ Agent 3: Git history     │      │ Agent 3: Git history         │
+ │ Agent 4: Ticket alignment│      │ Agent 4: Ticket alignment    │
+ │                          │      │ Agent 5: Architecture &amp;      │
+ │                          │      │          Performance ← NEW   │
+ └──────────────────────────┘      └──────────────────────────────┘
+                                          │
+                                   Developer reviews findings
+                                   and produces Infrastructure
+                                   Impact Assessment to share
+                                   with DevOps.
+</code></pre></div>
+<h3 id="what-agent-5-checks">What Agent 5 Checks</h3>
+<p>Six categories of architecture and performance risk:</p>
+<div class="highlight"><pre><span></span><code> CATEGORY                  WHAT IT LOOKS FOR
+ ─────────────────────────────────────────────────────────────
+ Scope Creep               Diff does significantly more than
+                           the ticket asks for.
+
+ Data Access Change        Materialized view → real-time query.
+                           Indexed lookup → table scan.
+                           Cached result → live query.
+
+ Infrastructure Stress     Mass re-authentication. Session
+                           invalidation. New background jobs
+                           that hit the database.
+
+ Timeout/Pool Changes      Connection timeout changes. Pool
+                           size changes. Command timeout values.
+
+ Removed Optimizations     Dropped indexes. Removed caching.
+                           Batch → per-row operations.
+
+ Cross-Repo Impact         Changes to SSO, shared DB, or
+                           payment services used by other
+                           products.
+</code></pre></div>
+<h3 id="what-it-produces">What It Produces</h3>
+<p>Every PR gets an Infrastructure Impact Assessment, even when no issues are found:</p>
+<div class="highlight"><pre><span></span><code> INFRASTRUCTURE IMPACT ASSESSMENT
+ ──────────────────────────────────────────────────
+ Risk Level:           None | Low | Medium | High | Critical
+ Summary:              One sentence.
+ Details:              What changed, what tables/services affected.
+ DevOps Action Needed: Yes / No
+   If yes:             What specifically (VM, pool, index, etc.)
+</code></pre></div>
+<p>This section can be copied directly to share with DevOps.</p>
+<h3 id="learning-from-incidents">Learning from Incidents</h3>
+<p>Agent 5 references a <code>known-patterns.md</code> file with example patterns from past incidents. These are starting examples, not a complete list — the agent uses them as guidance to recognize similar risks, not as a strict checklist. The file is updated whenever a new incident reveals a useful pattern.</p>
+<hr />
+<h2 id="5-gate-3-release-review">5. Gate 3: Release Review</h2>
+<h3 id="what-it-is_2">What It Is</h3>
+<p>After all tickets merge to the release branch and QA testing passes, the dev lead provides a technical release note. DevOps and architect review it before production deployment.</p>
+<h3 id="when-required_1">When Required</h3>
+<p><strong>Every release.</strong> No exceptions.</p>
+<h3 id="how-it-works_1">How It Works</h3>
+<pre class="mermaid"><code>flowchart TD
+    A[All tickets merged to release branch] --&gt; B[QA testing passes]
+    B --&gt; C[Dev lead prepares technical release note]
+    C --&gt; D[Commit to docs repo, open PR]
+    D --&gt; E[DevOps reviews]
+    D --&gt; F[Architect reviews]
+    E --&gt; G{Both approve?}
+    F --&gt; G
+    G --&gt;|No| H[Address concerns]
+    H --&gt; D
+    G --&gt;|Yes| I[Deploy to production]
+    I --&gt; J[Merge release to master]</code></pre>
+<h3 id="what-the-release-note-covers">What the Release Note Covers</h3>
+<div class="highlight"><pre><span></span><code> RELEASE NOTE SECTIONS
+ ──────────────────────────────────────────────────────────────
+
+ 1. TICKETS IN THIS RELEASE
+    Table: ticket ID, title, type, infrastructure impact level.
+
+ 2. INFRASTRUCTURE IMPACT (AGGREGATE)
+    ┌─────────────────────────────────────────────────────────┐
+    │ Database Changes      Schema, stored procs, indexes,    │
+    │                       migration scripts                 │
+    │                                                         │
+    │ Auth/Session Changes  Login flow, tokens, re-auth       │
+    │                       impact                            │
+    │                                                         │
+    │ API Changes           New/changed/removed endpoints,    │
+    │                       traffic pattern changes           │
+    │                                                         │
+    │ Performance           Large table queries, removed      │
+    │                       optimizations, new jobs           │
+    │                                                         │
+    │ Cross-Repo            Repos involved, deploy order,     │
+    │                       rollback order                    │
+    └─────────────────────────────────────────────────────────┘
+
+ 3. WEB CONFIGURATION CHANGES
+    Table: service, key, value, notes.
+
+ 4. RISK ASSESSMENT
+    Worst case. Likelihood. Detection. Rollback plan.
+
+ 5. DEPLOYMENT CHECKLIST
+    DevOps review        ☐
+    Architect review     ☐
+    SQL scripts verified ☐
+    Web config confirmed ☐
+    Rollback plan ready  ☐
+    Deploy approved      ☐
+</code></pre></div>
+<p>Release note template: <a href="../releases/template.md">releases/template.md</a></p>
+<hr />
+<h2 id="6-how-the-three-gates-work-together">6. How the Three Gates Work Together</h2>
+<p>Each gate catches different types of problems at different stages.</p>
+<div class="highlight"><pre><span></span><code> STAGE          GATE              CATCHES                    WHO REVIEWS
+ ──────────────────────────────────────────────────────────────────────
+ Before coding  Plan Review       Wrong approach             Architect
+                (features only)   Missing infrastructure     Dev Lead
+                                  Scope misalignment         DevOps
+                                                             Stakeholder
+
+ Per PR         Code Review       Architecture changes       Developer
+                Agent 5           Performance regression     + Agent
+                (every PR)        Infrastructure stress
+
+ Before deploy  Release Review    Aggregate impact           DevOps
+                (every release)   Cross-repo coordination    Architect
+                                  Deploy/rollback order
+                                  Config changes
+</code></pre></div>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "Gate 1: Plan Review (features only)"
+        P1[Is the approach right?]
+        P2[Infrastructure ready?]
+        P3[Stakeholders aligned?]
+    end
+    subgraph "Gate 2: Code Review Agent 5 (every PR)"
+        C1[Architecture changed?]
+        C2[Performance impacted?]
+        C3[Scope matches ticket?]
+        C4[Infrastructure stress?]
+    end
+    subgraph "Gate 3: Release Review (every release)"
+        R1[Aggregate infra impact?]
+        R2[Deploy order correct?]
+        R3[Rollback plan ready?]
+        R4[DevOps + Architect OK?]
+    end
+    P1 --&gt; D[Dev builds feature tickets]
+    P2 --&gt; D
+    P3 --&gt; D
+    D --&gt; C1
+    D --&gt; C2
+    D --&gt; C3
+    D --&gt; C4
+    C1 --&gt; T[QA Testing]
+    C2 --&gt; T
+    C3 --&gt; T
+    C4 --&gt; T
+    T --&gt; R1
+    T --&gt; R2
+    T --&gt; R3
+    T --&gt; R4
+    R4 --&gt; PROD[Production Deploy]</code></pre>
+<hr />
+<h2 id="7-if-an-issue-still-slips-through">7. If an Issue Still Slips Through</h2>
+<p>Even with all three gates, an issue can still reach production. DevOps must ensure the following are in place so we detect and respond before clients are affected:</p>
+<ul>
+<li><strong>Performance alerts</strong> — API response time, database query duration, error rate spikes. The team should know about a problem within minutes, not hear about it from clients days later.</li>
+<li><strong>System headroom</strong> — infrastructure should handle sudden spikes without going down. If the system runs at capacity on a normal day, any spike becomes an outage with no time to respond.</li>
+<li><strong>Fail-fast timeouts</strong> — short command and connection timeouts so blocked requests release resources quickly instead of holding them for minutes.</li>
+<li><strong>Connection cleanup</strong> — automatic cleanup of idle connections so leaks do not accumulate silently.</li>
+</ul>
+<p>DevOps will follow up with the specific alert thresholds, capacity targets, and monitoring setup.</p>
+<hr />
+<h2 id="8-summary">8. Summary</h2>
+<div class="highlight"><pre><span></span><code> ╔════════════════════════════════════════════════════════════════════════╗
+ ║       ARCHITECTURE &amp; PERFORMANCE REVIEW — SUMMARY                     ║
+ ╠════════════════════════════════════════════════════════════════════════╣
+ ║                                                                       ║
+ ║  WHY:  Improve our review process to catch architecture and           ║
+ ║        performance issues before production. Increase system          ║
+ ║        reliability. Improve client satisfaction.                       ║
+ ║                                                                       ║
+ ║  DEV:                                                                 ║
+ ║  - Expand PR code review scope with architecture + performance agent. ║
+ ║  - Submit agent plan for review before executing major features.      ║
+ ║  - Provide technical release note for every release.                  ║
+ ║                                                                       ║
+ ║  DEVOPS:                                                              ║
+ ║  - Set up performance alerts — detect issues in minutes, not days.    ║
+ ║  - Maintain system headroom for significant traffic variation.        ║
+ ║                                                                       ║
+ ║  QA:                                                                  ║
+ ║  - Collaborate with dev on solution review for complex tickets.       ║
+ ║  - Test with realistic data volumes for data-heavy features.          ║
+ ║                                                                       ║
+ ║  TEMPLATES:                                                           ║
+ ║  - Plan template: docs/plans/template.md                              ║
+ ║  - Release note template: docs/releases/template.md                   ║
+ ║                                                                       ║
+ ╚════════════════════════════════════════════════════════════════════════╝
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2493 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/releases/2026-05/release-26.5.10-release-note/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Release: KK PI 26.5.10 - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-kk-pi-26510" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release: KK PI 26.5.10
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/architecture-review-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Performance Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Plans
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plans/template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../template.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-infrastructure-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Infrastructure Impact
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Infrastructure Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-database-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Database Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-auth-session-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Auth / Session Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-api-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 API Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-performance-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Performance &amp; Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-cross-repo-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Cross-Repo Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-web-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Web Configuration Changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rollback-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Rollback Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-risk-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Risk Assessment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Deployment Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Tickets
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-kk-pi-26510">Release: KK PI 26.5.10</h1>
+<p><strong>Release ID:</strong> #319522
+<strong>Prepared by:</strong> Tuan Nguyen
+<strong>Date:</strong> 2026-05-06
+<strong>Branch:</strong> release/319522_KK_PI_26.5.10</p>
+<hr />
+<h2 id="1-summary">1. Summary</h2>
+<ul>
+<li><strong>Centers Meal &amp; Attendance:</strong> Two-bug follow-up to PI #313113 — fixes meal-data-disappears-after-save by merging <code>firstServing</code>/<code>secondServing</code> payloads and preserving non-conflicting meal types during concurrency conflict resolution (#322557, KK#22774 supersedes KK#22764). Adds backend defense-in-depth guard for L2=N centers against phantom <code>claim_attendance</code> rows, plus frontend "approved meals failed to load" fail-closed banner (#318492). Restores auto-calculation of <code>actual_quantity_served</code> for Non-Infant menus when <code>Inf611</code> row is absent (#317707, cross-repo KK DLL drop + Centers-CX#4142). UI-only Copy Menus confirmation re-worded so sponsors see the affected center name (#320884; data restore performed offline 2026-04-11).</li>
+<li><strong>Provider Capacity (KK ↔ HX parity):</strong> Coordinated KK + DB change to make Licensing-tab save behavior in KidKare byte-equivalent to HomeX. Fixes load-time school-aged display bug, refreshes Maximum Capacity label after save, preserves DB-loaded values on license-type round-trip, and zeros out hidden capacity columns on save (relying on the new SP <code>0 → NULL</code> normalization). Ports <code>save_provider_capacity_sp_port_kk</code> from HX (#320035 / Bug #322928).</li>
+<li><strong>eForms — Approve &amp; Renew:</strong> Resolves "Submitted (Site)/(Parent)" forms missing from Approve &amp; Renew + View Status by adding a <code>UNIQUE NONCLUSTERED</code> index <code>UX_KK_EnrollmentReport_LogicalKey</code> (filtered on <code>InvitationId IS NOT NULL</code>), one-off duplicate cleanup, status-290 backfill on 5 affected assignments, and a bounded retry-on-unique-violation in <code>ReportEnrollmentBll.GenerateInvitationFormReport</code> (#322254). Removed centers no longer appear in the Approve &amp; Renew center drop-down (#322840) — fixed via the shared <code>GetOeCenters</code> helper (also covers other OE consumers).</li>
+<li><strong>Tier integrity / Center enrollment:</strong> Removes the AutoMapper <code>.Ignore()</code> that was suppressing <code>never_activated_flag</code> for Center-enrolled Pending children, so Rule44 Branch 2 fires correctly on Withdrawn-never-activated transitions (#322375).</li>
+<li><strong>State Provider review formula:</strong> <code>select_max_capacity_fn2</code> adjusted so Maximum Capacity returns MAX(infant, preschool) when school-aged capacity is not entered, plus a new per-provider compute-method override column on <code>PROVIDER_CAPACITY</code> (#305316).</li>
+<li><strong>One-off data fix:</strong> Corrects misassigned review provider id <code>6B829C8D…</code> → <code>80B80B61…</code> for Monitor 16601 / Review 115FC181 / Sponsor 166, plus next-review-required-date update (#322555).</li>
+<li><strong>Untracked changes (not in TP release ticket list):</strong></li>
+<li>KK#22761 — single-line label typo "Out Child Claim Payment" → "Own Child Claim Payment" on Sponsor Payments print preview (branch references #322813 but only the typo shipped).</li>
+<li>MinuteMenu.Database#729 + #730 — kkeform Managed Instance index additions (<code>KK_EnrollmentDataReport.ReportId</code>, <code>KK_EnrollmentCompletedCx(ChildId,ClientId,CenterId)</code>, <code>KK_StorageFiles.PublicName</code>) intended to relieve Win32Exception bursts during claim-week peak (#322954). <strong>[VERIFY]</strong> root cause not confirmed (see section 2.4).</li>
+</ul>
+<hr />
+<h2 id="2-infrastructure-impact">2. Infrastructure Impact</h2>
+<p><strong>Overall Risk Level:</strong> <strong>High</strong></p>
+<h3 id="21-database-changes">2.1 Database Changes</h3>
+<ul>
+<li><code>MMADMIN_XXX/Programmability/Stored Procedures/save_provider_capacity_sp_port_kk.sql</code> — port from HX <code>save_provider_capacity_sp</code> adding <code>0 → NULL</code> normalization on capacity counts and sentinel-date → NULL on license/variance/waiver dates plus <code>mod_date_time</code>/<code>create_date_time</code>. Wired into MRP build + rollback via #726.</li>
+<li><code>MMADMIN_XXX/Programmability/Stored Procedures/select_max_capacity_sp.sql</code>, <code>select_max_capacity_from_history_sp.sql</code>, <code>generate_state_provider_MA_sp.sql</code> — updated to support new compute-method override column on <code>PROVIDER_CAPACITY</code> (#305316).</li>
+<li><code>MMADMIN/Programmability/Functions/select_max_capacity_fn2.sql</code> — semantic change: <code>&gt;</code> flipped to <code>&gt;=</code> in the <code>@HighestProviderAgedCnt</code> (1008) branch and <code>@PreschoolCnt</code> replaced by <code>@preschoolAgeCnt = preschooler + school_age</code>; LEFT JOIN to <code>LICENSE</code> added with <code>COALESCE</code> for the new override column (#305316).</li>
+<li><code>MMADMIN_XXX/Programmability/Functions/select_max_capacity_fn.sql</code> — paired update with the MMADMIN function above.</li>
+<li><code>MMADMIN/Updates/305316_ADD_COMPUTE_METHOD_TO_PROVIDER_CAPACITY.sql</code> and <code>MMADMIN_XXX/Updates/305316_ADD_COMPUTE_METHOD_TO_PROVIDER_CAPACITY.sql</code> — adds <code>displayed_max_capacity_compute_method_code</code> (NULL) on <code>PROVIDER_CAPACITY</code>.</li>
+<li><code>MMADMIN/Updates/305316_ADD_HISTORIABLE_FIELD_FOR_OVERRIDE.sql</code> and <code>MMADMIN_XXX/Updates/305316_ADD_HISTORIABLE_FIELD_FOR_OVERRIDE.sql</code> — registers the new column in <code>HISTORIABLE_FIELDS</code> so trigger picks it up.</li>
+<li><code>MMADMIN_XXX/Programmability/Scripts/305316_Update_License_Max_Capacity_Compute_Method.sql</code> — back-fills compute-method override values per requirements.</li>
+<li><code>MMADMIN_EFORM/Updates/322254_unique_index_kk_enrollment_report.sql</code> — <code>CREATE UNIQUE NONCLUSTERED INDEX UX_KK_EnrollmentReport_LogicalKey ON KK_EnrollmentReport (InvitationId, EnrollmentFormType, FormType, SourceSystem) WHERE InvitationId IS NOT NULL</code>. <strong><code>ONLINE = ON</code> is NOT specified — see section 2.4.</strong></li>
+<li><code>MMADMIN_EFORM/Updates/322254_script_delete_report_dup.sql</code> — deletes ~115 hard-coded duplicate IDs that would block the index build.</li>
+<li><code>MMADMIN_EFORM/Updates/322254_Fix_EnrollmentAssignment_Status290_NullForms.sql</code> — back-fills status 290 on 5 specific <code>KK_EnrollmentAssignmentCx</code> rows.</li>
+<li><code>MMADMIN/Updates/322555_Fix_Review_Provider_Id.sql</code> and <code>MMADMIN_XXX/Updates/322555_Fix_Review_Provider_Id.sql</code> — one-off correction: REVIEW (MMADMIN_166), ReviewSubmission, ReviewSubmissionAnswer (MMADMIN), plus <code>PROVIDER.next_review_required_date = '2026-05-29'</code> (added in #728). Not in MRP — manual DBA execution required.</li>
+<li><code>MMADMIN_EFORM/Updates/322954_kkeform_MI_tuning_*.sql</code> (729) and <code>MMADMIN_EFORM/Updates/322954_kkeform_may5_burst_followup_indexes.sql</code> (730) — three new nonclustered indexes on <code>KK_EnrollmentDataReport</code>, <code>KK_EnrollmentCompletedCx</code>, <code>KK_StorageFiles</code> with <code>DATA_COMPRESSION = PAGE, ONLINE = ON</code> (Enterprise/MI only). <strong>NOT registered in <code>MMADMIN_EFORM/MRP.build.config</code> — manual DBA deploy required. Untracked in TP. [VERIFY]</strong></li>
+</ul>
+<h3 id="22-auth-session-changes">2.2 Auth / Session Changes</h3>
+<ul>
+<li>None</li>
+<li>Expected re-authentication impact: <strong>None</strong> — no auth changes.</li>
+</ul>
+<h3 id="23-api-changes">2.3 API Changes</h3>
+<ul>
+<li>None — no new, removed, or changed REST routes in this release. Existing endpoints retain the same signatures; only internal logic changed.</li>
+<li><strong>CHANGED contract (internal, AutoMapper):</strong> <code>CxChildModel ↔ dsChild.CHILDRow</code> now round-trips <code>never_activated_flag</code> (previously <code>Ignore()</code> on the forward map). All callers of <code>Mapper.Map&lt;dsChild.CHILDRow&gt;</code> in CX child save flows now write this field — see section 2.4.</li>
+</ul>
+<h3 id="24-performance-capacity">2.4 Performance &amp; Capacity</h3>
+<ul>
+<li>
+<p><strong><code>KK_EnrollmentReport</code> unique index without <code>ONLINE = ON</code> (#322254 / DB#727)</strong> — <code>CREATE UNIQUE NONCLUSTERED INDEX</code> on a multi-million-row hot eForm output table. Without ONLINE, a Sch-M lock is held for the duration of the build, blocking all eForm save/submit paths on all 15 API VMs.
+  <strong>Action required</strong> — Standard Edition does not support <code>ONLINE = ON</code>. Schedule index build during a maintenance window OR add <code>WITH (ONLINE = ON, MAXDOP = 4)</code> if running on Enterprise / Azure SQL MI. Confirm row count first. Enforce deploy order: cleanup duplicates → index DDL → KK code deploy. Add a smoke check that the index exists before promoting KK#22773.
+  Rollback: Low — <code>DROP INDEX IF EXISTS UX_KK_EnrollmentReport_LogicalKey ON KK_EnrollmentReport</code>.
+  Watch: eForm save/submit p99 latency, blocking-process count on <code>KK_EnrollmentReport</code>, count of catches in <code>IsUniqueIndexViolation</code> retry block (add log/metric).
+  Evidence: Cleanup script targets ~115 IDs but PK values reach 2.2M+, indicating millions of rows; PI 26.5.10 release window overlaps with eForm season write peak.</p>
+</li>
+<li>
+<p><strong>Provider Capacity SP/UI coordinated change (#320035 / DB#725, #726 + KK#22769)</strong> — Frontend now sends literal <code>0</code> for hidden capacity fields and relies on the NEW SP <code>0 → NULL</code> normalization to translate that into NULL in DB. KK and DB <strong>must deploy together</strong>; KK-only deploy or DB-only rollback writes literal <code>0</code> instead of NULL into <code>provider_capacity</code> columns for every Licensing save.
+  <strong>Action required</strong> — Coordinate atomic deploy of MinuteMenu.Database#725 + #726 with KK 26.5.10. Document atomic rollback in runbook.
+  Rollback: High — partial rollback silently corrupts data; recovery requires <code>UPDATE provider_capacity SET col = NULL WHERE col = 0</code> audit per affected column.
+  Watch: <code>provider_capacity</code> column NULL-ratio trend (should jump for hidden-field columns); Licensing-tab save P95 latency (one extra GET per save now); error rate on <code>getProviderLicensingByStateCode</code>.
+  Evidence: Implicit cross-repo contract; KK code has no direct SP reference (calls service layer), and the contract is not surfaced at the API boundary.</p>
+</li>
+<li>
+<p><strong>Extra <code>licensingTab.init</code> GET on every Licensing-tab save (#320035 / KK#22765)</strong> — Save endpoint returns only <code>{code}</code>, so the UI re-fetches the entire licensing payload after every save to refresh the <code>maxCapacity</code> label.
+  <strong>Monitor</strong> — doubles DB+API load on the Licensing save path.
+  Rollback: Low — revert KK#22765 frontend.
+  Watch: Licensing tab save round-trip count and <code>getProviderLicensingByStateCode</code> latency.
+  Evidence: Save handler unconditionally calls <code>licensingTab.init</code> on <code>tabView === 'licensingTab' &amp;&amp; !params.final</code>.</p>
+</li>
+<li>
+<p><strong><code>select_max_capacity_fn2</code> semantic change (#305316 / DB#698)</strong> — Function consumed by tier/capacity reports cluster-wide. <code>&gt;</code> flipped to <code>&gt;=</code> and preschool count now includes school-age in the @HighestProviderAgedCnt branch. <strong>Provider max-capacity values displayed will change for any provider with tied counts or non-zero school-age.</strong>
+  <strong>Action required</strong> — Confirm with QA/business owner that <code>&gt;=</code> and combined preschool+school-age semantics are intentional. Run a PROD-LIKE before/after diff: <code>SELECT provider_id, dbo.select_max_capacity_fn2_old(...) AS old, dbo.select_max_capacity_fn2(...) AS new FROM PROVIDER_CAPACITY WHERE old &lt;&gt; new</code> to enumerate affected providers.
+  Rollback: Medium — function is <code>CREATE OR ALTER</code>; restore prior body from master commit. Note: <code>MMADMIN/ROLLBACK/305316_*.sql</code> files are byte-identical to forward Updates (no-op rollback) — see next item.
+  Watch: Tier-eligibility reports and Maximum Capacity displays for HX sponsors.
+  Evidence: Three logic changes shipped in one PR (LEFT JOIN + comparison flip + variable swap).</p>
+</li>
+<li>
+<p><strong>305316 ROLLBACK scripts are no-ops (#305316 / DB#698)</strong> — Both <code>MMADMIN/ROLLBACK/305316_*.sql</code> files are byte-identical to the forward <code>Updates/</code> scripts. They re-add the column / re-insert the HISTORIABLE_FIELDS row. Function rollback is missing entirely.
+  <strong>Action required</strong> — Author proper rollback before deploy: <code>ALTER TABLE dbo.PROVIDER_CAPACITY DROP COLUMN displayed_max_capacity_compute_method_code;</code>, <code>DELETE FROM HISTORIABLE_FIELDS WHERE HISTORIABLE_FIELD_NAME = 'displayed_max_capacity_compute_method_code';</code>, plus <code>select_max_capacity_fn2</code> prior body.
+  Rollback: High — without proper scripts, DBA must hand-write rollback statements during incident.
+  Watch: N/A (action prevents future incident response failure).
+  Evidence: Diff of <code>MMADMIN/ROLLBACK/305316_*.sql</code> vs <code>MMADMIN/Updates/305316_*.sql</code>.
+=&gt; Valid and we have fixed</p>
+</li>
+<li>
+<p><strong>AutoMapper write-path broadening on <code>never_activated_flag</code> (#322375 / KK#22763)</strong> — Removing <code>Ignore()</code> at <code>CxChildMapping.cs:301</code> means EVERY <code>Mapper.Map&lt;dsChild.CHILDRow&gt;(child)</code> and <code>Mapper.Map(child, updatedDatasetRow)</code> call now writes the flag from the model — not only the targeted AddChild path. Affects all CX child save/update flows (Add, Update, Reactivate, Withdraw, Import).
+  <strong>Monitor</strong> — daily count of CHILD rows where <code>never_activated_flag</code> flips for the first week post-deploy.
+  Rollback: Low — revert mapping/Bll commit; KK redeploy.
+  Watch: New row count <code>WHERE never_activated_flag = 0 AND status_code = 239</code> (Pending) trend; alert on unexpected mass-flip.
+  Evidence: <code>IgnoreInvalidFields</code> does not preserve this field from the DB row; request DTO defaults to false on edit-only flows. <strong>[VERIFY]</strong> — see Risk Assessment.</p>
+</li>
+<li>
+<p><strong>kkeform Managed Instance indexes — root cause not confirmed (#322954 / DB#729 + #730 — UNTRACKED)</strong> — Three new nonclustered indexes on hot kkeform tables intended to relieve Win32Exception bursts during claim-week peak. Win32Exception is normally a connection-layer error (TLS handshake, TCP exhaustion, ADO.NET pool starvation), not a query-plan issue. Neither PR provides execution plans, missing-index DMV output, wait stats, or the actual exception stack. The 24-hour gap between #729 (2026-05-05) and #730 (2026-05-06, filename <code>may5_burst_followup</code>) suggests #729 did not relieve the bursts.
+  <strong>Action required</strong> — Capture during the next burst: <code>sys.dm_os_wait_stats</code> delta, connection-pool counters, full Win32Exception stack. Confirm SQL-side vs network/pool-side root cause BEFORE adding more indexes. Treat 322954 as Open. Release notes should NOT advertise 322954 as resolved.
+  Rollback: Low (per index) — <code>DROP INDEX IF EXISTS …</code> (rollback scripts not yet authored).
+  Watch: Win32Exception count during next claim-week peak; write latency on <code>KK_EnrollmentDataReport</code>, <code>KK_EnrollmentCompletedCx</code>, <code>KK_StorageFiles</code>.
+  Evidence: <code>KK_EnrollmentCompletedCx (ChildId, ClientId, CenterId)</code> leading column does not match observed query patterns in existing SPs (most filter by ClientId/CenterId first).</p>
+</li>
+<li>
+<p><strong>Cross-repo DLL drop without source audit trail (#317707 / KK#22599 ↔ Centers-CX#4142)</strong> — KK PR is binary-only (7 DLLs in <code>ExternalReferences/MinuteMenu.CX.Services/</code>). Actual fix lives in CX#4142. No file in KK repo records which Centers-CX commit built these binaries.
+  <strong>Action required</strong> — Verify the DLLs were built from CX#4142's merged SHA. Lock as a single deploy/rollback unit.
+  Rollback: Medium — CX rollback requires re-building the prior DLL artifact and committing it back to KK.
+  Watch: Errors in <code>SaveActualQuantitiesAsRequired</code> on attendance-certify path; spot-check <code>claim_menu_quantity</code> non-infant Actual rows after attendance certify for a sample of M01a1=Y/M16=Y centers.
+  Evidence: Manual DLL drop pattern (commit <code>a55775cee2 317707 build dll from 26.5.10</code>).</p>
+</li>
+<li>
+<p><strong>L2=N phantom claim_attendance row reduction (#318492 / KK#22650)</strong> — Backend guard broadened: skips inserting empty <code>claim_attendance</code> rows for L2=N centers when child has no meal flags AND no in/out times. Net load REDUCER for L2=N centers (majority of CX). PR ships frontend "approved meals failed to load" fail-closed banner so users cannot save into a stale/error state.
+  <strong>Monitor</strong> — <code>claim_attendance</code> insert volume per center per day should DROP on L2=N centers.
+  Rollback: Low — revert KK BLL commit.
+  Watch: AppInsights <code>CHECK_DEVICE_DATE_SETTINGS</code> events; attendance save error rate (<code>SaveClaimAttendance</code>).
+  Evidence: PR describes 35-199 unique users/week and peak 8064 errors triggering this path. Cleanup of pre-existing phantom rows requires a separate gated DBA query.</p>
+</li>
+</ul>
+<h3 id="25-cross-repo-dependencies">2.5 Cross-Repo Dependencies</h3>
+<ul>
+<li><strong>Repos involved</strong>: MinuteMenu.Database, Centers-CX, KK</li>
+<li><strong>Deploy order</strong>: <strong>MinuteMenu.Database (MMADMIN_XXX MRP — provider capacity SP, capacity functions/SPs, max-capacity column) → Centers-CX (LogicService updates) → KK (consumes Centers-CX DLL via <code>MinuteMenu.Centers.ServerLib.dll</code>; depends on <code>save_provider_capacity_sp_port_kk</code> <code>0 → NULL</code> normalization and on <code>UX_KK_EnrollmentReport_LogicalKey</code> index)</strong>.</li>
+<li>Cleanup of duplicate <code>KK_EnrollmentReport</code> rows must run BEFORE the unique-index DDL.</li>
+<li>The <code>save_provider_capacity_sp_port_kk</code> SP must be deployed BEFORE KK#22769 because KK#22769 sends literal <code>0</code> for hidden fields expecting the SP to normalize to NULL.</li>
+<li><code>MMADMIN_EFORM</code> updates (322254, 322954) are NOT in the MMADMIN_EFORM MRP — manual DBA execution per kkeform MI.</li>
+<li>Manual one-off scripts (322555, 322954) are not in MRP — must be tracked via DBA runbook.</li>
+<li><strong>Rollback order</strong>: <strong>KK → Centers-CX → MinuteMenu.Database</strong>. Any rollback of DB#725/#726 without rolling back KK silently writes literal <code>0</code> instead of NULL on every Licensing save — see section 2.4.</li>
+</ul>
+<hr />
+<h2 id="3-web-configuration-changes">3. Web Configuration Changes</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Key</th>
+<th>Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(none)</td>
+<td>—</td>
+<td>—</td>
+<td>No <code>web.config</code>, <code>appsettings</code>, or Octopus variable changes detected in the diff.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>[VERIFY]</strong> — Confirm with DevOps that no per-environment configuration update is required for the <code>MinuteMenu.Centers.*.dll</code> swap (KK#22599) or for the new MMADMIN_XXX SP signature.</p>
+<hr />
+<h2 id="4-rollback-plan">4. Rollback Plan</h2>
+<ol>
+<li><strong>Halt eForm Approve &amp; Renew traffic briefly if rollback decision happens during eForm peak</strong> — to minimize duplicate-row regeneration after <code>UX_KK_EnrollmentReport_LogicalKey</code> is dropped.</li>
+<li>Deploy previous KK BE + FE build (restores prior <code>MinuteMenu.Centers.ServerLib.dll</code>, prior <code>ChildBll</code>, <code>ReportEnrollmentBll</code>, <code>CentersBll</code>, AngularJS controllers, AutoMapper profile).</li>
+<li>Deploy previous Centers-CX build (<code>LogicService.cs</code> + <code>LogicServiceToKK.cs</code> reverted to pre-#4142 state).</li>
+<li>Run DB rollback:</li>
+<li><code>MMADMIN_XXX/RELEASES/MRP_Rollback_319522.sql</code> — restores <code>save_provider_capacity_sp_port_kk</code> to its prior body and reverts the SP family used by max-capacity (305316 family).</li>
+<li><code>DROP INDEX IF EXISTS UX_KK_EnrollmentReport_LogicalKey ON KK_EnrollmentReport;</code> (no rollback file shipped — DBA executes manually).</li>
+<li><strong>Manual rollback required (no scripts shipped):</strong><ul>
+<li><code>ALTER TABLE dbo.PROVIDER_CAPACITY DROP COLUMN displayed_max_capacity_compute_method_code;</code></li>
+<li><code>DELETE FROM HISTORIABLE_FIELDS WHERE HISTORIABLE_FIELD_NAME = 'displayed_max_capacity_compute_method_code';</code></li>
+<li>Restore prior <code>select_max_capacity_fn2</code> body from master commit.</li>
+</ul>
+</li>
+<li>322254 cleanup DELETEs cannot be reversed without backup restore — accept loss of those duplicate rows or restore from nightly backup.</li>
+<li>322555 review-provider correction is irreversible — accept the corrected provider id, or restore <code>REVIEW</code>/<code>ReviewSubmission</code>/<code>PROVIDER</code> rows from nightly backup.</li>
+<li>322954 indexes — <code>DROP INDEX IF EXISTS IX_KK_EnrollmentDataReport_ReportId, IX_KK_EnrollmentCompletedCx_ChildClientCenter, IX_KK_StorageFiles_PublicName;</code> (manual on each kkeform MI).</li>
+<li>Post-rollback smoke: Centers attendance save (mixed first/second serving), eForm Approve &amp; Renew load, HX Licensing-tab edit-and-save, Sponsor Payments print preview.</li>
+</ol>
+<hr />
+<h2 id="5-risk-assessment">5. Risk Assessment</h2>
+<ul>
+<li><strong>Worst case:</strong> (1) KK 26.5.10 deploys before MinuteMenu.Database#725+#726 (or DB rolls back without KK) → every HX Licensing save silently writes literal <code>0</code> into <code>provider_capacity</code> for hidden columns; downstream max-capacity/eligibility consumers begin reading 0 where NULL was expected, distorting Tier reports and review worksheets. (2) <code>KK_EnrollmentReport</code> unique index built without <code>ONLINE = ON</code> on Standard Edition holds Sch-M lock long enough to time out every concurrent eForm save across all 15 API VMs. (3) Edit on a Center-enrolled Pending child after this release silently flips <code>never_activated_flag</code> from 1 back to 0 because the request DTO does not carry the field — defeats Rule44 fix in #322375. (4) Centers attendance new-child concurrency continues to drop one user's update because of the <code>-</code> vs <code>_</code> separator mismatch in <code>AttendanceBll.cs:1447</code>.</li>
+<li><strong>How we detect it:</strong> (a) APM/log on <code>provider_capacity</code> writes — alert if a row is inserted with non-NULL <code>0</code> in a normalized column (would indicate the SP didn't deploy); (b) blocking-process count on <code>KK_EnrollmentReport</code> and eForm save p99 latency; (c) daily count of <code>CHILD WHERE status_code = 239 AND never_activated_flag = 0</code> — alert on unexpected drop; (d) production reports of meal data still disappearing on Centers attendance save (same symptom as PI 313113); (e) <code>IsUniqueIndexViolation</code> retry catch invocation count (add metric).</li>
+<li><strong>How we recover:</strong> Follow Rollback Plan section 4. Note (4) — the separator mismatch is a Critical finding from code review and <strong>should be fixed before deploy</strong> rather than relying on rollback. For (1), cleanup query <code>UPDATE provider_capacity SET &lt;col&gt; = NULL WHERE &lt;col&gt; = 0</code> per affected column; for (2), drop and rebuild the index during a maintenance window with <code>ONLINE = ON</code> if available; for (3), restore from nightly CHILD backup or run a one-off <code>UPDATE CHILD SET never_activated_flag = 1 WHERE status_code = 239 AND mod_date_time &gt; &lt;deploy_time&gt;</code>.</li>
+</ul>
+<hr />
+<h2 id="6-deployment-checklist">6. Deployment Checklist</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Step</th>
+<th>Owner</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Dev lead prepared release note</td>
+<td>Tuan Nguyen</td>
+<td>Done</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DevOps reviewed infrastructure impact (deploy order, ONLINE=ON decision for unique index, MI index runbook)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Architect reviewed changes (320035 cross-repo SP/UI contract, 322375 AutoMapper write-path broadening)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SQL scripts verified on staging (MMADMIN_XXX MRP, 322254 cleanup + index, 305316 family, 322555 one-off)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Critical fixes from code review applied or accepted (<code>AttendanceBll.cs:1447</code> separator, <code>never_activated_flag</code> preserve-on-edit, <code>LogicService.cs</code> cereal/bread parity, KK DLL provenance)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>6</td>
+<td>305316 rollback scripts authored (currently no-ops)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>7</td>
+<td>322954 kkeform MI runbook authored (per-MI execution + verification + rollback SQL)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Web config changes confirmed (none expected)</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Rollback plan confirmed</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Production deployment approved</td>
+<td>[VERIFY — name]</td>
+<td>Pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-tickets">7. Tickets</h2>
+<table>
+<thead>
+<tr>
+<th>Ticket</th>
+<th>Title</th>
+<th>Type</th>
+<th>State</th>
+<th>Infra Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322557">#322557</a></td>
+<td>Centers: Meal Data Still Disappears After Save - Two Remaining Bugs from PI 313113</td>
+<td>Story</td>
+<td>Test</td>
+<td>High</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322254">#322254</a></td>
+<td>Data Inconsistency – "Submitted (Site)"/"Submitted (Parent)" eForms Missing from Approve &amp; Renew Queue</td>
+<td>Story</td>
+<td>Code review</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322840">#322840</a></td>
+<td>Eform Approve &amp; Renew shows removed centers</td>
+<td>Story</td>
+<td>UAT</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/320035">#320035</a></td>
+<td>Provider Capacity - Discrepancy between KK and HX</td>
+<td>Story</td>
+<td>(parent of bug 322928)</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322928">#322928</a></td>
+<td>The Maximum Capacity should be reloaded after the provider information is saved</td>
+<td>Bug</td>
+<td>UAT</td>
+<td>High</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322375">#322375</a></td>
+<td>never_activated_flag not saved for Center-enrolled Pending children causes Withdrawn-never-activated claims to bypass Rule44</td>
+<td>Story</td>
+<td>UAT</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/317707">#317707</a></td>
+<td>CX 3792: Actual Quantity Served is no longer automatically calculated for Non-Infant menus</td>
+<td>Story</td>
+<td>Ready For Test</td>
+<td>Critical</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/318492">#318492</a></td>
+<td>Application insight review - Children were automatically marked in meal attendance</td>
+<td>Story</td>
+<td>UAT</td>
+<td>High</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/320884">#320884</a></td>
+<td>Actual Quantity Served of all foods in March was removed</td>
+<td>Story</td>
+<td>UAT</td>
+<td>None (UI/i18n only)</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/305316">#305316</a></td>
+<td>The maximum capacity is not updated when the school-aged capacity is unavailable</td>
+<td>Story</td>
+<td>Test</td>
+<td>High</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322555">#322555</a></td>
+<td>Client 166 requires help correcting the provider number for a review</td>
+<td>Story</td>
+<td>UAT</td>
+<td>Medium (one-off DML)</td>
+</tr>
+<tr>
+<td>(untracked)</td>
+<td>KK#22761 typo: "Out Child Claim Payment" → "Own Child Claim Payment"</td>
+<td>—</td>
+<td>merged</td>
+<td>None</td>
+</tr>
+<tr>
+<td>(untracked)</td>
+<td>DB#729 + #730 — kkeform MI indexes (#322954 — not in release ticket list)</td>
+<td>—</td>
+<td>merged</td>
+<td>High (root cause unconfirmed)</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322851">#322851</a></td>
+<td>Total income missing and signature incorrect on IEF report</td>
+<td>Story</td>
+<td>Dev</td>
+<td>Not merged</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322839">#322839</a></td>
+<td>Updates to 322549 Incorrect Provider Tier Type in State Provider Upload File</td>
+<td>Story</td>
+<td>Dev</td>
+<td>Not merged</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322722">#322722</a></td>
+<td>Payment Method Discrepancy - provider Tiffany Tucker</td>
+<td>Story</td>
+<td>Withdrawn</td>
+<td>Not in release</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/322718">#322718</a></td>
+<td>KCE - Missing IEF/FRP Data Fields on Renewal Screen</td>
+<td>Story</td>
+<td>Released</td>
+<td>(no PR in this release branch)</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/321660">#321660</a></td>
+<td>Providers cannot enroll children manually</td>
+<td>Story</td>
+<td>Withdrawn</td>
+<td>Not in release</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/321481">#321481</a></td>
+<td>March 2026 claim for Provider 4C28A95D-67DE-...</td>
+<td>Story</td>
+<td>Withdrawn</td>
+<td>Not in release</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/318671">#318671</a></td>
+<td>HX088 - Unable to Reissue Payments - February 2026</td>
+<td>Story</td>
+<td>Dev</td>
+<td>Not merged</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/318631">#318631</a></td>
+<td>Application Insight review - Provider 284003620 was removed</td>
+<td>Story</td>
+<td>Withdrawn</td>
+<td>Not in release</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/318581">#318581</a></td>
+<td>Ghost eForm Enrollment Record (Not Started)</td>
+<td>Story</td>
+<td>Dev</td>
+<td>Not merged</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/318212">#318212</a></td>
+<td>KKFP center needs an option to advance their claim month</td>
+<td>Story</td>
+<td>Code review</td>
+<td>(no PR in this release branch)</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/317726">#317726</a></td>
+<td>OK - Berry Items Triggering "Insufficient Quantity" (Error 78)</td>
+<td>Story</td>
+<td>Code review</td>
+<td>(no PR in this release branch)</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/317708">#317708</a></td>
+<td>Provider Training not validated with review</td>
+<td>Story</td>
+<td>Code review</td>
+<td>(no PR in this release branch)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> TP release entity custom fields (<code>Time of Release</code>, <code>Affected Machines</code>, <code>Risks</code>, <code>Test Methodology</code>, <code>Rollback Plan</code>) are all empty as of 2026-05-06. Dev lead to populate before deploy.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2859 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/releases/2026-04/release-26.4.22-code-review/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Release 26.4.22 (318103) — Code Review Report - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-26422-318103-code-review-report" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release 26.4.22 (318103) — Code Review Report
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/architecture-review-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Performance Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Plans
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plans/template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../template.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive Summary
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Executive Summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#critical-issues-must-fix-before-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Issues (Must Fix Before Release)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#critical-findings-detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critical Findings (Detail)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Critical Findings (Detail)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c1-centers-cx4161-kk22699-ach-re-download-missing-authorization-raw-sql-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C1. Centers-CX#4161 + KK#22699 — ACH re-download missing authorization + raw SQL IN
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2-centers-cx4161-ach-multi-date-batch-produces-wrong-effective-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C2. Centers-CX#4161 — ACH multi-date batch produces wrong effective date
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c3-poc_hxcloudconnectapi1595-minutemenudatabase686-ef-entity-read-of-db-column-requires-strict-deploy-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C3. POC_HxCloudConnectApi#1595 + MinuteMenu.Database#686 — EF entity read of DB column requires strict deploy order
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c4-parachute4330-vehicle-search-removes-null-check-on-purchaseprice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C4. Parachute#4330 — Vehicle search removes null-check on PurchasePrice
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#high-severity-findings-80-89" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High Severity Findings (80-89)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="High Severity Findings (80-89)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cross-repo-j017-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-Repo J.017 Policy
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross-Repo J.017 Policy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h1-minutemenudatabase686-save_provider_policy_sp-silently-overwrites-highest_serving_allowed_code-to-215" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H1. MinuteMenu.Database#686 — save_provider_policy_sp silently overwrites highest_serving_allowed_code to 215
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h2-minutemenudatabase686-mrp-manifest-omits-sponsor-030-enablement-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H2. MinuteMenu.Database#686 — MRP manifest omits sponsor-030 enablement script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sponsor-102-print-check-ach-cross-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sponsor 102 Print Check + ACH (Cross-Repo)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sponsor 102 Print Check + ACH (Cross-Repo)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h3-poc_hxcloudconnectapi1595-kk22699-centers-cx4161-minutemenudatabase686-cross-repo-deploy-order-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H3. POC_HxCloudConnectApi#1595 + KK#22699 + Centers-CX#4161 + MinuteMenu.Database#686 — Cross-repo deploy-order contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h4-poc_hxcloudconnectapi1595-unbounded-taskwhenall-fan-out-on-sponsor-102-print" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H4. POC_HxCloudConnectApi#1595 — Unbounded Task.WhenAll fan-out on Sponsor 102 print
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h5-poc_hxcloudconnectapi1595-ef-tracked-entity-mutation-in-aggregatelinkedclaimsforsponsor102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H5. POC_HxCloudConnectApi#1595 — EF-tracked entity mutation in AggregateLinkedClaimsForSponsor102
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h6-poc_hxcloudconnectapi1595-sponsor102linkedclaimdtoclaimyear-typed-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H6. POC_HxCloudConnectApi#1595 — Sponsor102LinkedClaimDTO.ClaimYear typed decimal?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enrollment-eform-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enrollment &amp; eForm Cleanup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Enrollment &amp; eForm Cleanup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h7-kk22699-cleanup-endpoint-fan-out-with-no-commandtimeout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H7. KK#22699 — Cleanup endpoint fan-out with no CommandTimeout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h8-kk22699-orphan-definition-includes-withdrawn-children-mass-hard-delete-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H8. KK#22699 — "Orphan" definition includes withdrawn children → mass hard-delete risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h9-kk22699-admin-cleanup-endpoint-authz-is-shared-secret-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H9. KK#22699 — Admin cleanup endpoint authz is shared secret only
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localization-data-patches" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Localization &amp; Data Patches
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Localization &amp; Data Patches">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h10-kk22699-spanish-warning-active_children_warning_setief_skipped-left-in-english" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H10. KK#22699 — Spanish warning ACTIVE_CHILDREN_WARNING_SETIEF_SKIPPED left in English
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h11-kk22699-spanish-participant_kids_plural-placeholder-dropped" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H11. KK#22699 — Spanish {{participant_kids_plural}} placeholder dropped
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h12-minutemenudatabase686-foster-income-eligibility-restore-too-narrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H12. MinuteMenu.Database#686 — Foster Income-Eligibility restore too narrow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parachute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parachute
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parachute">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h13-parachute4330-mileagemodelmiles-api-contract-break-decimal-double" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H13. Parachute#4330 — MileageModel.Miles API contract break (decimal → double)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h14-parachute4330-expensescontroller-nullreferenceexception-on-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H14. Parachute#4330 — ExpensesController NullReferenceException on search
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h15-parachute4330-number-input-directive-emptynull-semantic-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H15. Parachute#4330 — number-input directive empty→null semantic change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#h16-parachute4330-search-input-css-class-collides-with-existing-input-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H16. Parachute#4330 — .search-input CSS class collides with existing &lt;input&gt; usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Claims Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#h17-minutemenudatabase686-hx1676-default-flip-in-select_rpt_meal_count_attendance_sp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        H17. MinuteMenu.Database#686 + HX#1676 — Default flip in select_rpt_meal_count_attendance_sp
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infrastructure-impact-assessments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Infrastructure Impact Assessments
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Infrastructure Impact Assessments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-1-claims-engine-meal-attendance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch 1 — Claims Engine &amp; Meal Attendance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-2-j017-include-infants-policy-cross-repo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch 2 — J.017 "Include-Infants" Policy (Cross-Repo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-3-sponsor-102-print-check-payments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch 3 — Sponsor 102 Print Check &amp; Payments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-4-enrollment-eform-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch 4 — Enrollment &amp; eForm Cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-5-reports-ui-localization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch 5 — Reports, UI, Localization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-6-parachute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Batch 6 — Parachute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missing-tickets-no-code-change-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Missing Tickets — No Code Change Found
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#priority-action-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Priority Action Items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Priority Action Items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#must-fix-critical-blocks-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Must Fix (Critical — blocks release)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#should-fix-high-significant-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Should Fix (High — significant risk)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-with-product-behavioral-changes-needing-confirmation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify With Product (Behavioral changes needing confirmation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-26422-318103-code-review-report">Release 26.4.22 (318103) — Code Review Report</h1>
+<p><strong>Date</strong>: 2026-04-21
+<strong>Release</strong>: KK PI 26.4.22 — <a href="https://minutemenu.tpondemand.com/entity/318103">TP #318103</a>
+<strong>Repos</strong>: MinuteMenu/KK, MinuteMenu/Centers-CX, MinuteMenu/POC_HxCloudConnectApi, MinuteMenu/Shared-Core, MinuteMenu/MinuteMenu.Database, MinuteMenu/HX, MinuteMenu/Parachute
+<strong>Scope</strong>: 7 release-to-master PRs consolidating 45 TP tickets
+<strong>Focus</strong>: Critical (90-100) and High (80-89) findings</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Severity</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Critical (90-100)</strong></td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>High (80-89)</strong></td>
+<td>17</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Missing tickets</strong>: 2 release-scope tickets have NO code change in any diff (#318581 Ghost eForm, #321662 Pending disallow). Flagged for product/engineering confirmation.</p>
+<h3 id="critical-issues-must-fix-before-release">Critical Issues (Must Fix Before Release)</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Repo</th>
+<th>Area</th>
+<th>TP Ticket</th>
+<th>Category</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C1</td>
+<td>CX + KK</td>
+<td>ACH re-download</td>
+<td><a href="https://minutemenu.tpondemand.com/entity/316306">#316306</a></td>
+<td>Security/Bug</td>
+<td>Missing authorization scope; SQL string-concat IN; multi-date batch stamped with single arbitrary date</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>CX + KK</td>
+<td>ACH re-download</td>
+<td><a href="https://minutemenu.tpondemand.com/entity/316306">#316306</a></td>
+<td>FinancialAccuracy</td>
+<td>Batch spanning multiple <code>check_date</code> values produces ACH file with only last row's date → bank compliance risk</td>
+</tr>
+<tr>
+<td>C3</td>
+<td>HX API + DB</td>
+<td>J.017 policy</td>
+<td><a href="https://minutemenu.tpondemand.com/entity/320244">#320244</a></td>
+<td>CrossRepoImpact</td>
+<td>EF-mapped SponsorPolicy entity queries <code>include_infants_in_own_alone_edit_check_flag</code>; any deploy before DB migration = HX API outage</td>
+</tr>
+<tr>
+<td>C4</td>
+<td>Parachute</td>
+<td>Vehicle search</td>
+<td><a href="https://minutemenu.tpondemand.com/entity/320290">#320290</a></td>
+<td>Bug</td>
+<td>Unguarded cast <code>(double)e.PurchasePrice</code> on nullable decimal → 500 on search when any vehicle has null price</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="critical-findings-detail">Critical Findings (Detail)</h2>
+<h3 id="c1-centers-cx4161-kk22699-ach-re-download-missing-authorization-raw-sql-in">C1. <a href="https://github.com/MinuteMenu/Centers-CX/pull/4161">Centers-CX#4161</a> + <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> — ACH re-download missing authorization + raw SQL IN</h3>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/316306">TP #316306</a> — Enable KidKare For Centers The Ability To Re-Generate Payments Without Needing To Void And Reissue
+<strong>Score</strong>: 92 | <strong>Category</strong>: Security/Bug
+<strong>File</strong>: <code>products/Centers/Projects/MinuteMenu.Centers.ServerLib/Logic/LogicServiceToKK.cs:65-113</code> (<code>GetCenterACHFileFromCheckRegister</code>) + <code>Projects/KidKare.Service/Controllers/PortCX/PortCxPaymentController.cs:522-535</code> (<code>RedownloadACHFile</code>)</p>
+<p>The ACH re-download SQL uses <code>WHERE check_id IN (" + checkIdList + ")</code> by string-concatenating an <code>int[]</code> into raw SQL. While the int array prevents injection today, it breaks the parameterization pattern — any later change to the type erases that safety. More important, the controller performs no authorization check that the supplied <code>CheckIds</code> belong to the current user's scope beyond <code>AND client_id = @client_id</code>. A sponsor user can force-download ACH batch files for arbitrary <code>check_id</code>s within the same client, and there is no null guard on <code>request.CheckIds</code> (null → 404 instead of 400).</p>
+<p><strong>Impact</strong>: Information disclosure (ACH bank account data for unrelated batches within same client); fragile non-parameterized IN list.</p>
+<p><strong>Recommendation</strong>: Parameterize the IN list (Dapper <code>@ids</code> or a TVP). Validate that all <code>CheckIds</code> belong to the expected scope before building the ACH file. Cap <code>checkIds.Length</code> (e.g., ≤ 2000). Null-check <code>request</code> and <code>request.CheckIds</code>.</p>
+<hr />
+<h3 id="c2-centers-cx4161-ach-multi-date-batch-produces-wrong-effective-date">C2. <a href="https://github.com/MinuteMenu/Centers-CX/pull/4161">Centers-CX#4161</a> — ACH multi-date batch produces wrong effective date</h3>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/316306">TP #316306</a> — CX re-download ACH
+<strong>Score</strong>: 90 | <strong>Category</strong>: FinancialAccuracy
+<strong>File</strong>: <code>products/Centers/Projects/MinuteMenu.Centers.ServerLib/Logic/LogicServiceToKK.cs:71-95</code> (<code>GetCenterACHFileFromCheckRegister</code>)</p>
+<p>Inside the reader loop, <code>checkDate = Convert.ToDateTime(rdr["check_date"]).Date</code> is overwritten each row — the <strong>last row's <code>check_date</code> wins</strong> and is used for the whole ACH file. The KK batch-picker groups by <code>mod_date_time + mod_login_id</code> (not by <code>check_date</code>), so a single UI "batch" may legitimately contain rows with different check_dates. HX Homes' re-generate behavior preserves per-check posting dates; this fix does not. Additionally <code>cmd.CommandTimeout = 300</code> (5 min) is excessive for an indexed IN lookup.</p>
+<p><strong>Impact</strong>: Silent production of ACH files stamped with the wrong effective/settlement date. Since ACH files are submitted to banks, wrong-date files cause compliance/timing problems.</p>
+<p><strong>Recommendation</strong>: Take <code>checkDate</code> from the KK caller (<code>filter.checkDate</code>) via <code>RedownloadACHRequest</code> DTO; OR group rows by <code>check_date</code> inside the SP loop and emit one ACH file per distinct date; OR assert consistency across rows. Reduce <code>CommandTimeout</code> to 30s.</p>
+<hr />
+<h3 id="c3-poc_hxcloudconnectapi1595-minutemenudatabase686-ef-entity-read-of-db-column-requires-strict-deploy-order">C3. <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> + <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> — EF entity read of DB column requires strict deploy order</h3>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320244">TP #320244</a> — HX030 Error 76 disallow own infants
+<strong>Score</strong>: 90 | <strong>Category</strong>: CrossRepoImpact
+<strong>File</strong>: <code>HxCloudConnect.Data/Entities/SponsorPolicy.cs</code> (property added) + ≥14 call sites in ProviderService, AdministrationService, ChildService, ExportFileService, SponsorService</p>
+<p>HX API <code>SponsorPolicy</code> EF entity gains <code>include_infants_in_own_alone_edit_check_flag</code>. EF generates <code>SELECT [all mapped columns]</code> on every <code>db.SponsorPolicies.Where(...)</code> query. 14+ call sites hit this during routine traffic. If the HX API artifact deploys before DB migration <code>320244_ADD_NEW_FIELDS_TO_TABLE_SPONSOR_POLICY.sql</code>, every one of those queries throws <code>Invalid column name 'include_infants_in_own_alone_edit_check_flag'</code> → <strong>full HX API outage</strong>.</p>
+<p>Companion risk: <code>clsSPONSORPOLICY.cls</code> in HX Desktop does <code>rsPopulate("include_infants_in_own_alone_edit_check_flag")</code> unconditionally. HX Desktop v3.4.0 installed on any sponsor whose DB has not yet been upgraded throws ADO "Item cannot be found" at sponsor-policy load — HX Desktop fails to open.</p>
+<p><strong>Impact</strong>: Any deploy-order violation = HX API outage (server side) and HX Desktop inoperable for affected sponsors (desktop side).</p>
+<p><strong>Recommendation</strong>: Enforce strict deployment order in the DevOps runbook: <strong>DB Updates 320244_ADD + 320244_SET_DEFAULT must run BEFORE</strong> any HX API artifact is promoted AND before HX Desktop v3.4.0 is pushed to any sponsor desktop. Add app-startup smoke test: <code>SELECT TOP 1 include_infants_in_own_alone_edit_check_flag FROM SPONSOR_POLICY</code>. Consider wrapping the VB6 <code>rsPopulate</code> read in <code>On Error Resume Next</code> for tolerance.</p>
+<hr />
+<h3 id="c4-parachute4330-vehicle-search-removes-null-check-on-purchaseprice">C4. <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> — Vehicle search removes null-check on PurchasePrice</h3>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320290">TP #320290</a> — Search Parity for Accounting Pages
+<strong>Score</strong>: 90 | <strong>Category</strong>: Bug
+<strong>File</strong>: <code>Projects/Parachute.Service/Controllers/Expenses/MileageController.cs:113</code></p>
+<p>The Vehicle search refactor removed the <code>e.PurchasePrice != null</code> guard. New line: <code>isNumeric &amp;&amp; SqlFunctions.StringConvert((double)e.PurchasePrice, 18, 2).Trim().Contains(stringNumber)</code>. Unconditional cast of nullable decimal → double throws <code>InvalidOperationException: Nullable object must have a value</code> during EF translation, or 500s the endpoint depending on provider behavior.</p>
+<p><strong>Impact</strong>: Any user searching the Large Inventory / Vehicles tab will see the entire endpoint 500 out if their account has <strong>any</strong> vehicle with a NULL purchase price. This is a very common data shape in production (legacy vehicles often lack purchase price).</p>
+<p><strong>Recommendation</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">PurchasePrice</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isNumeric</span>
+<span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">SqlFunctions</span><span class="p">.</span><span class="n">StringConvert</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="n">e</span><span class="p">.</span><span class="n">PurchasePrice</span><span class="p">.</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">     </span><span class="p">.</span><span class="n">Trim</span><span class="p">().</span><span class="n">Contains</span><span class="p">(</span><span class="n">stringNumber</span><span class="p">))</span>
+</code></pre></div>
+<hr />
+<h2 id="high-severity-findings-80-89">High Severity Findings (80-89)</h2>
+<h3 id="cross-repo-j017-policy">Cross-Repo J.017 Policy</h3>
+<h4 id="h1-minutemenudatabase686-save_provider_policy_sp-silently-overwrites-highest_serving_allowed_code-to-215">H1. <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> — <code>save_provider_policy_sp</code> silently overwrites <code>highest_serving_allowed_code</code> to 215</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320881">TP #320881</a> — PCI Highest Serving Allowed empty
+<strong>Score</strong>: 88 | <strong>Category</strong>: DataIntegrity
+<strong>File</strong>: <code>MMADMIN_XXX/Programmability/Stored Procedures/save_provider_policy_sp.sql</code> and <code>save_provider_policy_sp_port_kk.sql</code></p>
+<p>Change from "<code>0 → NULL</code>" to "<code>0 OR NULL → 215</code>" applies on <strong>every update path</strong>, not just INSERT. VB6 Integer parameters default to 0 when a form field was never loaded. Any existing HX Desktop update path that does not explicitly round-trip <code>highest_serving_allowed_code</code> now forcibly writes <code>215</code> over the stored value. HX API <code>ProviderService.cs</code> code-level fix is careful (loads existing value first); the SP change does NOT do that lookup.</p>
+<p><strong>Impact</strong>: Providers configured with Serving 2 or Serving 3 silently dropped to Serving 1 on next bulk edit → wrong meal allowance on next claim processing, cascades to reimbursement errors.</p>
+<p><strong>Recommendation</strong>: Only default to 215 in the INSERT branch of the SP:</p>
+<div class="highlight"><pre><span></span><code><span class="k">IF</span><span class="w"> </span><span class="o">@</span><span class="n">highest_serving_allowed_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="o">@</span><span class="n">highest_serving_allowed_code</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">@</span><span class="n">highest_serving_allowed_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">ISNULL</span><span class="p">(</span><span class="n">highest_serving_allowed_code</span><span class="p">,</span><span class="w"> </span><span class="mi">215</span><span class="p">)</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">PROVIDER_POLICY</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">provider_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">@</span><span class="n">id</span>
+</code></pre></div>
+<p>Move the default to the app layer (as <code>ProviderService.cs EnrollProvider</code> already does).</p>
+<hr />
+<h4 id="h2-minutemenudatabase686-mrp-manifest-omits-sponsor-030-enablement-script">H2. <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> — MRP manifest omits sponsor-030 enablement script</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320244">TP #320244</a>
+<strong>Score</strong>: 80 | <strong>Category</strong>: CrossRepoImpact / DeploymentGap
+<strong>File</strong>: <code>MMADMIN_XXX/Updates/320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql</code> + <code>MRP.sql</code></p>
+<p>The <code>SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql</code> script (sets J.017='Y' for the ticket's requesting sponsor HX030) is committed to the repo but is <strong>not listed in the regenerated MRP manifest</strong>. MRP-driven deploy will not apply it → the feature ships disabled for the very client that asked for it.</p>
+<p><strong>Impact</strong>: Ticket appears complete but has no effect in production for HX030. Follow-up "not working" ticket expected.</p>
+<p><strong>Recommendation</strong>: Regenerate MRP.sql with the SET_SPONSOR_030 script included (sequenced after SET_DEFAULT so column is populated), OR document a manual DBA runbook step with product-owner sign-off.</p>
+<hr />
+<h3 id="sponsor-102-print-check-ach-cross-repo">Sponsor 102 Print Check + ACH (Cross-Repo)</h3>
+<h4 id="h3-poc_hxcloudconnectapi1595-kk22699-centers-cx4161-minutemenudatabase686-cross-repo-deploy-order-contract">H3. <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> + <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> + <a href="https://github.com/MinuteMenu/Centers-CX/pull/4161">Centers-CX#4161</a> + <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> — Cross-repo deploy-order contract</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a> — Sponsor 102 Print Check
+<strong>Score</strong>: 85 | <strong>Category</strong>: CrossRepoImpact
+<strong>File</strong>: CX <code>LogicService.cs</code> + <code>CheckPaymentHistoryList.cs</code>, KK <code>PaymentMapping.cs</code> + <code>PaymentCheckRegisterResponse.cs</code>, DB <code>select_payment_history_list_sp.sql</code></p>
+<p><code>select_payment_history_list_sp</code> emits 3 new columns (<code>mod_date_time, mod_login_id, mod_username</code>). CX <code>LogicService</code> reads <code>dr["mod_date_time"]</code>. KK AutoMapper binds the new fields. KK consumes via the checked-in <code>MinuteMenu.Centers.ServerLib.dll</code>. Deploy ordering must be DB → CX service → KK → HX API; wrong order crashes the Check Register page for every sponsor with <code>IndexOutOfRangeException</code>.</p>
+<p><strong>Recommendation</strong>: Enforce deploy order in release runbook. Post-deploy smoke-test: <code>/cxservice/payments/getCheckRegisterList</code> returns <code>modDateTime/modLoginId/modUsername</code>.</p>
+<hr />
+<h4 id="h4-poc_hxcloudconnectapi1595-unbounded-taskwhenall-fan-out-on-sponsor-102-print">H4. <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> — Unbounded Task.WhenAll fan-out on Sponsor 102 print</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>
+<strong>Score</strong>: 80 | <strong>Category</strong>: InfrastructureStress
+<strong>File</strong>: <code>HxCloudConnect.Api/Controllers/IsssuePaymentController.cs</code> + <code>HxCloudConnect.Services/PaymentService.cs</code></p>
+<p>Controller spins an unbounded <code>Task.WhenAll</code> calling <code>BuildSponsor102Data</code> <strong>per check</strong>. Each <code>BuildSponsor102Data</code> fires 5 stored procedures in parallel (active child, serving times, provider tier, child tier counts, training hours). A 500-provider "print all" = <strong>2,500 concurrent DB round-trips</strong> with no semaphore, no batching, no caching across providers that share fiscal/tier data.</p>
+<p><strong>Impact</strong>: Spike DB connections to hundreds; each <code>QueryListByStoredProcedureAsync</code> opens a new connection. Risk of SQL thread pool / connection pool exhaustion during monthly batch prints.</p>
+<p><strong>Recommendation</strong>: Add <code>SemaphoreSlim(10)</code> around <code>sponsor102Tasks</code>. Cache <code>SELECT_PROVIDER_SERVING_TIMES_SP</code> / tier data per providerId within the request. Monitor <code>sp_who2</code> during first 102 print.</p>
+<hr />
+<h4 id="h5-poc_hxcloudconnectapi1595-ef-tracked-entity-mutation-in-aggregatelinkedclaimsforsponsor102">H5. <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> — EF-tracked entity mutation in <code>AggregateLinkedClaimsForSponsor102</code></h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>
+<strong>Score</strong>: 80 | <strong>Category</strong>: DataIntegrity
+<strong>File</strong>: <code>HxCloudConnect.Services/PaymentService.cs:542-596</code></p>
+<p>Fetches HxClaim rows for a check and mutates the chosen <code>primary</code> claim <strong>in-place</strong> by summing counts and amounts from siblings. The entity is EF-tracked — any subsequent <code>SaveChanges()</code> in the same request (or caching by IRepository) persists the summed values to DB, <strong>corrupting the original claim row</strong>.</p>
+<p><strong>Recommendation</strong>: <code>AsNoTracking()</code> on the initial query, or detach the entity, or clone to a new <code>HxClaim</code> for transient view logic.</p>
+<hr />
+<h4 id="h6-poc_hxcloudconnectapi1595-sponsor102linkedclaimdtoclaimyear-typed-decimal">H6. <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> — <code>Sponsor102LinkedClaimDTO.ClaimYear</code> typed <code>decimal?</code></h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>
+<strong>Score</strong>: 82 | <strong>Category</strong>: Bug
+<strong>File</strong>: <code>HxCloudConnect.Data/DTO/Payment/PrintReportDTO.cs:359-367</code></p>
+<p><code>ClaimYear</code> and <code>StatusCode</code> declared as <code>decimal?</code>. On the FE, <code>moment({ year: lc.ClaimYear, month: lc.ClaimMonth - 1, day: 1 })</code> and <code>getClaimLabel(lc.StatusCode, ...)</code> expect integers. Works today via JS coercion but semantically wrong — any future JSON serializer change (scientific form for large decimals) breaks the check stub.</p>
+<p><strong>Recommendation</strong>: Change <code>ClaimYear</code> to <code>int?</code> and <code>StatusCode</code> to <code>int?</code> to match <code>HxClaim.claim_year/claim_status_code</code>.</p>
+<hr />
+<h3 id="enrollment-eform-cleanup">Enrollment &amp; eForm Cleanup</h3>
+<h4 id="h7-kk22699-cleanup-endpoint-fan-out-with-no-commandtimeout">H7. <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> — Cleanup endpoint fan-out with no CommandTimeout</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/319630">TP #319630</a> — CX Child Not Found on eForm approval
+<strong>Score</strong>: 88 | <strong>Category</strong>: InfrastructureStress
+<strong>File</strong>: <code>Projects/KidKare.Bll/Enrollment/CxEnrollmentBll.cs:1444-1628</code></p>
+<p><code>DetectOrphanedCxEforms</code> / <code>CleanupOrphanedCxEforms</code> execute a <strong>serial per-client fan-out</strong>. Each iteration opens a fresh eFormsContext + CxContext, then runs <code>GetChildQuery(cx, clientId, null, null).Select(x =&gt; x.child_id).ToList()</code> — pulls the <strong>entire active CHILD roster</strong> for the client into memory. No <code>CommandTimeout</code>. No row cap. Auto-detect branch (null <code>ClientIds</code>) sweeps every CX client with any active eForm assignment.</p>
+<p><strong>Impact</strong>: N-query sweep where N can be hundreds of clients. Connection pool pressure, long-running thread held for the duration, OOM risk on large tenants. Matches known incident patterns 3/4.</p>
+<p><strong>Recommendation</strong>: Require non-empty <code>ClientIds</code> in prod (or cap per invocation). Add explicit <code>Database.CommandTimeout</code> of 30-60s. Move to a Hangfire/queue job rather than sync HTTP. Replace the HashSet-based orphan check with a server-side <code>NOT EXISTS</code> anti-join.</p>
+<hr />
+<h4 id="h8-kk22699-orphan-definition-includes-withdrawn-children-mass-hard-delete-risk">H8. <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> — "Orphan" definition includes withdrawn children → mass hard-delete risk</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/319630">TP #319630</a>
+<strong>Score</strong>: 85 | <strong>Category</strong>: DataIntegrity
+<strong>File</strong>: <code>Projects/KidKare.Bll/Enrollment/CxEnrollmentBll.cs</code> (orphan predicate) + <code>EnrollmentBll.DeleteEformAssignments</code></p>
+<p>Orphan predicate: <code>a.ChildId == 0 || !activeChildIds.Contains(a.ChildId)</code>. <code>activeChildIds</code> is populated by <code>GetChildQuery</code> which filters <code>record_status_code == Active</code>. <strong>Any child whose status is Withdrawn or Inactive is treated as an orphan</strong> and its eForm assignment is HARD-deleted via <code>HardDelete()</code> on <code>EnrollmentForm</code>, history, signatures, IEF, reports, and storage files.</p>
+<p><strong>Impact</strong>: Production data loss. A child withdrawn yesterday (a common lifecycle event) will have all historical enrollment forms/IEFs permanently deleted on first cleanup run.</p>
+<p><strong>Recommendation</strong>: Tighten predicate to "no matching CHILD row at all" (drop the Active filter for this check). Explicitly exclude withdrawn/inactive children from cleanup scope. Require <code>confirm: true</code> token before delete. Consider soft-delete instead of hard-delete.</p>
+<hr />
+<h4 id="h9-kk22699-admin-cleanup-endpoint-authz-is-shared-secret-only">H9. <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> — Admin cleanup endpoint authz is shared secret only</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/319630">TP #319630</a>
+<strong>Score</strong>: 82 | <strong>Category</strong>: Authorization
+<strong>File</strong>: <code>Projects/KidKare.Service/Controllers/CommonController.cs:7436-7472</code></p>
+<p><code>common/cleanupOrphanedEforms</code> and <code>common/detectOrphanedEforms</code> are guarded <strong>only</strong> by a shared-secret <code>SecurityKey</code>. No <code>[RequiredRole]</code>, <code>[RequiredPermission]</code>, <code>[Authorize]</code>, or IP restriction. If the key leaks (logs, Postman collections, client-side bundles), an attacker can hard-delete eForm data org-wide by omitting <code>ClientIds</code> (auto-sweep mode).</p>
+<p><strong>Recommendation</strong>: Add <code>[RequiredRole(Role.MM.System.Admin)]</code> in addition to the security key. Move behind VPN / IP allow-list. Log every invocation with caller identity, <code>ClientIds</code>, and row counts.</p>
+<hr />
+<h3 id="localization-data-patches">Localization &amp; Data Patches</h3>
+<h4 id="h10-kk22699-spanish-warning-active_children_warning_setief_skipped-left-in-english">H10. <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> — Spanish warning <code>ACTIVE_CHILDREN_WARNING_SETIEF_SKIPPED</code> left in English</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/298391">TP #298391</a> — Spanish translations
+<strong>Score</strong>: 85 | <strong>Category</strong>: Localization
+<strong>File</strong>: <code>Projects/KidKare.Web/app/i18n/es/states/cx-active-children.json:28</code></p>
+<p>The key <code>ACTIVE_CHILDREN_WARNING_SETIEF_SKIPPED</code> was added to the Spanish file with the English text verbatim. Shown every time a sponsor performs Set IEF and at least one child lacks a current enrollment date.</p>
+<p><strong>Recommendation</strong>: Translate to Spanish.</p>
+<hr />
+<h4 id="h11-kk22699-spanish-participant_kids_plural-placeholder-dropped">H11. <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> — Spanish <code>{{participant_kids_plural}}</code> placeholder dropped</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/298391">TP #298391</a>
+<strong>Score</strong>: 80 | <strong>Category</strong>: Localization
+<strong>File</strong>: <code>Projects/KidKare.Web/app/i18n/es/states/my-kids-enroll-child.json:165</code></p>
+<p>Spanish translation hard-codes "varios miembros de una familia" instead of interpolating <code>{{participant_kids_plural}}</code>. Singular <code>{{participant_kids}}</code> kept — inconsistent. For sponsors configured with a non-default participant term ("Estudiantes", "Participantes", "Adultos"), the Spanish sentence loses terminology customization and also conveys a different meaning ("family members").</p>
+<p><strong>Recommendation</strong>: Restore the plural placeholder.</p>
+<hr />
+<h4 id="h12-minutemenudatabase686-foster-income-eligibility-restore-too-narrow">H12. <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> — Foster Income-Eligibility restore too narrow</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/321413">TP #321413</a> — Restore Historical IE Dates for Foster Children
+<strong>Score</strong>: 80 | <strong>Category</strong>: RequirementWrong / DataIntegrity
+<strong>File</strong>: <code>MMADMIN_XXX/Updates/321413_Restore_Foster_Child_Income_Eligibility.sql:72-101</code></p>
+<p>WHERE clause narrows to <code>bk.tier_code = 126 AND bk.tier_start_date IS NOT NULL AND bk.tier_end_date IS NOT NULL</code>. Three gaps versus ticket scope:
+1. Tier I only — foster children who legitimately had Tier II (127) or other tier_code data cleared by #318945 are <strong>not</strong> restored.
+2. RCA reference uses <code>OR</code> between start/end dates; foster children with only one date populated are skipped.
+3. <code>is_child_income</code> checkbox is NOT restored — ticket explicitly asks: "Restore checkbox state if applicable".</p>
+<p><strong>Recommendation</strong>: Broaden to <code>bk.tier_code IS NOT NULL AND (bk.tier_start_date IS NOT NULL OR bk.tier_end_date IS NOT NULL)</code>. Also restore <code>is_child_income</code> from the backup table. Confirm scope with HX102 before release.</p>
+<hr />
+<h3 id="parachute">Parachute</h3>
+<h4 id="h13-parachute4330-mileagemodelmiles-api-contract-break-decimal-double">H13. <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> — <code>MileageModel.Miles</code> API contract break (decimal → double)</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320290">TP #320290</a>
+<strong>Score</strong>: 85 | <strong>Category</strong>: API Contract
+<strong>File</strong>: <code>Projects/Parachute.Service/Models/MileageModel.cs:13</code></p>
+<p><code>Miles</code> property type changed from <code>decimal</code> to <code>double</code>. This alters the JSON serialization contract for <code>/mileage</code>. Strongly-typed mobile clients (iOS <code>Decimal</code>, Android <code>BigDecimal</code>) may fail or lose precision. Values now serialize with IEEE-754 artifacts like <code>12.340000000000001</code>.</p>
+<p><strong>Recommendation</strong>: Revert to <code>decimal</code> or add <code>MilesDouble</code> as a new field while keeping the existing contract. Perform internal conversion only where needed.</p>
+<hr />
+<h4 id="h14-parachute4330-expensescontroller-nullreferenceexception-on-search">H14. <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> — <code>ExpensesController</code> NullReferenceException on search</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320290">TP #320290</a>
+<strong>Score</strong>: 80 | <strong>Category</strong>: Bug
+<strong>File</strong>: <code>Projects/Parachute.Service/Controllers/Expenses/ExpensesController.cs:509</code></p>
+<p>New predicate <code>e.Category.Name.ToLower().Contains(req.InputSearch)</code> without a null guard. <code>ExpenseModel.Category</code> is a reference type and the same file elsewhere defensively accesses <code>category?.Name</code>.</p>
+<p><strong>Impact</strong>: 500 on search when any expense has a null Category (legacy data, deleted categories).</p>
+<p><strong>Recommendation</strong>: <code>(e.Category != null &amp;&amp; !string.IsNullOrEmpty(e.Category.Name) &amp;&amp; e.Category.Name.ToLower().Contains(req.InputSearch))</code></p>
+<hr />
+<h4 id="h15-parachute4330-number-input-directive-emptynull-semantic-change">H15. <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> — <code>number-input</code> directive empty→null semantic change</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320293">TP #320293</a>
+<strong>Score</strong>: 80 | <strong>Category</strong>: Bug
+<strong>File</strong>: <code>Projects/Parachute.Web/app/common/directives/number-input/number-input.js:86-92</code></p>
+<p><code>$parsers</code> now returns <code>null</code> for empty input when <code>allowNull=false</code> (previously fell through to NaN via <code>parseFloat('')</code>). Consumers calling <code>.toFixed()</code>, arithmetic, or <code>ng-pattern</code> on non-nullable models may throw. <code>$formatters</code> also changed — fields previously showing "0.00" now render blank.</p>
+<p><strong>Impact</strong>: Cross-cutting — affects kiosk PIN/hours entry, payment amount, payroll hours, expense amount, mileage, recurring invoice amounts. Forms that guard against NaN but not null will silently submit null; <code>ng-required</code> now treats empty-valid.</p>
+<p><strong>Recommendation</strong>: Return <code>undefined</code> (so required validation still marks invalid), OR keep NaN fallthrough when <code>!allowNull</code>. Regression test across kiosk PIN/hours, payroll, payment, expense amount, mileage.</p>
+<hr />
+<h4 id="h16-parachute4330-search-input-css-class-collides-with-existing-input-usage">H16. <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> — <code>.search-input</code> CSS class collides with existing <code>&lt;input&gt;</code> usage</h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/320291">TP #320291</a>
+<strong>Score</strong>: 75 (just below High; flagging for visibility)
+<strong>File</strong>: <code>Projects/Parachute.Web/app/common/directives/search-input/search-input.less</code></p>
+<p>The rewritten stylesheet redefines <code>.search-input</code> as a flex wrapper (<code>display: inline-flex; margin-right: 16px</code>). This is imported globally. Many existing pages apply <code>class="search-input"</code> directly to <code>&lt;input&gt;</code> elements (Messages sent view, Payer Invoice List, drag-and-drop lists, UI sandbox, expenses-income main-view). These inputs now receive flex/margin/position that was never intended.</p>
+<p><strong>Recommendation</strong>: Namespace: <code>app-search-input .search-input { ... }</code>, OR rename the wrapper class. (Listed here despite 75 score because the blast radius spans unchanged modules.)</p>
+<hr />
+<h3 id="claims-engine">Claims Engine</h3>
+<h4 id="h17-minutemenudatabase686-hx1676-default-flip-in-select_rpt_meal_count_attendance_sp">H17. <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> + <a href="https://github.com/MinuteMenu/HX/pull/1676">HX#1676</a> — Default flip in <code>select_rpt_meal_count_attendance_sp</code></h4>
+<p><strong>Ticket</strong>: <a href="https://minutemenu.tpondemand.com/entity/318686">TP #318686</a> — Meal Counts &amp; Attendance with FRP missing Breakfast/Lunch
+<strong>Score</strong>: 78 (just below High — included for visibility)
+<strong>File</strong>: <code>CXADMIN/Programmability/Stored Procedures/select_rpt_meal_count_attendance_sp.sql:19</code></p>
+<p>The in-SP default <code>@respectDisallowance</code> was flipped from <code>1</code> to <code>0</code>. Behavior is preserved only because <code>ISNULL(..., 'N')</code> fallback re-creates prior behavior when the CLIENT_POLICY row is absent. The pattern is fragile: any future refactor removing the ISNULL silently enables disallowed meals in the FRP report for every CX client.</p>
+<p><strong>Recommendation</strong>: Keep the variable default = <code>1</code> and only flip to <code>0</code> when the new L11 policy is explicitly <code>'Y'</code>. Pattern: <code>IF @includeAllRecordedMeals = 'Y' SET @respectDisallowance = 0;</code>.</p>
+<hr />
+<h2 id="infrastructure-impact-assessments">Infrastructure Impact Assessments</h2>
+<h3 id="batch-1-claims-engine-meal-attendance">Batch 1 — Claims Engine &amp; Meal Attendance</h3>
+<p><strong>Risk Level</strong>: Medium
+<strong>Summary</strong>: Changes are mostly additive but <code>claim_error_meal_attendance_count_fn</code> was fully rewritten (ticket asked only for Error 76 infant handling), and <code>select_rpt_meal_count_attendance_sp</code> flipped a default — both create latent regression/default-safety risks visible only at scale.
+<strong>Details</strong>:
+- <code>claim_error_meal_attendance_count_fn</code> Error 76 branch adds PROVIDER+SPONSOR_POLICY joins per call → scales with #(claim errors) × #(reprocess runs)
+- <code>claim_error_meal_attendance_source_form_fn</code> adds MEAL_ATTENDANCE scan — single-scan, fine
+- <code>select_361127_Child_Reconciliation_sp</code> adds a second full-scan UPDATE over <code>#PGRID</code> for RECTYPE='A' (duplicated across MMADMIN_XXX + CXADMIN)
+- HX <code>clsClaimProcessor.cls</code> refactored for #321408; restored <code>iMiscGroupOverCount</code> in disallow formula
+- Policy L.11 + policy seed default 'N' (legacy behavior preserved)
+- <code>save_sponsor_policy_sp</code> parameter-add — safe default; deploy-order caveat applies
+<strong>Tables affected</strong>: CLAIM_ERROR, MEAL_ATTENDANCE, CHILD, PROVIDER, SPONSOR_POLICY, CLIENT_POLICY, POLICY, #PGRID
+<strong>Rollback difficulty</strong>: Medium (SPs rollback clean; HX client rollback is installer-level)
+<strong>Monitoring</strong>: Watch execution time of <code>select_claim_error_summary_sp</code>, <code>select_claim_errors_for_rpt_sp</code>, <code>select_361127_Child_Reconciliation_sp</code>, <code>select_rpt_meal_count_attendance_sp</code>; HX crash logs for <code>IncludeInfantsInOwnAloneEditCheckFlag</code> binding errors
+<strong>DevOps Action Required</strong>: <strong>Yes</strong> — deploy MMADMIN_XXX migrations + <code>save_sponsor_policy_sp</code> BEFORE HX installer; monitor post-deploy execution-time regression on Error 76 reports.</p>
+<hr />
+<h3 id="batch-2-j017-include-infants-policy-cross-repo">Batch 2 — J.017 "Include-Infants" Policy (Cross-Repo)</h3>
+<p><strong>Risk Level</strong>: <strong>Critical</strong>
+<strong>Summary</strong>: 4-repo schema change (DB, HX API, HX Desktop, KK). Deployment order is NOT self-protecting. Out-of-order deploy = outage or silent data corruption. <code>save_provider_policy_sp</code> can silently overwrite <code>highest_serving_allowed_code</code> to 215 across all existing providers on next VB6 save. MRP manifest missing the sponsor-030 enablement script — feature will not activate for HX030.
+<strong>Tables affected</strong>: SPONSOR_POLICY, PROVIDER_POLICY, STATE_POLICY, STATE_POLICY_TD view; any EF query over SponsorPolicies in HX API.
+<strong>Rollback difficulty</strong>: High — HX Desktop installer rollback is per-machine; column-add requires DROP COLUMN for full reversal.
+<strong>DevOps Action Required</strong>: <strong>Yes — critical</strong>
+1. <strong>Mandatory deploy order</strong>: MMADMIN DB → HX API → HX Desktop → KK. Block reverse order in release pipeline.
+2. <strong>Add <code>320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql</code> to MRP</strong> before ship, OR document manual run with product-owner sign-off.
+3. <strong>#320881 regression test</strong>: snapshot <code>PROVIDER_POLICY.highest_serving_allowed_code</code> distribution before release; simulate HX Desktop save-with-unchanged-form; diff should show zero changes. If Desktop overwrites to 215, block release.
+4. <strong>Post-deploy smoke</strong>: HX Desktop login for HX030, HX102; KK sponsor policy page; Save Sponsor Policy round-trip; OER render on claim with &gt;50 errors.
+5. <strong>Monitoring</strong>: HX API for <code>Invalid column name 'include_infants_in_own_alone_edit_check_flag'</code> and VB6 ADO "Item cannot be found" in the first 30 min window.</p>
+<hr />
+<h3 id="batch-3-sponsor-102-print-check-payments">Batch 3 — Sponsor 102 Print Check &amp; Payments</h3>
+<p><strong>Risk Level</strong>: <strong>High</strong>
+<strong>Summary</strong>: Financial-path change across 4 repos with mandatory deploy order DB → CX → KK → HX API. Wide covering index on multi-million-row CHECK_REGISTER without <code>ONLINE=ON</code>. 100k-row browser fetch for dropdown. Unbounded fan-out of 5 SPs per provider on Sponsor 102 print. Cross-repo contract via compiled <code>MinuteMenu.Centers.ServerLib.dll</code> + SP signature.
+<strong>Tables affected</strong>: CHECK_REGISTER (hot — index DDL window needed), SELECT_ACTIVE_CHILD_<em>, SELECT_PROVIDER_SERVING_TIMES_</em>, SELECT_PROVIDER_TIER_<em>, SELECT_CHILD_TIER_COUNTS_</em>, SELECT_TRAINING_HOURS_<em>.
+</em><em>Rollback difficulty</em><em>: Medium-High — <code>MRP_Rollback.sql</code> only covers <code>select_payment_history_list_sp</code>; other SPs + L11 policy INSERT lack rollback.
+</em><em>DevOps Action Required</em><em>: </em><em>Yes</em>*
+1. <code>sp_BlitzIndex 'dbo.CHECK_REGISTER'</code> in QA before deploy.
+2. Add <code>WITH (ONLINE = ON, MAXDOP = 4)</code> to 316306 index creation if Enterprise Edition, else maintenance window.
+3. Enforce DB → CX → KK → HX API deployment order in runbook.
+4. Extend <code>MRP_Rollback.build.config</code> before GA OR document that rollback requires DBA intervention.
+5. Stage a SQL connection / thread-pool monitor before first Sponsor 102 print post-release.
+6. <code>sys.dm_db_index_usage_stats</code> check 7 days post-release — drop index if unused.
+7. Smoke-test <code>/cxservice/payments/getCheckRegisterList</code> contains <code>modDateTime/modLoginId/modUsername</code>.</p>
+<hr />
+<h3 id="batch-4-enrollment-eform-cleanup">Batch 4 — Enrollment &amp; eForm Cleanup</h3>
+<p><strong>Risk Level</strong>: <strong>High</strong>
+<strong>Summary</strong>: Two admin endpoints perform serial per-client sweep of eForms + CXADMIN with no timeout guard, unbounded row fetches, hard-deletes based on "orphan = non-Active child" semantics (a common lifecycle event), and shared-secret-only authz. Cross-cutting API shape change (<code>UpdateIEFChildrenByChildIds</code> bool → object) and JS notification signature change.
+<strong>Rollback difficulty</strong>: Low for individual features; impossible for data hard-deleted via cleanup.
+<strong>DevOps Action Required</strong>: <strong>Yes — critical gate</strong>
+1. <strong>BLOCK deployment of the cleanup endpoint</strong> until the orphan predicate is tightened (or replaced with explicit orphan ID list).
+2. Add explicit <code>Database.CommandTimeout</code> (30-60s) on both contexts in the per-client loop.
+3. Add <code>[RequiredRole]</code> on top of <code>CheckSecurityKey</code>; firewall the endpoint to DevOps app pool / IP allow-list.
+4. Rotate API security key before/after first prod use. Audit-log every invocation.
+5. Run initial sweep off-peak under SQL monitor.
+6. Audit <code>advancedErrorNotification</code> callers for the title→conf signature change.</p>
+<hr />
+<h3 id="batch-5-reports-ui-localization">Batch 5 — Reports, UI, Localization</h3>
+<p><strong>Risk Level</strong>: Medium
+<strong>Summary</strong>: Mostly low-risk report swaps, Spanish i18n, UI patches. Introduces the two admin cleanup endpoints (same risk as Batch 4). New covering index on CHECK_REGISTER (same risk as Batch 3). Shared-Core <code>.rpt</code> changed without nuspec version bump (process gap, not runtime risk).
+<strong>DevOps Action Required</strong>: <strong>Yes</strong>
+1. Run <code>316306_create_check_register_client_center_covering_index.sql</code> DDL in maintenance window.
+2. Firewall/IP-restrict the two new cleanup endpoints.
+3. Verify <code>CHILD_TIER_BACKUP_318945</code> exists on each HX sponsor DB before running <code>321413_Restore_Foster_Child_Income_Eligibility.sql</code>; capture before/after counts; run in explicit transaction.
+4. Confirm Shared-Core reporting service website is redeployed (file replacement, not NuGet).
+5. Monitor CX API thread count + CXADMIN/EForm connection count for 48h post-deploy.</p>
+<hr />
+<h3 id="batch-6-parachute">Batch 6 — Parachute</h3>
+<p><strong>Risk Level</strong>: Medium-High
+<strong>Summary</strong>: UI refresh (standardized search + cell highlighting) + targeted accounting fixes. Highest risks: silent API contract change on <code>MileageModel.Miles</code> (decimal→double), NRE in expenses search, semantic change in shared <code>number-input</code> directive reaching beyond the ticket scope (kiosk/payments/payroll), <code>.search-input</code> CSS class collision with existing inline usage.
+<strong>DevOps Action Required</strong>: <strong>Yes</strong>
+1. <strong>Pre-deploy</strong>: verify mobile clients (iOS/Android) handle <code>double</code> Miles without precision/crash; gate behind contract version if needed.
+2. <strong>Pre-deploy</strong>: apply null guard on <code>e.Category.Name</code> in <code>ExpensesController</code> — prevents guaranteed 500 on null-category legacy data.
+3. <strong>Pre-deploy smoke</strong>: <code>number-input</code> clear/empty behavior in kiosk PIN/hours, payment amount, mileage, expense amount.
+4. <strong>Pre-deploy visual regression</strong>: pages using <code>&lt;input class="search-input"&gt;</code> directly (Messages, Payer Invoice List, drag-and-drop, UI sandbox, expenses).
+5. <strong>Post-deploy APM</strong>: NullReferenceException on <code>ExpensesController.GetExpense</code>; JSON deserialization errors on <code>/mileage</code>.
+6. <strong>Perf watch</strong>: RUM/LCP on large expense/income tables.
+7. <strong>Follow-up</strong>: remove legacy <code>common/directives/search-input/*</code> + index.html script tag.</p>
+<hr />
+<h2 id="missing-tickets-no-code-change-found">Missing Tickets — No Code Change Found</h2>
+<p>Two tickets are in the release scope but no matching diff content was found in any of the 7 repos reviewed:</p>
+<table>
+<thead>
+<tr>
+<th>Ticket</th>
+<th>Title</th>
+<th>Status</th>
+<th>Concern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/318581">TP #318581</a></td>
+<td>Ghost eForm Enrollment Record (Not Started)</td>
+<td>Dev</td>
+<td>No enrollment-status counting / View Status change in any diff. #319630 orphan framework operates on <code>EnrollmentAssignmentsCx</code> only — HX assignments (this ticket is for HX provider 019603522) are not scanned.</td>
+</tr>
+<tr>
+<td><a href="https://minutemenu.tpondemand.com/entity/321662">TP #321662</a></td>
+<td>Unable to disallow Pending children after Withdrawal</td>
+<td>Ready For Test</td>
+<td>Searched all diffs for "pending/withdraw/disallow/D.19/F.5b" — no matching change. HX claim processor changes are for #321408 and #320244 only.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation</strong>: Confirm with engineering whether these are in scope. If yes, add the missing code. If not, remove from the release entity so the release scope is accurate.</p>
+<hr />
+<h2 id="priority-action-items">Priority Action Items</h2>
+<h3 id="must-fix-critical-blocks-release">Must Fix (Critical — blocks release)</h3>
+<ol>
+<li><strong>C1</strong> — <a href="https://github.com/MinuteMenu/Centers-CX/pull/4161">Centers-CX#4161</a> (<a href="https://minutemenu.tpondemand.com/entity/316306">TP #316306</a>): Parameterize the ACH <code>check_id IN (...)</code>, add scope authorization on <code>CheckIds</code>, null-check the request.</li>
+<li><strong>C2</strong> — <a href="https://github.com/MinuteMenu/Centers-CX/pull/4161">Centers-CX#4161</a> (<a href="https://minutemenu.tpondemand.com/entity/316306">TP #316306</a>): Validate all batch rows share the same <code>check_date</code> (or group by date server-side); reduce <code>CommandTimeout</code> to 30s.</li>
+<li><strong>C3</strong> — <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> + <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> (<a href="https://minutemenu.tpondemand.com/entity/320244">TP #320244</a>): Enforce deploy order (DB → HX API → HX Desktop) in release runbook. Add app-startup smoke test for the new column.</li>
+<li><strong>C4</strong> — <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> (<a href="https://minutemenu.tpondemand.com/entity/320290">TP #320290</a>): Restore null guard on <code>e.PurchasePrice</code> in <code>MileageController.cs:113</code>.</li>
+</ol>
+<h3 id="should-fix-high-significant-risk">Should Fix (High — significant risk)</h3>
+<ol>
+<li><strong>H1</strong> — <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> (<a href="https://minutemenu.tpondemand.com/entity/320881">TP #320881</a>): Scope <code>save_provider_policy_sp</code> 215 default to INSERT-only; preserve existing DB value on UPDATE.</li>
+<li><strong>H2</strong> — <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> (<a href="https://minutemenu.tpondemand.com/entity/320244">TP #320244</a>): Add <code>320244_SET_SPONSOR_030_INCLUDE_INFANTS_FLAG.sql</code> to MRP manifest.</li>
+<li><strong>H3</strong> — Cross-repo (<a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>): Document DB → CX → KK → HX API deploy order. Post-deploy smoke <code>/cxservice/payments/getCheckRegisterList</code>.</li>
+<li><strong>H4</strong> — <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> (<a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>): Add <code>SemaphoreSlim(10)</code> and caching to <code>BuildSponsor102Data</code> fan-out.</li>
+<li><strong>H5</strong> — <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> (<a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>): <code>AsNoTracking()</code> or detach in <code>AggregateLinkedClaimsForSponsor102</code>.</li>
+<li><strong>H6</strong> — <a href="https://github.com/MinuteMenu/POC_HxCloudConnectApi/pull/1595">POC_HxCloudConnectApi#1595</a> (<a href="https://minutemenu.tpondemand.com/entity/320213">TP #320213</a>): Change <code>ClaimYear</code> and <code>StatusCode</code> to <code>int?</code>.</li>
+<li><strong>H7</strong> — <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> (<a href="https://minutemenu.tpondemand.com/entity/319630">TP #319630</a>): Require <code>ClientIds</code>, add <code>CommandTimeout</code>, move cleanup to a Hangfire job.</li>
+<li><strong>H8</strong> — <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> (<a href="https://minutemenu.tpondemand.com/entity/319630">TP #319630</a>): Tighten orphan predicate to "no matching CHILD row at all". Require explicit confirm token.</li>
+<li><strong>H9</strong> — <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> (<a href="https://minutemenu.tpondemand.com/entity/319630">TP #319630</a>): Add <code>[RequiredRole]</code> on top of <code>CheckSecurityKey</code>; firewall behind VPN.</li>
+<li><strong>H10</strong> — <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> (<a href="https://minutemenu.tpondemand.com/entity/298391">TP #298391</a>): Translate <code>ACTIVE_CHILDREN_WARNING_SETIEF_SKIPPED</code> to Spanish.</li>
+<li><strong>H11</strong> — <a href="https://github.com/MinuteMenu/KK/pull/22699">KK#22699</a> (<a href="https://minutemenu.tpondemand.com/entity/298391">TP #298391</a>): Restore <code>{{participant_kids_plural}}</code> placeholder in Spanish.</li>
+<li><strong>H12</strong> — <a href="https://github.com/MinuteMenu/MinuteMenu.Database/pull/686">MinuteMenu.Database#686</a> (<a href="https://minutemenu.tpondemand.com/entity/321413">TP #321413</a>): Broaden <code>321413_Restore_Foster...sql</code> WHERE (drop Tier-I filter; OR instead of AND). Restore <code>is_child_income</code>.</li>
+<li><strong>H13</strong> — <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> (<a href="https://minutemenu.tpondemand.com/entity/320290">TP #320290</a>): Revert <code>MileageModel.Miles</code> to <code>decimal</code> OR add <code>MilesDouble</code> as additive.</li>
+<li><strong>H14</strong> — <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> (<a href="https://minutemenu.tpondemand.com/entity/320290">TP #320290</a>): Null-guard <code>e.Category.Name</code> in <code>ExpensesController.cs:509</code>.</li>
+<li><strong>H15</strong> — <a href="https://github.com/MinuteMenu/Parachute/pull/4330">Parachute#4330</a> (<a href="https://minutemenu.tpondemand.com/entity/320293">TP #320293</a>): Review <code>number-input</code> empty→null change; either return <code>undefined</code> or keep NaN; regression-test all callers.</li>
+</ol>
+<h3 id="verify-with-product-behavioral-changes-needing-confirmation">Verify With Product (Behavioral changes needing confirmation)</h3>
+<ol>
+<li><strong>#318686</strong> — Policy L.11 defaults to <code>'N'</code> (legacy broken behavior). Sponsor must opt-in per client. Is this intentional or should the fix be auto-applied to the affected client?</li>
+<li><strong>#318581 &amp; #321662</strong> — No code change found in any diff. Confirm whether these tickets are meant for 26.4.22 or should be moved out of scope.</li>
+<li><strong>#318784</strong> — Fix is a workaround (frontend skips licenseId auto-override on roster reports) rather than reading historical At-Risk data. Confirm product intent.</li>
+<li><strong>#319630</strong> — Delivered as general-purpose orphan framework scanning all CX clients. Original ticket was targeted to 2 children on client 8141. Confirm broader scope was intended.</li>
+<li><strong>#320290 income date format</strong> — Changed from MM/DD/YY to MM/DD/YYYY on the Income grid. Intentional?</li>
+<li><strong>#320293 <code>deleteFileReceipt</code> call-site change</strong> — Unrelated to any of the 5 Parachute tickets. Confirm QA tested delete-expense with attached receipt.</li>
+<li><strong>#321408 <code>iSchoolAgedDisallowCount</code> storage under non-disallow waivers</strong> — New gating may zero out a count that was previously written under <code>bAttendanceFromTimes=True</code> + Warn/Ignore waiver. Verify with HX211 scenarios.</li>
+<li><strong>#321350 full-function rewrite of <code>claim_error_meal_attendance_count_fn</code></strong> — Non-76 error branches restructured; run side-by-side regression on OER output pre/post for production-scale claim-errors.</li>
+</ol>
+<hr />
+<p><em>Report generated by 18 parallel code-review agents (6 batches × 3 specialized agents: Bug Detection, Architecture &amp; Performance, Requirement Alignment) reviewing 7 release-to-master PRs. Only Critical (90-100) and High (80-89) findings are shown above; approximately 25 additional findings scored 70-79 (Notable) were filtered out — ask to include them if desired.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

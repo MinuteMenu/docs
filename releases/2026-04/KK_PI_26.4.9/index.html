@@ -1,0 +1,2395 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://minutemenu.github.io/docs/releases/2026-04/KK_PI_26.4.9/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Release: KK PI 26.4.9 - MinuteMenu Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#release-kk-pi-2649" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MinuteMenu Docs" class="md-header__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MinuteMenu Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release: KK PI 26.4.9
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MinuteMenu Docs" class="md-nav__button md-logo" aria-label="MinuteMenu Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MinuteMenu Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/MinuteMenu/docs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Process
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Process
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/development-workflow-change/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development Workflow Change
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/architecture-review-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture & Performance Review
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../process/targetprocess-skill-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Targetprocess Skill Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Plans
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../plans/template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Releases
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Releases
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../template.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/system-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Flows
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Flows
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Authentication
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-client-migration-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Client Migration Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/authentication/saml-sso-complete-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAML SSO - Complete Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    EForm
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../flows/eform/enrollment-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enrollment Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Components
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/eform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EForm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/authentication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/claims-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims Processing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Sponsor
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    CX Sponsor
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_7_4_1" id="__nav_7_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SFSP/ARAS
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_7_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SFSP/ARAS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attendance & Meal Counts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/food-transfer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Food Transfer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/meal-delivery-pickup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meal Delivery & Pickup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sfsp-aras/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/menu-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Menu & Regular Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/children-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Children Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/site-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Site Management (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/administration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Administration (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/claims/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Claims (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/payments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Payments (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CX Reports (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-attendance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Attendance (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/import-child/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Import Child (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/left-menu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Left Menu (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/tools-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tools — Permissions (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../components/cx-sponsor/milk-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Milk Audit (TODO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-infrastructure-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Infrastructure Impact
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Infrastructure Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-database-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Database Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-auth-session-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Auth / Session Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-api-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 API Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-performance-capacity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Performance &amp; Capacity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-cross-repo-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Cross-Repo Dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-web-configuration-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Web Configuration Changes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-rollback-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Rollback Plan
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-risk-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Risk Assessment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-deployment-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Deployment Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-tickets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Tickets
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="release-kk-pi-2649">Release: KK PI 26.4.9</h1>
+<p><strong>Release ID:</strong> #318015
+<strong>Prepared by:</strong> [VERIFY — dev lead name]
+<strong>Date:</strong> 2026-04-09
+<strong>Branch:</strong> release/318015_KK_PI_26.4.9</p>
+<hr />
+<h2 id="1-summary">1. Summary</h2>
+<ul>
+<li><strong>eForms:</strong> Cleanup orphaned enrollment reports on Send Invitations screen (#316482); fix cancel-invitation not removing reporting records (#317375); fix FRP Basis sort order on Approve &amp; Renew (#298280).</li>
+<li><strong>Tiering (CACFP):</strong> Fix Child Income Eligibility (Tier 1) incorrectly auto-set for all children in Tier 1 homes — now only applies to provider's own children by income (#318945); includes data migration script and cross-repo changes (KK, HxCloud, Database).</li>
+<li><strong>Claims:</strong> Fix List Claims default filter showing only unsubmitted claims instead of all (#319629); fix Adjust Claim Count validation blocking save after removing approved meals (#293930).</li>
+<li><strong>Attendance:</strong> Fix Certificate pop-up unresponsive when both Certify Accuracy and Auto-Calc Qty settings enabled (#317820, #319627) — covers both classrooms-attendance and classrooms-daily-attendance screens.</li>
+<li><strong>Printing/Checks:</strong> Fix check printing at ~70% scale, alignment issues, itemized detail showing wrong amount/label for consolidated checks (#318211, #320038); remove memo line from bottom section.</li>
+<li><strong>Reports:</strong> Fix Child List missing in Review Worksheet from Observer Mode (#317938); fix MPR milk quantity not calculating for Open Enrolled (ARAS/SFSP) centers (#317867); fix print MPR incorrect from sponsor view.</li>
+<li><strong>Enrollment/Children:</strong> Fix expired/expiring-soon filter 1-day gap on exact expiration date (#319633); fix ChildSendInvitations API NullReferenceException (#314517); fix food audit fields saved as NULL or -1 (#307083).</li>
+<li><strong>Centers Policy:</strong> New Policy D.33 — Use Historic Claims Data for Rosters with 6 sub-policies (D.33a–D.33f) for enrollment date, IEF expiration, FRP designation/basis, and classroom (#318497).</li>
+<li><strong>Parachute Integration:</strong> Address sync (City, State, Zip) between Parachute and KidKare for all account types (#317756); remove Accounting PIN from KidKare pages (#319102); enhance child classroom assignment to prevent duplicates (#318618).</li>
+<li><strong>Guardian Management:</strong> Filter out inactive contacts (status 289) from Manage Guardians tab (#316483).</li>
+<li><strong>TX Compliance:</strong> Update Texas IEF for Child Care Center from July 2022 to March 2026 version — English and Spanish (#319410).</li>
+<li><strong>Reverted:</strong> #311567 (Eform signature date) — withdrawn, issue confirmed resolved in current state. #317708 (Provider Training validation) — reverted.</li>
+</ul>
+<hr />
+<h2 id="2-infrastructure-impact">2. Infrastructure Impact</h2>
+<p><strong>Overall Risk Level:</strong> High</p>
+<h3 id="21-database-changes">2.1 Database Changes</h3>
+<ul>
+<li><code>MinuteMenu.Database: 318945_Fix_child_income_eligibility_tier1.sql</code> — Data migration: backup child tier data, clear tier for Census/School provider children, clear tier for non-own Income children, sync dates for own Income children. Audit trail: <code>mod_login_id = '-318945'</code>.</li>
+<li><code>MinuteMenu.Database: 317375_cleanup_orphaned_reports_after_cancel_invitation.sql</code> — One-time cleanup of orphaned <code>KK_EnrollmentReport</code> records left behind by prior cancel-invitation operations. Scoped to CX and HX, Submitted by Parent only. TRY/CATCH with rollback.</li>
+<li><code>MinuteMenu.Database: 311567_revert.sql</code> — Revert of signature date changes from #311567.</li>
+<li><code>MinuteMenu.Database: select_child_by_provider_id_filter_for_UP332_sp.sql</code> — Fixed Tier display at 4 locations: Tier 1 provider → ALL children display Tier='1' regardless of child's tier_code. Fixed bug comparing tier vs itself.</li>
+<li><code>MinuteMenu.Database: select_rpt_422_*.sql</code> (Child Roster SPs) — Extended ClaimChildKeyData JOIN for D.33 policy; added per-field CASE logic for D.33a–D.33f sub-policies; fixed residual @mode IN (2,3) block and incorrect D.33 override ordering.</li>
+<li><code>MinuteMenu.Database: SelectRptClaimsRosterSponsor.sql</code> — Added ClaimChildKeyData JOIN for D.33; replaced flat D.22 overlay with per-field CASE expressions.</li>
+<li><code>MinuteMenu.Database: insert_default_independent_policies.sql</code> — Added D.33 and D.33a–D.33f policy defaults (all N).</li>
+<li><code>MinuteMenu.Database: get_MilkQuantity_NonInfant_ForNeeded</code> — Added Open Enrolled (ARAS/SFSP) center support for milk quantity calculation using <code>SFSP_ATTENDANCE_ITEM</code>.</li>
+<li><code>MinuteMenu.Database: MRP.build.config / MRP.sql</code> — Build config and release script updated.</li>
+</ul>
+<h3 id="22-auth-session-changes">2.2 Auth / Session Changes</h3>
+<ul>
+<li>None</li>
+<li>Expected re-authentication impact: None — no auth changes</li>
+</ul>
+<h3 id="23-api-changes">2.3 API Changes</h3>
+<ul>
+<li>CHANGED: <code>POST enrollment/sponsor/ChildSendInvitations</code> — Fixed NullReferenceException by replacing <code>_userSessionState</code> (constructor injection) with <code>UserSessionState</code> (property injection); added null guards for <code>GuardianId</code> parsing (#314517).</li>
+<li>CHANGED: <code>PUT UpdateCenterSite</code> — Now also persists <code>city_name</code>, <code>state_code</code>, <code>zip_code</code> when updating center site (#317756).</li>
+<li>CHANGED: <code>GET GetMySite</code> — Response now includes <code>City</code>, <code>StateCode</code>, <code>Zip</code> fields (#317756).</li>
+<li>CHANGED: <code>GET GetSponsorReviewWorksheetReport</code> — Now uses sponsor's <code>current_claim_month/year</code> instead of <code>DateTime.UtcNow</code>; passes <code>@IncludePending</code> and <code>@IncludeExpired</code> to SP (#317938).</li>
+<li>CHANGED: <code>GET GetRecurringInvoiceProviders</code> — Now accepts <code>sponsorId</code> parameter for optimized provider lookup.</li>
+<li>NEW: <code>POST process-enrollment-report-cleanup</code> — Batch cleanup endpoint for stale enrollment reports; uses keyset pagination, batched writes of 50, <code>ReadUncommitted</code> isolation for reads (#316482).</li>
+<li>DISABLED: <code>SyncClassroomToParachute</code> call in <code>AddCxChild</code> is commented out — classroom sync to Parachute disabled for CX child creation (#318618).</li>
+</ul>
+<h3 id="24-performance-capacity">2.4 Performance &amp; Capacity</h3>
+<ul>
+<li>Enrollment report cleanup API scanned 1,916,246 completed enrollment reports and cleaned up 100 orphaned record sets on QA. <strong>Monitor</strong> — watch execution time and DB load when run on production (one-time operation).</li>
+<li>D.33 roster SPs add ClaimChildKeyData JOINs to Child Roster and Claims Roster stored procedures. <strong>Monitor</strong> — watch SP execution time after deploy, especially for large sponsors with many claims.</li>
+<li>Tier data migration script (#318945) updates CHILD table records across all sponsors. <strong>Monitor</strong> — watch for lock contention during execution on production.</li>
+<li><code>select_child_by_provider_id_filter_for_UP332_sp</code> changed at 4 locations. <strong>Monitor</strong> — verify child list performance for Tier 1 providers.</li>
+</ul>
+<h3 id="25-cross-repo-dependencies">2.5 Cross-Repo Dependencies</h3>
+<ul>
+<li>Repos involved: KK, POC_HxCloudConnectApi, Centers-CX, MinuteMenu.Database</li>
+<li>Deploy order: MinuteMenu.Database → POC_HxCloudConnectApi → KK → Centers-CX [VERIFY — confirm deploy order with DevOps]</li>
+<li>Rollback order: Centers-CX → KK → POC_HxCloudConnectApi → MinuteMenu.Database [VERIFY]</li>
+</ul>
+<hr />
+<h2 id="3-web-configuration-changes">3. Web Configuration Changes</h2>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Key</th>
+<th>Value</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KK BE</td>
+<td><code>Settings.ReviewToolPendingChildren</code></td>
+<td>existing setting</td>
+<td>Now read by Observer Mode review worksheet endpoint — must be present in config [VERIFY]</td>
+</tr>
+<tr>
+<td>KK BE</td>
+<td><code>Settings.ReviewToolActiveChildrenWithExpiredEnrollment</code></td>
+<td>existing setting</td>
+<td>Same — now read by Observer Mode endpoint [VERIFY]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-rollback-plan">4. Rollback Plan</h2>
+<ol>
+<li>Deploy previous Centers-CX build via Octopus [VERIFY — build number]</li>
+<li>Deploy previous KK BE + FE builds via Octopus [VERIFY — build numbers]</li>
+<li>Deploy previous POC_HxCloudConnectApi build via Octopus [VERIFY — build number]</li>
+<li>Run rollback SQL scripts for data migrations: reverse 318945 tier fix using backup table, reverse 317375 cleanup [VERIFY — confirm rollback scripts exist]</li>
+<li>D.33 policy data: no rollback needed — new policies default to N and have no effect unless explicitly enabled by sponsors</li>
+</ol>
+<hr />
+<h2 id="5-risk-assessment">5. Risk Assessment</h2>
+<ul>
+<li><strong>Worst case:</strong> Tier data migration (#318945) incorrectly updates child tier_code values, causing children to be claimed at wrong tier rates. D.33 roster SPs return incorrect data for sponsors who enable the new policy immediately after deploy.</li>
+<li><strong>How we detect it:</strong> Sponsor reports of incorrect tier display or claims data; Application Insights exceptions on ChildSendInvitations or enrollment cleanup APIs; QA spot-check of tier data for known test sponsors (996, 117, 166, 227, 245).</li>
+<li><strong>How we recover:</strong> Rollback per Section 4; tier data can be restored from backup table created by migration script (<code>mod_login_id = '-318945'</code>). D.33 policies can be disabled (set to N) per-sponsor without code rollback.</li>
+</ul>
+<hr />
+<h2 id="6-deployment-checklist">6. Deployment Checklist</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Step</th>
+<th>Owner</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Dev lead prepared release note</td>
+<td>[VERIFY]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>2</td>
+<td>DevOps reviewed infrastructure impact</td>
+<td>[VERIFY]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Architect reviewed changes</td>
+<td>[VERIFY]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>4</td>
+<td>SQL scripts verified on staging</td>
+<td>[VERIFY]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Web config changes documented and ready</td>
+<td>N/A</td>
+<td>Done</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Rollback plan confirmed</td>
+<td>[VERIFY]</td>
+<td>Pending</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Production deployment approved</td>
+<td>[VERIFY]</td>
+<td>Pending</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-tickets">7. Tickets</h2>
+<table>
+<thead>
+<tr>
+<th>Ticket</th>
+<th>Title</th>
+<th>Type</th>
+<th>State</th>
+<th>Infra Impact</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>#318497</td>
+<td>Centers: New Policy D.33 – Use Historic Claims Data for Rosters</td>
+<td>Story</td>
+<td>Released</td>
+<td>High</td>
+</tr>
+<tr>
+<td>#318945</td>
+<td>Fix: Child Income Eligibility (Tier 1) incorrectly auto-set for all children in Tier 1 homes</td>
+<td>Story</td>
+<td>Released</td>
+<td>High</td>
+</tr>
+<tr>
+<td>#316482</td>
+<td>KCE: Some Expired IEFs and EFs Are Missing From The Send Invitations Screen</td>
+<td>Story</td>
+<td>Released</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>#317375</td>
+<td>Submitted (parent) eforms are not showing up for approval</td>
+<td>Story</td>
+<td>Released</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>#318211</td>
+<td>Printing check issues - HX023</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#320038</td>
+<td>The check report is not the same as the HX app</td>
+<td>Bug</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#319629</td>
+<td>List Claims default filter shows only unsubmitted</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#317820</td>
+<td>Unable to close Certificate pop-up with Auto Save Actual Qty</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#319627</td>
+<td>Cert modal buttons unresponsive on Daily Attendance screen</td>
+<td>Bug</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#314517</td>
+<td>Error: Exception when calling API enrollment/sponsor/ChildSendInvitations</td>
+<td>Story</td>
+<td>Released</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>#307083</td>
+<td>Should log correct mod_login_id and mod_date_time when creating/updating foods</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#298280</td>
+<td>Sort Issue in eForms - Approve &amp; Renew</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#317867</td>
+<td>OK - CX8288 - Actual Quantity Required Not Calculating</td>
+<td>Story</td>
+<td>Released</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>#293930</td>
+<td>Adjust Claim Count validation for approved meals</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#317938</td>
+<td>Child List is missing in Review Worksheet from Observer Mode</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#319633</td>
+<td>Application Insight Review - Expired/Expiring Soon filters 1-day gap</td>
+<td>Story</td>
+<td>UAT</td>
+<td>None</td>
+</tr>
+<tr>
+<td>#316483</td>
+<td>Food Program needs to handle p_participant records with record_status_code = 289</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#319410</td>
+<td>Texas - Update IEF for Child Care Center</td>
+<td>Story</td>
+<td>Released</td>
+<td>None</td>
+</tr>
+<tr>
+<td>#319477</td>
+<td>Tier 1 Start/End Date incorrect when enrolling new Own child</td>
+<td>Bug</td>
+<td>UAT</td>
+<td>None</td>
+</tr>
+<tr>
+<td>#319102</td>
+<td>Remove Accounting PIN from KidKare pages</td>
+<td>Story</td>
+<td>Released</td>
+<td>None</td>
+</tr>
+<tr>
+<td>#317756</td>
+<td>Address Sync Between Parachute &amp; Kidkare</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#318618</td>
+<td>Enhance assign child classroom in Parachute</td>
+<td>Story</td>
+<td>Released</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>#311567</td>
+<td>Eform approved and renewed but signature date not updated</td>
+<td>Story</td>
+<td>Withdrawn</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

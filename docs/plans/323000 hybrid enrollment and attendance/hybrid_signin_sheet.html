@@ -1,0 +1,269 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mockup: Hybrid Sign-in Sheet (Daily / Weekly)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body { background:#e9ecef; color:#222; font-family:Arial, Helvetica, sans-serif; font-size:12px; padding:20px; }
+    .preview-bar { background:#fff; border:1px solid #cccfd1; padding:10px 14px; margin-bottom:16px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; max-width:1000px; margin-left:auto; margin-right:auto; }
+    .preview-bar label { margin:0 6px 0 0; font-weight:600; color:#666; }
+    .preview-bar .form-control { display:inline-block; width:auto; min-width:140px; }
+    .btn-blue-bg { background:#3a8ebf; border-color:#3a8ebf; color:#fff; }
+    .btn-blue-bg:hover { background:#2e7099; color:#fff; }
+    .program-badge { background:#3a8ebf; color:#fff; font-size:11px; padding:3px 8px; border-radius:3px; vertical-align:middle; }
+    .view-toggle { display:inline-flex; border:1px solid #cccfd1; border-radius:3px; overflow:hidden; }
+    .view-toggle button { background:#fff; border:none; padding:6px 14px; font-size:12px; cursor:pointer; color:#555; }
+    .view-toggle button.active { background:#3a8ebf; color:#fff; }
+    .sheet { background:#fff; border:1px solid #999; max-width:1000px; margin:0 auto; padding:0; box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+    .sheet-header { display:flex; justify-content:space-between; align-items:flex-end; padding:14px 16px 10px; border-bottom:1px solid #999; background:#dde4e6; }
+    .sheet-header h2 { margin:0; font-size:20px; font-weight:700; letter-spacing:0.2px; }
+    .sheet-header .org { font-size:16px; font-weight:700; }
+    .sheet-info { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid #999; }
+    .sheet-info .cell { padding:6px 14px; border-right:1px solid #999; font-size:12px; }
+    .sheet-info .cell:last-child { border-right:none; }
+    .sheet-info .lbl { font-weight:700; }
+    .signin-table { width:100%; border-collapse:collapse; font-size:11px; table-layout:fixed; }
+    .signin-table th, .signin-table td { border:1px solid #999; padding:4px 6px; vertical-align:middle; height:24px; }
+    .signin-table th { background:#dde4e6; font-weight:700; text-align:left; }
+    .signin-table .num-col { width:34px; text-align:center; background:#f4f6f8; color:#555; font-weight:600; }
+    .signin-table .name-col { text-align:left; }
+    .signin-table .num-cell { text-align:center; }
+    .walkin-tag { background:#d4a017; color:#fff; font-size:9px; padding:1px 5px; border-radius:2px; margin-left:4px; vertical-align:middle; }
+    .day-header { text-align:center; padding:6px 4px; }
+    .day-header .day-name { font-weight:700; font-size:11px; }
+    .day-header .day-date { display:block; font-size:10px; font-weight:400; color:#555; margin-top:2px; }
+    .sub-col { width:28px; text-align:center; font-size:10px; padding:2px 0; background:#eef1f3; }
+    .day-block { border-left:2px solid #999 !important; }
+    .check-icon { color:#0a6cad; font-weight:700; }
+    .page-footer { padding:8px 14px; font-size:10px; color:#777; }
+    .view { display:none; }
+    .view.active { display:block; }
+    .purpose-hint { max-width:1000px; margin:0 auto 14px; background:#eaf4fb; border-left:3px solid #3a8ebf; padding:8px 14px; font-size:12px; color:#3a6f8e; }
+    @media print {
+      body { background:#fff; padding:0; }
+      .preview-bar, .purpose-hint { display:none; }
+      .sheet { box-shadow:none; border:none; max-width:100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top toolbar (hidden on print) -->
+<div class="preview-bar">
+  <span class="program-badge">SIGN-IN SHEET PREVIEW</span>
+  <div class="view-toggle" style="margin-left:14px;">
+    <button id="btn-daily" class="active" onclick="setView('daily')">Daily</button>
+    <button id="btn-weekly" onclick="setView('weekly')">Weekly</button>
+  </div>
+  <label style="margin-left:14px;">Date</label>
+  <input type="text" class="form-control" value="05/13/2026" style="width:120px;">
+  <label style="margin-left:8px;">Meal</label>
+  <select class="form-control">
+    <option>Lunch</option>
+    <option>Breakfast</option>
+    <option>AM Snack</option>
+    <option>PM Snack</option>
+    <option>Dinner</option>
+    <option>Eve. Snack</option>
+  </select>
+  <div style="margin-left:auto;">
+    <button class="btn btn-sm btn-blue-bg"><i class="fa fa-print"></i> Print</button>
+    <button class="btn btn-sm" style="background:#666; color:#fff;"><i class="fa fa-file-pdf-o"></i> Download PDF</button>
+  </div>
+</div>
+
+<div class="purpose-hint">
+  <i class="fa fa-info-circle"></i> &nbsp;This sheet is meant to be printed and used at the center for <strong>handwritten check-in</strong>. Names are pre-populated from the hybrid roster so staff don't need to write them. The Att / Served / Check In cells are blank for manual marking. Blank rows at the bottom are for new walk-ins recorded by hand.
+</div>
+
+<!-- ================== DAILY VIEW ================== -->
+<div id="view-daily" class="view active">
+  <div class="sheet">
+    <div class="sheet-header">
+      <h2>Sign-In Sheet</h2>
+      <div class="org">MM Test</div>
+    </div>
+    <div class="sheet-info">
+      <div class="cell"><span class="lbl">Site:</span> Sun Valley Community Center (ARAS Hybrid)</div>
+      <div class="cell"><span class="lbl">Date:</span> 05/13/2026</div>
+      <div class="cell"><span class="lbl">Contact:</span> Jamie Reyes</div>
+      <div class="cell"><span class="lbl">Meal Served:</span> Lunch</div>
+    </div>
+    <table class="signin-table">
+      <thead>
+        <tr>
+          <th class="num-col">#</th>
+          <th class="name-col">Name</th>
+          <th class="num-cell" style="width:90px;">Served</th>
+          <th class="num-cell" style="width:110px;">Attendance</th>
+          <th class="num-cell" style="width:110px;">Check In</th>
+        </tr>
+      </thead>
+      <tbody id="daily-body">
+        <!-- Pre-populated from OPEN_ENROLLED_CHILD roster -->
+        <tr><td class="num-col">1</td><td>Anderson, James K</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">2</td><td>Brown, Maria</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">3</td><td>Carter, Devon S</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">4</td><td>Diaz, Sophia <span class="walkin-tag">Walk-in</span></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">5</td><td>Ellis, Marcus</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">6</td><td>Fischer, Olivia</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">7</td><td>Garcia, Lucas <span class="walkin-tag">Walk-in</span></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">8</td><td>Hayes, Emma</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">9</td><td>Iverson, Noah</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">10</td><td>Johnson, Ava</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">11</td><td>Kim, Ethan</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">12</td><td>Lopez, Isabella</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">13</td><td>Martinez, Liam</td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">14</td><td>Nguyen, Mia</td><td></td><td></td><td></td></tr>
+        <!-- Blank rows for additional walk-ins recorded by hand on the printed sheet -->
+        <tr><td class="num-col">15</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">16</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">17</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">18</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">19</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">20</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">21</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">22</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">23</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">24</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">25</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">26</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">27</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">28</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">29</td><td></td><td></td><td></td><td></td></tr>
+        <tr><td class="num-col">30</td><td></td><td></td><td></td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer">Page 1 of 1</div>
+  </div>
+</div>
+
+<!-- ================== WEEKLY VIEW ================== -->
+<div id="view-weekly" class="view">
+  <div class="sheet">
+    <div class="sheet-header">
+      <h2>Sign-In Sheet</h2>
+      <div class="org">MM Test</div>
+    </div>
+    <div class="sheet-info">
+      <div class="cell"><span class="lbl">Site:</span> Sun Valley Community Center (ARAS Hybrid)</div>
+      <div class="cell"><span class="lbl">Date:</span> Week of 05/11/2026</div>
+      <div class="cell"><span class="lbl">Contact:</span> Jamie Reyes</div>
+      <div class="cell"><span class="lbl">Meal:</span> Lunch</div>
+    </div>
+    <table class="signin-table">
+      <thead>
+        <tr>
+          <th class="num-col" rowspan="2">#</th>
+          <th class="name-col" rowspan="2" style="width:165px;">First and Last Name</th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Monday</div><div class="day-date">05/11</div></th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Tuesday</div><div class="day-date">05/12</div></th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Wed.</div><div class="day-date">05/13</div></th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Thursday</div><div class="day-date">05/14</div></th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Friday</div><div class="day-date">05/15</div></th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Saturday</div><div class="day-date">05/16</div></th>
+          <th class="day-header day-block" colspan="2" style="width:115px;"><div class="day-name">Sunday</div><div class="day-date">05/17</div></th>
+        </tr>
+        <tr>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+          <th class="sub-col day-block">&#x2713;<br>Att</th><th class="sub-col">&#x2713;<br>Served</th>
+        </tr>
+      </thead>
+      <tbody id="weekly-body">
+        <!-- Names pre-populated from OPEN_ENROLLED_CHILD roster. Att / Served cells are intentionally blank for handwritten check-in. -->
+        <tr><td class="num-col">1</td><td>Anderson, James K</td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">2</td><td>Brown, Maria</td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">3</td><td>Carter, Devon S</td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">4</td><td>Diaz, Sophia <span class="walkin-tag">Walk-in</span></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">5</td><td>Ellis, Marcus</td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">6</td><td>Fischer, Olivia</td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">7</td><td>Garcia, Lucas <span class="walkin-tag">Walk-in</span></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <tr><td class="num-col">8</td><td>Hayes, Emma</td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td>
+          <td class="day-block num-cell"></td><td class="num-cell"></td></tr>
+        <!-- Blank rows for additional walk-ins recorded by hand on the printed sheet -->
+        <tr><td class="num-col">9</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+        <tr><td class="num-col">10</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+        <tr><td class="num-col">11</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+        <tr><td class="num-col">12</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+        <tr><td class="num-col">13</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+        <tr><td class="num-col">14</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+        <tr><td class="num-col">15</td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td><td class="day-block"></td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="page-footer">Page 1 of 2</div>
+  </div>
+</div>
+
+<script>
+function setView(v) {
+  document.getElementById('view-daily').classList.toggle('active', v === 'daily');
+  document.getElementById('view-weekly').classList.toggle('active', v === 'weekly');
+  document.getElementById('btn-daily').classList.toggle('active', v === 'daily');
+  document.getElementById('btn-weekly').classList.toggle('active', v === 'weekly');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mockup: Lightweight Enrollment (Hybrid)</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body { background:#f4f6f8; color:#444; font-family:'Open Sans', Arial, sans-serif; font-size:13px; padding:20px; }
+    .widget-box { background:#fff; border:1px solid #cccfd1; margin-bottom:18px; }
+    .widget-header { background:#dde4e6; padding:6px 12px; border-bottom:1px solid #cccfd1; font-weight:600; }
+    .widget-main { padding:14px; }
+    .meal-attendance-header { font-size:14px; font-weight:600; color:#3a8ebf; }
+    .required-field::after { content:'*'; color:#d15b47; margin-left:4px; }
+    .btn-blue-bg { background:#3a8ebf; border-color:#3a8ebf; color:#fff; }
+    .btn-blue-bg:hover { background:#2e7099; color:#fff; }
+    .breadcrumb-mock { color:#888; margin-bottom:10px; font-size:12px; }
+    .page-title { font-size:18px; font-weight:600; color:#444; margin-bottom:14px; }
+    .program-badge { background:#3a8ebf; color:#fff; font-size:11px; padding:3px 8px; border-radius:3px; margin-left:10px; vertical-align:middle; }
+    .form-card { max-width:560px; }
+    .form-card label { font-weight:600; color:#555; margin-top:10px; display:block; }
+    .form-card .form-control { margin-bottom:6px; }
+    .req { color:#d15b47; }
+    .field-hint { color:#999; font-size:11px; margin-bottom:6px; }
+    .info-box { background:#eaf4fb; border-left:3px solid #3a8ebf; padding:10px 14px; margin-bottom:18px; color:#3a6f8e; font-size:12px; }
+    .defaults-box { background:#f9fbfc; border:1px dashed #cccfd1; padding:10px 14px; margin-top:14px; }
+    .defaults-box label { font-weight:600; color:#888; font-size:11px; text-transform:uppercase; letter-spacing:0.5px; margin:0; }
+    .defaults-box ul { margin:6px 0 0; padding-left:18px; color:#777; font-size:12px; }
+    .defaults-box ul li { margin:2px 0; }
+    .btn-bar { margin-top:18px; text-align:right; }
+    .children-list { background:#fff; border:1px solid #cccfd1; }
+    .children-list table { width:100%; }
+    .children-list th { background:#f0f3f5; padding:8px 12px; border-bottom:2px solid #cccfd1; font-size:12px; text-transform:uppercase; color:#555; letter-spacing:0.4px; }
+    .children-list td { padding:8px 12px; border-bottom:1px solid #eee; font-size:13px; }
+    .children-list tr:hover { background:#f9fbfc; }
+    .walkin-badge { background:#d4a017; color:#fff; font-size:10px; padding:2px 6px; border-radius:2px; margin-left:6px; vertical-align:middle; }
+    .toolbar { padding:10px 14px; border-bottom:1px solid #eee; display:flex; justify-content:space-between; align-items:center; }
+    .input-error { border:1px solid #d15b47 !important; box-shadow:0 0 0 2px rgba(209,91,71,0.15) !important; background:#fff4f2 !important; }
+    .field-error-msg { color:#d15b47; font-size:11px; margin-top:4px; display:block; }
+    .row-actions { white-space:nowrap; }
+    .row-actions .action-btn { background:transparent; border:none; color:#888; cursor:pointer; padding:4px 6px; margin:0 2px; font-size:13px; transition:color 0.15s; }
+    .row-actions .action-btn:hover { color:#3a8ebf; }
+    .row-actions .action-btn.delete:hover { color:#d15b47; }
+    .editing-row { background:#fffbe6 !important; }
+    .editing-row .form-control { padding:4px 6px; height:30px; }
+    .bulk-bar { background:#fff4f2; border:1px solid #d15b47; padding:8px 14px; margin-bottom:0; display:none; align-items:center; justify-content:space-between; }
+    .bulk-bar.active { display:flex; }
+    .bulk-bar .btn-danger-bg { background:#d15b47; color:#fff; border-color:#d15b47; }
+    .bulk-bar .btn-danger-bg:hover { background:#b34735; }
+    .col-check-cell { width:36px; text-align:center; }
+    .col-check-cell input[type=checkbox] { transform:scale(1.2); cursor:pointer; }
+    .selected-row { background:#fdf3f0 !important; }
+  </style>
+</head>
+<body>
+
+<div class="breadcrumb-mock">
+  <i class="fa fa-home"></i> &raquo; Children &raquo; Add Child
+</div>
+
+<div class="page-title">
+  Add Hybrid Child
+  <span class="program-badge">ARAS / SFSP HYBRID</span>
+</div>
+
+<div class="info-box">
+  <i class="fa fa-info-circle"></i> &nbsp;<strong>Lightweight enrollment</strong> captures the minimum information needed to serve a child at this hybrid site. Only First Name is required. The full enrollment form is not used for hybrid centers.
+</div>
+
+<div class="widget-box form-card">
+  <div class="widget-header">
+    <span class="meal-attendance-header required-field">Child Information</span>
+  </div>
+  <div class="widget-main">
+    <label>First Name <span class="req">*</span></label>
+    <input type="text" id="enroll-first" class="form-control" placeholder="e.g. James" autofocus oninput="this.classList.remove('input-error'); document.getElementById('enroll-err').style.display='none';">
+    <span id="enroll-err" class="field-error-msg" style="display:none;"><i class="fa fa-exclamation-circle"></i> First Name is required</span>
+
+    <label>Last Name</label>
+    <div class="field-hint">Full name, single initial, or leave blank</div>
+    <input type="text" class="form-control" placeholder="e.g. K. or Anderson">
+
+    <label>Birth Date</label>
+    <div class="field-hint">Optional. Used for age-band reporting only.</div>
+    <div class="input-group date-picker-component" style="width:200px;">
+      <input autocomplete="off" type="text" class="form-control date-picker" placeholder="mm/dd/yyyy" readonly style="background:#fff; cursor:pointer;">
+      <span class="input-group-addon" style="cursor:pointer;"><i class="fa fa-calendar bigger-110"></i></span>
+    </div>
+
+  </div>
+</div>
+
+<div class="btn-bar" style="max-width:560px;">
+  <button class="btn btn-sm" style="background:#bbb; color:#fff;">Cancel</button>
+  <button class="btn btn-sm btn-blue-bg" onclick="var f=document.getElementById('enroll-first'); if(!f.value.trim()){ f.classList.add('input-error'); document.getElementById('enroll-err').style.display='block'; f.focus(); return false; } alert('Child added (mockup).');"><i class="fa fa-check"></i> Add Child</button>
+</div>
+
+<!-- Hybrid Children roster -->
+<div style="margin-top:36px;">
+  <div class="page-title" style="font-size:16px;">
+    Hybrid Children
+  </div>
+  <div class="info-box">
+    <i class="fa fa-info-circle"></i> &nbsp;The <strong>hybrid roster</strong> lists every child registered for this center's ARAS Hybrid or SFSP Hybrid program. Each entry holds only minimum information (First Name required, Last Name and DOB optional) and is used to populate the ATMC roster and the sign-in sheet. Children added inline as walk-ins on the ATMC also appear here once saved.
+  </div>
+  <div class="children-list">
+    <div class="toolbar">
+      <span><i class="fa fa-users"></i> &nbsp; <strong>14 children</strong> on hybrid roster</span>
+      <div>
+        <input type="text" class="form-control input-sm" placeholder="Search..." style="display:inline-block; width:200px;">
+        &nbsp;<button class="btn btn-sm btn-blue-bg"><i class="fa fa-plus"></i> Add Hybrid Child</button>
+      </div>
+    </div>
+    <div id="bulk-bar" class="bulk-bar">
+      <span><i class="fa fa-check-square-o"></i> &nbsp;<strong id="bulk-count">0</strong> selected</span>
+      <div>
+        <button class="btn btn-sm" style="background:#bbb; color:#fff;" onclick="clearSelection()">Clear selection</button>
+        <button class="btn btn-sm btn-danger-bg" onclick="bulkDelete()"><i class="fa fa-trash"></i> Delete selected</button>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="col-check-cell"><input type="checkbox" onchange="toggleAll(this)" title="Select all"></th>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Added</th>
+          <th>Last Attended</th>
+          <th style="width:110px; text-align:right;">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="children-tbody">
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Anderson, James K</td><td>2018-04-12</td><td>2026-03-02</td><td>2026-05-13</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Brown, Maria</td><td>-</td><td>2026-03-04</td><td>2026-05-13</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Carter, Devon S</td><td>2017-09-01</td><td>2026-03-08</td><td>2026-05-09</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Diaz, Sophia <span class="walkin-badge">Walk-in</span></td><td>-</td><td>2026-05-12</td><td>2026-05-13</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Ellis, Marcus</td><td>2018-11-20</td><td>2026-03-15</td><td>2026-05-13</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Fischer, Olivia</td><td>2019-02-08</td><td>2026-04-01</td><td>2026-05-06</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Garcia, Lucas <span class="walkin-badge">Walk-in</span></td><td>-</td><td>2026-05-13</td><td>2026-05-13</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td class="col-check-cell"><input type="checkbox" class="row-check" onchange="updateBulk(this)"></td>
+          <td>Hayes, Emma</td><td>2017-12-30</td><td>2026-03-22</td><td>2026-05-13</td>
+          <td class="row-actions text-right">
+            <button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>
+            <button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// Cell indexes for the children table (checkbox col added):
+// 0=checkbox, 1=Name, 2=DOB, 3=Added, 4=Last Attended, 5=Actions
+function parseName(text) {
+  text = text.trim();
+  if (text.indexOf(',') >= 0) {
+    var parts = text.split(',');
+    return { last: parts[0].trim(), first: parts.slice(1).join(',').trim() };
+  }
+  return { last: '', first: text };
+}
+function startEdit(btn) {
+  var row = btn.closest('tr');
+  if (row.classList.contains('editing-row')) return;
+  row.classList.add('editing-row');
+  var cells = row.cells;
+  var nameText = cells[1].childNodes[0].textContent.trim();
+  var hadBadge = cells[1].querySelector('.walkin-badge');
+  var n = parseName(nameText);
+  cells[1].innerHTML =
+    '<input type="text" class="form-control name-last" placeholder="Last name" value="' + n.last.replace(/"/g,'&quot;') + '" style="width:48%; display:inline-block; margin-right:2%;">' +
+    '<input type="text" class="form-control name-first" placeholder="First name *" value="' + n.first.replace(/"/g,'&quot;') + '" style="width:48%; display:inline-block;">' +
+    (hadBadge ? ' <span class="walkin-badge">Walk-in</span>' : '');
+  var dob = cells[2].textContent.trim();
+  if (dob === '-') dob = '';
+  cells[2].innerHTML = '<input type="text" class="form-control" placeholder="mm/dd/yyyy" value="' + dob + '">';
+  cells[5].innerHTML =
+    '<button class="action-btn" title="Save" onclick="saveEdit(this)" style="color:#5cb85c;"><i class="fa fa-check"></i></button>' +
+    '<button class="action-btn delete" title="Cancel" onclick="cancelEdit(this)"><i class="fa fa-times"></i></button>';
+}
+function saveEdit(btn) {
+  var row = btn.closest('tr');
+  var cells = row.cells;
+  var firstInput = cells[1].querySelector('.name-first');
+  var lastInput  = cells[1].querySelector('.name-last');
+  var dobInput   = cells[2].querySelector('input');
+  var badge = cells[1].querySelector('.walkin-badge');
+  if (!firstInput.value.trim()) {
+    firstInput.classList.add('input-error');
+    firstInput.focus();
+    return;
+  }
+  var first = firstInput.value.trim();
+  var last = lastInput.value.trim();
+  var display = last ? (last + ', ' + first) : first;
+  cells[1].innerHTML = display + (badge ? ' <span class="walkin-badge">Walk-in</span>' : '');
+  cells[2].innerHTML = dobInput.value.trim() || '-';
+  row.classList.remove('editing-row');
+  cells[5].innerHTML =
+    '<button class="action-btn" title="Quick edit" onclick="startEdit(this)"><i class="fa fa-pencil"></i></button>' +
+    '<button class="action-btn delete" title="Delete" onclick="confirmDelete(this)"><i class="fa fa-trash"></i></button>';
+}
+function cancelEdit(btn) { location.reload(); }
+function confirmDelete(btn) {
+  var row = btn.closest('tr');
+  var name = row.cells[1].textContent.replace('Walk-in','').trim();
+  if (confirm('Remove ' + name + ' from the hybrid roster?')) {
+    row.parentNode.removeChild(row);
+    updateBulk();
+  }
+}
+
+// Bulk selection
+function toggleAll(masterCb) {
+  document.querySelectorAll('#children-tbody .row-check').forEach(function(cb){
+    cb.checked = masterCb.checked;
+    var row = cb.closest('tr');
+    if (cb.checked) row.classList.add('selected-row'); else row.classList.remove('selected-row');
+  });
+  updateBulk();
+}
+function updateBulk(cb) {
+  if (cb) {
+    var row = cb.closest('tr');
+    if (cb.checked) row.classList.add('selected-row'); else row.classList.remove('selected-row');
+  }
+  var checks = document.querySelectorAll('#children-tbody .row-check:checked');
+  document.getElementById('bulk-count').textContent = checks.length;
+  document.getElementById('bulk-bar').classList.toggle('active', checks.length > 0);
+}
+function clearSelection() {
+  document.querySelectorAll('#children-tbody .row-check').forEach(function(cb){
+    cb.checked = false;
+    cb.closest('tr').classList.remove('selected-row');
+  });
+  var master = document.querySelector('thead .col-check-cell input[type=checkbox]');
+  if (master) master.checked = false;
+  updateBulk();
+}
+function bulkDelete() {
+  var checks = document.querySelectorAll('#children-tbody .row-check:checked');
+  if (!checks.length) return;
+  if (confirm('Remove ' + checks.length + ' child(ren) from the hybrid roster?')) {
+    checks.forEach(function(cb){ cb.closest('tr').remove(); });
+    updateBulk();
+  }
+}
+</script>
+
+</body>
+</html>

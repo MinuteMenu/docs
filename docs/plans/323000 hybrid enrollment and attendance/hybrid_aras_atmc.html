@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mockup: ARAS Hybrid ATMC</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body { background:#f4f6f8; color:#444; font-family:'Open Sans', Arial, sans-serif; font-size:13px; padding:20px; }
+    .widget-box { background:#fff; border:1px solid #cccfd1; margin-bottom:18px; }
+    .widget-header { background:#dde4e6; padding:6px 12px; border-bottom:1px solid #cccfd1; font-weight:600; }
+    .widget-header .chevron { float:right; color:#888; }
+    .widget-main { padding:14px; }
+    .meal-attendance-header { font-size:14px; font-weight:600; color:#3a8ebf; }
+    .required-field::after { content:'*'; color:#d15b47; margin-left:4px; }
+    .sub-header label { display:block; margin:14px 0 6px; font-weight:600; color:#666; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; }
+    .filters-bar { background:#fff; padding:10px 14px; border:1px solid #cccfd1; margin-bottom:18px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .filters-bar label { margin:0 6px 0 0; font-weight:600; color:#666; }
+    .filters-bar .form-control { display:inline-block; width:auto; min-width:160px; }
+    .btn-blue-bg { background:#3a8ebf; border-color:#3a8ebf; color:#fff; }
+    .btn-blue-bg:hover { background:#2e7099; color:#fff; }
+    .btn-signin-color { background:#5cb85c; border-color:#5cb85c; color:#fff; }
+    .btn-export-color { background:#666; border-color:#666; color:#fff; }
+    .walkin-row { background:#fffbe6; border:1px dashed #d4a017; padding:10px 14px; margin-bottom:18px; display:flex; gap:10px; align-items:center; }
+    .walkin-row .form-control { width:auto; min-width:140px; display:inline-block; }
+    .walkin-row .label { background:#d4a017; color:#fff; padding:4px 10px; border-radius:3px; font-weight:600; }
+    .child-table { width:100%; border-collapse:collapse; }
+    .child-table th { background:#f0f3f5; padding:10px; border-bottom:2px solid #cccfd1; text-align:left; font-weight:600; color:#555; font-size:12px; text-transform:uppercase; letter-spacing:0.4px; }
+    .child-table td { padding:10px; border-bottom:1px solid #eee; vertical-align:middle; }
+    .child-table tr:hover { background:#f9fbfc; }
+    .child-table .col-check { width:60px; text-align:center; }
+    .child-table .col-num { width:120px; }
+    .child-table input[type=checkbox] { transform:scale(1.4); cursor:pointer; }
+    .child-table .num-input { width:80px; text-align:center; padding:4px 6px; }
+    .walkin-badge { background:#d4a017; color:#fff; font-size:10px; padding:2px 6px; border-radius:2px; margin-left:6px; vertical-align:middle; }
+    .totals-footer { background:#f0f3f5; padding:10px 14px; border-top:2px solid #cccfd1; display:flex; justify-content:space-between; align-items:center; font-weight:600; }
+    .totals-footer .stat { display:inline-block; margin-right:24px; }
+    .totals-footer .stat .num { color:#3a8ebf; font-size:18px; margin-left:6px; }
+    .btn-bar { text-align:right; padding:14px; }
+    .breadcrumb-mock { color:#888; margin-bottom:10px; font-size:12px; }
+    .page-title { font-size:18px; font-weight:600; color:#444; margin-bottom:14px; }
+    .program-badge { background:#3a8ebf; color:#fff; font-size:11px; padding:3px 8px; border-radius:3px; margin-left:10px; vertical-align:middle; }
+    .input-error { border:1px solid #d15b47 !important; box-shadow:0 0 0 2px rgba(209,91,71,0.15) !important; background:#fff4f2 !important; }
+    .field-error-msg { color:#d15b47; font-size:11px; margin-left:8px; }
+    .child-link { color:#3a8ebf; cursor:pointer; text-decoration:none; }
+    .child-link:hover { text-decoration:underline; color:#2e7099; }
+    .modal-backdrop-mock { position:fixed; inset:0; background:rgba(0,0,0,0.4); display:none; z-index:1040; }
+    .modal-mock { position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; border-radius:4px; box-shadow:0 8px 24px rgba(0,0,0,0.3); width:480px; max-width:95vw; z-index:1050; display:none; }
+    .modal-mock.open, .modal-backdrop-mock.open { display:block; }
+    .modal-mock .modal-header { background:#dde4e6; padding:10px 16px; border-bottom:1px solid #cccfd1; display:flex; justify-content:space-between; align-items:center; }
+    .modal-mock .modal-header h4 { margin:0; font-size:15px; font-weight:600; color:#3a8ebf; }
+    .modal-mock .modal-header .close-btn { background:none; border:none; font-size:18px; color:#888; cursor:pointer; }
+    .modal-mock .modal-body { padding:16px; }
+    .modal-mock .modal-body label { font-weight:600; color:#555; display:block; margin-top:10px; }
+    .modal-mock .modal-body .field-hint { color:#999; font-size:11px; margin-bottom:4px; }
+    .modal-mock .modal-footer { padding:12px 16px; background:#f9fbfc; border-top:1px solid #eee; display:flex; justify-content:space-between; align-items:center; }
+    .modal-mock .btn-danger-bg { background:#d15b47; color:#fff; border-color:#d15b47; }
+    .modal-mock .btn-danger-bg:hover { background:#b34735; color:#fff; }
+    .unsaved-row { background:#fffbe6 !important; box-shadow:inset 3px 0 0 #d4a017; }
+    .unsaved-tag { color:#d4a017; font-size:10px; font-weight:700; margin-left:6px; text-transform:uppercase; letter-spacing:0.4px; }
+  </style>
+</head>
+<body>
+
+<div class="breadcrumb-mock">
+  <i class="fa fa-home"></i> &raquo; Menus/Attendance &raquo; Attendance &amp; Meal Count
+</div>
+
+<div class="page-title">
+  Attendance &amp; Meal Counts
+  <span class="program-badge">ARAS HYBRID</span>
+</div>
+
+<!-- Filters / Page Settings -->
+<div class="filters-bar">
+  <span class="btn btn-warning btn-xs"><b>Filters</b> <i class="fa fa-angle-double-down"></i></span>
+  <label>Date</label>
+  <div class="input-group" style="display:inline-flex;">
+    <input type="text" class="form-control" value="05/13/2026" style="width:120px;">
+    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+  </div>
+  <label style="margin-left:14px;">Meal</label>
+  <select class="form-control">
+    <option>Lunch (L) (12:00 PM)</option>
+    <option>Breakfast (B) (08:00 AM)</option>
+    <option>AM Snack (A) (10:00 AM)</option>
+    <option>PM Snack (P) (03:00 PM)</option>
+    <option>Dinner (D) (06:00 PM)</option>
+    <option>Eve. Snack (E) (08:00 PM)</option>
+  </select>
+  <div style="margin-left:auto;">
+    <button class="btn btn-sm btn-signin-color"><i class="fa fa-file-text"></i>&nbsp;Sign In Sheets</button>
+    <button class="btn btn-sm btn-export-color"><i class="fa fa-upload"></i>&nbsp;Export</button>
+  </div>
+</div>
+
+<!-- Walk-in Inline Add (compact, no modal) -->
+<div class="walkin-row">
+  <span class="label"><i class="fa fa-user-plus"></i> Add Walk-in</span>
+  <input type="text" id="walkin-first" class="form-control" placeholder="First name *" oninput="this.classList.remove('input-error'); document.getElementById('walkin-err').style.display='none';">
+  <input type="text" id="walkin-last" class="form-control" placeholder="Last name (optional)">
+  <div class="input-group date-picker-component" style="width:170px;">
+    <input id="walkin-dob" autocomplete="off" type="text" class="form-control date-picker" placeholder="DOB (optional)" readonly style="background:#fff; cursor:pointer;">
+    <span class="input-group-addon" style="cursor:pointer;"><i class="fa fa-calendar bigger-110"></i></span>
+  </div>
+  <button class="btn btn-sm btn-blue-bg" onclick="addWalkin()"><i class="fa fa-plus"></i> Add</button>
+  <span id="walkin-err" class="field-error-msg" style="display:none;"><i class="fa fa-exclamation-circle"></i> First Name is required</span>
+  <span style="color:#999; margin-left:8px; font-size:12px;">Adds child to roster (pending save) and counts the current meal</span>
+</div>
+
+<!-- Per-child roster -->
+<div class="widget-box">
+  <div class="widget-header">
+    <span class="meal-attendance-header required-field">Participants for Lunch on 05/13/2026</span>
+    <span class="chevron">&#x25BE;</span>
+  </div>
+  <div class="widget-main" style="padding:0;">
+    <table class="child-table">
+      <thead>
+        <tr>
+          <th class="col-check">Present</th>
+          <th>Child Name</th>
+          <th class="col-num">Served</th>
+          <th class="col-num">Seconds</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-check"><input type="checkbox" checked></td>
+          <td><a class="child-link" onclick="openChildModal('Anderson, James K', '2018-04-12', false)">Anderson, James K</a></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox" checked></td>
+          <td><a class="child-link" onclick="openChildModal('Brown, Maria', '', false)">Brown, Maria</a></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox"></td>
+          <td><a class="child-link" onclick="openChildModal('Carter, Devon S', '2017-09-01', false)">Carter, Devon S</a></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox" checked></td>
+          <td><a class="child-link" onclick="openChildModal('Diaz, Sophia', '', true)">Diaz, Sophia</a> <span class="walkin-badge">Walk-in</span></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox" checked></td>
+          <td><a class="child-link" onclick="openChildModal('Ellis, Marcus', '2018-11-20', false)">Ellis, Marcus</a></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox"></td>
+          <td><a class="child-link" onclick="openChildModal('Fischer, Olivia', '2019-02-08', false)">Fischer, Olivia</a></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox" checked></td>
+          <td><a class="child-link" onclick="openChildModal('Garcia, Lucas', '', true)">Garcia, Lucas</a> <span class="walkin-badge">Walk-in</span></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+        </tr>
+        <tr>
+          <td class="col-check"><input type="checkbox" checked></td>
+          <td><a class="child-link" onclick="openChildModal('Hayes, Emma', '2017-12-30', false)">Hayes, Emma</a></td>
+          <td><input type="number" class="form-control num-input" value="1"></td>
+          <td><input type="number" class="form-control num-input" value="0"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="totals-footer">
+    <div>
+      <span class="stat">Present <span class="num" id="sum-present">0</span></span>
+      <span class="stat">Served <span class="num" id="sum-served">0</span></span>
+      <span class="stat">Seconds <span class="num" id="sum-seconds">0</span></span>
+      <span class="stat">Total Attendance <span class="num" id="sum-attendance">0</span></span>
+    </div>
+    <div style="color:#999; font-size:12px;">Counts roll up to SFSP_ATTENDANCE for claim</div>
+  </div>
+</div>
+
+<!-- Notes -->
+<div class="widget-box">
+  <div class="widget-header">
+    <span class="meal-attendance-header">Notes</span>
+    <span class="chevron">&#x25BE;</span>
+  </div>
+  <div class="widget-main">
+    <textarea class="form-control" rows="3" placeholder="Notes..." maxlength="150"></textarea>
+  </div>
+</div>
+
+<div class="btn-bar">
+  <button class="btn btn-sm" style="background:#bbb; color:#fff;">Clear</button>
+  <button class="btn btn-sm btn-blue-bg">Save</button>
+</div>
+
+<!-- Edit Child Modal -->
+<div id="childBackdrop" class="modal-backdrop-mock" onclick="closeChildModal()"></div>
+<div id="childModal" class="modal-mock">
+  <div class="modal-header">
+    <h4>Edit Child <span id="childModalBadge" style="display:none;" class="walkin-badge">Walk-in</span></h4>
+    <button class="close-btn" onclick="closeChildModal()">&times;</button>
+  </div>
+  <div class="modal-body">
+    <label>First Name <span style="color:#d15b47;">*</span></label>
+    <input type="text" id="modal-first" class="form-control" oninput="this.classList.remove('input-error'); document.getElementById('modal-err').style.display='none';">
+    <span id="modal-err" class="field-error-msg" style="display:none;"><i class="fa fa-exclamation-circle"></i> First Name is required</span>
+
+    <label style="margin-top:14px;">Last Name</label>
+    <div class="field-hint">Full name, single initial, or leave blank</div>
+    <input type="text" id="modal-last" class="form-control">
+
+    <label style="margin-top:14px;">Birth Date</label>
+    <div class="field-hint">Optional. Used for age-band reporting only.</div>
+    <div class="input-group date-picker-component" style="width:200px;">
+      <input id="modal-dob" autocomplete="off" type="text" class="form-control date-picker" placeholder="mm/dd/yyyy" readonly style="background:#fff; cursor:pointer;">
+      <span class="input-group-addon" style="cursor:pointer;"><i class="fa fa-calendar bigger-110"></i></span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-sm btn-danger-bg" onclick="if(confirm('Remove '+ document.getElementById('modal-first').value +' from the hybrid roster?')){ closeChildModal(); alert('Child removed (mockup).'); }"><i class="fa fa-trash"></i> Delete</button>
+    <div>
+      <button class="btn btn-sm" style="background:#bbb; color:#fff;" onclick="closeChildModal()">Cancel</button>
+      <button class="btn btn-sm btn-blue-bg" onclick="var f=document.getElementById('modal-first'); if(!f.value.trim()){ f.classList.add('input-error'); document.getElementById('modal-err').style.display='inline'; f.focus(); return false; } closeChildModal(); alert('Child saved (mockup).');"><i class="fa fa-check"></i> Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function updateTotals() {
+  var rows = document.querySelectorAll('.child-table tbody tr');
+  var present = 0, served = 0, seconds = 0;
+  rows.forEach(function(r) {
+    var cb = r.querySelector('input[type=checkbox]');
+    var nums = r.querySelectorAll('input[type=number]');
+    if (cb && cb.checked) present++;
+    if (nums[0]) served += parseInt(nums[0].value) || 0;
+    if (nums[1]) seconds += parseInt(nums[1].value) || 0;
+  });
+  document.getElementById('sum-present').textContent = present;
+  document.getElementById('sum-served').textContent = served;
+  document.getElementById('sum-seconds').textContent = seconds;
+  document.getElementById('sum-attendance').textContent = present;
+}
+function addWalkin() {
+  var firstEl = document.getElementById('walkin-first');
+  var first = firstEl.value.trim();
+  if (!first) {
+    firstEl.classList.add('input-error');
+    document.getElementById('walkin-err').style.display = 'inline';
+    firstEl.focus();
+    return;
+  }
+  var last = document.getElementById('walkin-last').value.trim();
+  var dob = document.getElementById('walkin-dob').value.trim();
+  var displayName = last ? (last + ', ' + first) : first;
+  var tbody = document.querySelector('.child-table tbody');
+  var row = document.createElement('tr');
+  row.className = 'unsaved-row';
+  row.innerHTML =
+    '<td class="col-check"><input type="checkbox" checked onchange="updateTotals()"></td>' +
+    '<td><a class="child-link" onclick="openChildModal(\'' + displayName.replace(/'/g, "\\'") + '\', \'' + dob + '\', true)">' + displayName + '</a> <span class="walkin-badge">Walk-in</span> <span class="unsaved-tag">Unsaved</span></td>' +
+    '<td><input type="number" class="form-control num-input" value="1" onchange="updateTotals()"></td>' +
+    '<td><input type="number" class="form-control num-input" value="0" onchange="updateTotals()"></td>';
+  tbody.insertBefore(row, tbody.firstChild);
+  firstEl.value = '';
+  document.getElementById('walkin-last').value = '';
+  document.getElementById('walkin-dob').value = '';
+  updateTotals();
+}
+// Wire change events on existing rows + run once on load
+document.querySelectorAll('.child-table tbody input[type=checkbox]').forEach(function(cb){ cb.addEventListener('change', updateTotals); });
+document.querySelectorAll('.child-table tbody input[type=number]').forEach(function(n){ n.addEventListener('change', updateTotals); n.addEventListener('input', updateTotals); });
+updateTotals();
+
+function openChildModal(fullName, dob, isWalkin) {
+  var parts = fullName.split(',');
+  var last = parts[0] ? parts[0].trim() : '';
+  var first = parts[1] ? parts[1].trim() : '';
+  document.getElementById('modal-first').value = first;
+  document.getElementById('modal-last').value = last;
+  document.getElementById('modal-dob').value = dob || '';
+  document.getElementById('childModalBadge').style.display = isWalkin ? 'inline-block' : 'none';
+  document.getElementById('modal-first').classList.remove('input-error');
+  document.getElementById('modal-err').style.display = 'none';
+  document.getElementById('childBackdrop').classList.add('open');
+  document.getElementById('childModal').classList.add('open');
+}
+function closeChildModal() {
+  document.getElementById('childBackdrop').classList.remove('open');
+  document.getElementById('childModal').classList.remove('open');
+}
+</script>
+
+</body>
+</html>
